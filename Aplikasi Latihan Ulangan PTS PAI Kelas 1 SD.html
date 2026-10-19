@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan PTS PAI & Budi Pekerti Kelas 1 SD</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #F8FAFC;
+        }
+        .arabic-text {
+            font-family: 'Amiri', serif;
+        }
+        .custom-shadow {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        @keyframes pulse-subtle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+        .animate-bounce-short {
+            animation: pulse-subtle 2s infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen text-slate-800 flex flex-col justify-between selection:bg-emerald-100 selection:text-emerald-800">
+
+    <!-- Top Navigation Header -->
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200/80">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="goToHome()">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-white shadow-md shadow-emerald-200">
+                    <i data-lucide="book-open-check" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg text-slate-900 leading-tight">PTS PAI Kelas 1 SD</h1>
+                    <p class="text-xs text-emerald-600 font-semibold">Kurikulum Merdeka • Bab 1-3</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-2">
+                <button onclick="toggleAudio()" id="audioBtn" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 transition" title="Suara Efek">
+                    <i data-lucide="volume-2" id="audioIcon" class="w-5 h-5"></i>
+                </button>
+                <button onclick="goToHome()" class="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50 transition flex items-center gap-1.5">
+                    <i data-lucide="home" class="w-4 h-4"></i> Menu Utama
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-6 flex-1 w-full">
+        <!-- SCREEN 1: Home Dashboard -->
+        <section id="homeScreen" class="space-y-6">
+            <!-- Hero Banner -->
+            <div class="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-700 rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-white/10 rounded-full blur-2xl"></div>
+                <div class="relative z-10 max-w-xl">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-semibold tracking-wide uppercase text-emerald-100 mb-3">
+                        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Siap Menghadapi PTS
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight leading-snug">Mari Berlatih Soal PAI & Budi Pekerti!</h2>
+                    <p class="text-emerald-100 mt-2 text-sm sm:text-base leading-relaxed">
+                        Pilih paket latihan di bawah ini. Terdapat 3 paket soal variatif (PG, Isian, Benar/Salah) lengkap dengan kunci jawaban dan pembahasan ramah anak.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Quiz Package Cards -->
+            <div class="space-y-4">
+                <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                    <i data-lucide="layers" class="w-5 h-5 text-emerald-600"></i> Pilih Paket Latihan (20 Soal/Paket)
+                </h3>
+
+                <div class="grid sm:grid-cols-3 gap-4" id="packageList">
+                    <!-- Package 1 Card -->
+                    <div onclick="startQuiz(0)" class="group bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md hover:border-emerald-500 transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 font-bold flex items-center justify-center text-lg group-hover:scale-110 transition-transform">1</span>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">20 Soal</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 group-hover:text-emerald-600 transition">Paket A: Dasar PAI</h4>
+                                <p class="text-xs text-slate-5-00 mt-1">Fokus: Hijaiah, Surah Al-Fatihah, Rukun Iman 1-2, Basmalah.</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-emerald-600">
+                            <span>Mulai Mengerjakan</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Package 2 Card -->
+                    <div onclick="startQuiz(1)" class="group bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md hover:border-teal-500 transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="w-10 h-10 rounded-xl bg-teal-100 text-teal-700 font-bold flex items-center justify-center text-lg group-hover:scale-110 transition-transform">2</span>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">20 Soal</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 group-hover:text-teal-600 transition">Paket B: Pengayaan</h4>
+                                <p class="text-xs text-slate-500 mt-1">Fokus: Harakat Dammah/Kasrah, Asmaul Husna, Perilaku Santun.</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-teal-600">
+                            <span>Mulai Mengerjakan</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Package 3 Card -->
+                    <div onclick="startQuiz(2)" class="group bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md hover:border-cyan-500 transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="w-10 h-10 rounded-xl bg-cyan-100 text-cyan-700 font-bold flex items-center justify-center text-lg group-hover:scale-110 transition-transform">3</span>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">20 Soal</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 group-hover:text-cyan-600 transition">Paket C: Tantangan</h4>
+                                <p class="text-xs text-slate-500 mt-1">Fokus: Isian & B/S, Keteladanan Nabi, Rasa Syukur & Hamdalah.</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-cyan-600">
+                            <span>Mulai Mengerjakan</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapter Overview Guide -->
+            <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm space-y-4">
+                <h3 class="font-bold text-slate-900 flex items-center gap-2">
+                    <i data-lucide="bookmark" class="w-5 h-5 text-amber-500"></i> Ringkasan Materi Ulangan (Bab 1 - 3)
+                </h3>
+                <div class="grid sm:grid-cols-3 gap-4 text-xs">
+                    <div class="p-3.5 rounded-xl bg-amber-50 border border-amber-100 text-amber-900">
+                        <p class="font-bold text-sm text-amber-900 mb-1">Bab 1: Aku Cinta Al-Qur'an</p>
+                        <ul class="list-disc list-inside space-y-1 text-amber-800">
+                            <li>Huruf Hijaiah (Alif - Ya)</li>
+                            <li>Harakat (Fathah, Kasrah, Dammah)</li>
+                            <li>Surah Al-Fatihah (7 Ayat, Pembukaan)</li>
+                        </ul>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-emerald-50 border border-emerald-100 text-emerald-900">
+                        <p class="font-bold text-sm text-emerald-900 mb-1">Bab 2: Rukun Iman</p>
+                        <ul class="list-disc list-inside space-y-1 text-emerald-800">
+                            <li>6 Rukun Iman (Iman kepada Allah & Rasul)</li>
+                            <li>Allah Maha Pengasih & Penyayang</li>
+                            <li>Nabi Muhammad Uswatun Hasanah</li>
+                        </ul>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-sky-50 border border-sky-100 text-sky-900">
+                        <p class="font-bold text-sm text-sky-900 mb-1">Bab 3: Perilaku Terpuji</p>
+                        <ul class="list-disc list-inside space-y-1 text-sky-800">
+                            <li>Basmalah (Sebelum kegiatan)</li>
+                            <li>Hamdalah (Selesai kegiatan/syukur)</li>
+                            <li>Sikap Santun & Menyayangi Teman</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 2: Quiz Question View -->
+        <section id="quizScreen" class="hidden space-y-5">
+            <!-- Progress Bar Card -->
+            <div class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <span id="pkgBadge" class="px-3 py-1 rounded-lg bg-emerald-100 text-emerald-800 font-bold text-xs">Paket A</span>
+                    <span class="text-xs font-medium text-slate-500">Soal <strong id="currentQNum" class="text-slate-800">1</strong> dari <strong id="totalQNum">20</strong></span>
+                </div>
+                <div class="w-full sm:w-64 bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                    <div id="progressBar" class="bg-gradient-to-r from-emerald-500 to-teal-500 h-full w-0 transition-all duration-300"></div>
+                </div>
+            </div>
+
+            <!-- Main Question Card -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-md space-y-6">
+                <!-- Question Type Tag & Content -->
+                <div class="space-y-3">
+                    <span id="qTypeBadge" class="inline-block px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-slate-100 text-slate-600">Pilihan Ganda</span>
+                    <h3 id="questionText" class="text-lg sm:text-xl font-bold text-slate-900 leading-snug">
+                        <!-- Question content inserted via JS -->
+                    </h3>
+                </div>
+
+                <!-- Answer Input Area (Dynamic) -->
+                <div id="optionsContainer" class="space-y-3 pt-2">
+                    <!-- Dynamic Answer Options inserted via JS -->
+                </div>
+
+                <!-- Explanation Box (Hidden until answered) -->
+                <div id="explanationBox" class="hidden p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900 space-y-2 animate-fade-in">
+                    <div class="flex items-center gap-2 font-bold text-sm text-emerald-800">
+                        <i data-lucide="info" class="w-4 h-4"></i> Pembahasan & Alasan:
+                    </div>
+                    <p id="explanationText" class="text-xs sm:text-sm leading-relaxed text-emerald-950">
+                        <!-- Explanation text inserted via JS -->
+                    </p>
+                </div>
+            </div>
+
+            <!-- Quiz Footer Controls -->
+            <div class="flex items-center justify-between pt-2">
+                <button id="prevBtn" onclick="prevQuestion()" class="px-4 py-2.5 rounded-xl border border-slate-200 text-slate-600 text-xs font-bold hover:bg-slate-100 transition flex items-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed">
+                    <i data-lucide="chevron-left" class="w-4 h-4"></i> Sebelumnya
+                </button>
+                <button id="nextBtn" onclick="nextQuestion()" class="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-md shadow-emerald-200 transition flex items-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed">
+                    Selanjutnya <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- SCREEN 3: Quiz Result View -->
+        <section id="resultScreen" class="hidden space-y-6">
+            <!-- Score Overview Card -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-lg text-center space-y-4 relative overflow-hidden">
+                <div class="inline-flex p-4 rounded-full bg-emerald-50 text-emerald-600 mb-1">
+                    <i data-lucide="trophy" class="w-12 h-12"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-extrabold text-slate-900">Hasil Latihan PTS PAI</h2>
+                    <p id="resultSubtitle" class="text-slate-500 text-sm mt-1">Paket A telah selesai dikerjakan!</p>
+                </div>
+
+                <!-- Final Score Display -->
+                <div class="py-4">
+                    <div class="text-5xl sm:text-6xl font-black text-emerald-600 tracking-tight" id="scoreDisplay">100</div>
+                    <p class="text-xs font-semibold text-slate-400 mt-1 uppercase tracking-widest">Nilai Akhir</p>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-3 gap-3 max-w-md mx-auto text-center border-t border-slate-100 pt-4">
+                    <div class="p-3 bg-slate-50 rounded-2xl">
+                        <span class="block text-xl font-bold text-emerald-600" id="correctCount">0</span>
+                        <span class="text-[11px] font-medium text-slate-500">Benar</span>
+                    </div>
+                    <div class="p-3 bg-slate-50 rounded-2xl">
+                        <span class="block text-xl font-bold text-rose-500" id="wrongCount">0</span>
+                        <span class="text-[11px] font-medium text-slate-500">Salah</span>
+                    </div>
+                    <div class="p-3 bg-slate-50 rounded-2xl">
+                        <span class="block text-xl font-bold text-slate-700" id="answeredCount">0</span>
+                        <span class="text-[11px] font-medium text-slate-500">Dijawab</span>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4">
+                    <button onclick="retryCurrentQuiz()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-slate-900 text-white font-bold text-xs hover:bg-slate-800 transition flex items-center justify-center gap-2">
+                        <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Coba Paket Ini Lagi
+                    </button>
+                    <button onclick="goToHome()" class="w-full sm:w-auto px-6 py-3 rounded-xl border border-slate-300 font-bold text-xs text-slate-700 hover:bg-slate-50 transition flex items-center justify-center gap-2">
+                        <i data-lucide="grid" class="w-4 h-4"></i> Pilih Paket Lain
+                    </button>
+                </div>
+            </div>
+
+            <!-- Detailed Question Review -->
+            <div class="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm space-y-4">
+                <h3 class="font-bold text-slate-900 flex items-center gap-2">
+                    <i data-lucide="file-check-2" class="w-5 h-5 text-emerald-600"></i> Review Jawaban & Pembahasan Lengkap
+                </h3>
+                <div id="reviewList" class="space-y-4 divide-y divide-slate-100">
+                    <!-- Dynamic Review Items inserted via JS -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200/80 py-4 text-center text-xs text-slate-500">
+        <p>© 2026 Latihan PTS PAI Kelas 1 SD • Berdasarkan Materi Kurikulum Merdeka (Bab 1 - 3)</p>
+    </footer>
+
+    <script>
+        const questionBank = [
+            // PACKAGE A (20 Questions)
+            [
+                // Bab 1
+                {
+                    type: "MCQ",
+                    question: "Kitab suci utama yang menjadi pedoman hidup bagi seluruh umat Islam adalah ...",
+                    options: ["Al-Qur'an", "Injil", "Taurat"],
+                    answer: "Al-Qur'an",
+                    explanation: "Al-Qur'an adalah kitab suci yang diturunkan kepada Nabi Muhammad saw. untuk pedoman hidup umat Islam."
+                },
+                {
+                    type: "MCQ",
+                    question: "Tanda baca berupa garis lurus di atas huruf hijaiah yang menghasilkan bunyi 'A' dinamakan ...",
+                    options: ["Kasrah", "Fathah", "Dammah"],
+                    answer: "Fathah",
+                    explanation: "Harakat Fathah berada di atas huruf dan menghasilkan bunyi vokal 'A'."
+                },
+                {
+                    type: "MCQ",
+                    question: "Surah Al-Fatihah berada di urutan pertama dalam Al-Qur'an dan terdiri dari ... ayat.",
+                    options: ["5", "6", "7"],
+                    answer: "7",
+                    explanation: "Surah Al-Fatihah memiliki 7 ayat dan diturunkan di kota Makkah."
+                },
+                {
+                    type: "MCQ",
+                    question: "Surah Al-Fatihah dinamakan juga Ummul Qur'an yang artinya ...",
+                    options: ["Induk Al-Qur'an", "Akhir Al-Qur'an", "Hiasan Al-Qur'an"],
+                    answer: "Induk Al-Qur'an",
+                    explanation: "Ummul Qur'an berarti Induk atau Ibu Al-Qur'an karena memuat pokok-pokok ajaran Al-Qur'an."
+                },
+                {
+                    type: "MCQ",
+                    question: "Huruf hijaiah yang pertama dalam urutan abjad Arab adalah huruf ...",
+                    options: ["Ba (ب)", "Alif (ا)", "Ta (ت)"],
+                    answer: "Alif (ا)",
+                    explanation: "Abjad Hijaiah diawali dari huruf Alif (ا) baru kemudian Ba (ب)."
+                },
+                // Bab 2
+                {
+                    type: "MCQ",
+                    question: "Rukun Iman adalah dasar keyakinan umat Islam. Urutan Rukun Iman yang pertama adalah beriman kepada ...",
+                    options: ["Malaikat", "Allah Swt.", "Nabi dan Rasul"],
+                    answer: "Allah Swt.",
+                    explanation: "Rukun Iman yang ke-1 adalah percaya dan yakin kepada Allah Swt."
+                },
+                {
+                    type: "MCQ",
+                    question: "Pencipta seluruh isi alam semesta, bumi, langit, dan manusia adalah ...",
+                    options: ["Nabi Muhammad saw.", "Allah Swt.", "Malaikat"],
+                    answer: "Allah Swt.",
+                    explanation: "Allah Swt. adalah Maha Pencipta (Al-Khaliq) yang menciptakan alam semesta."
+                },
+                {
+                    type: "MCQ",
+                    question: "Nabi dan Rasul terakhir yang diutus oleh Allah Swt. untuk membimbing seluruh umat manusia adalah ...",
+                    options: ["Nabi Adam a.s.", "Nabi Ibrahim a.s.", "Nabi Muhammad saw."],
+                    answer: "Nabi Muhammad saw.",
+                    explanation: "Nabi Muhammad saw. adalah nabi penutup (Khatamun Nabiyyin)."
+                },
+                {
+                    type: "MCQ",
+                    question: "Sebagai bukti rasa cinta dan taat kita kepada Allah Swt., kita wajib rajin ...",
+                    options: ["Beribadah dan Sholat", "Bermain game", "Tidur seharian"],
+                    answer: "Beribadah dan Sholat",
+                    explanation: "Wujud cinta kepada Allah ditunjukkan dengan rajin sholat, berdoa, dan berbuat baik."
+                },
+                {
+                    type: "MCQ",
+                    question: "Allah Swt. memberi kita rezeki dan menyayangi seluruh makhluk di bumi. Hal ini menunjukkan Allah Swt. memiliki sifat ...",
+                    options: ["Maha Pengasih dan Penyayang", "Maha Pemarah", "Maha Kuasa saja"],
+                    answer: "Maha Pengasih dan Penyayang",
+                    explanation: "Sifat Ar-Rahman dan Ar-Rahim membuktikan Allah Swt. Maha Pengasih dan Penyayang."
+                },
+                // Bab 3
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Kalimat yang wajib dibaca sebelum kita memulai pekerjaan baik seperti belajar adalah kalimat ...",
+                    answer: "Basmalah",
+                    explanation: "Membaca Basmalah (Bismillahirrahmanirrahim) mendatangkan keberkahan pada awal kegiatan."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Kalimat ucapan rasa syukur kepada Allah Swt. setelah selesai makan atau belajar dinamakan ...",
+                    answer: "Hamdalah",
+                    explanation: "Hamdalah (Alhamdulillah) diucapkan saat bersyukur menyelesaikan kebaikan."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Mengucapkan 'Terima kasih' saat diberi hadiah oleh teman merupakan contoh akhlak ...",
+                    answer: "Terpuji",
+                    explanation: "Akhlak terpuji adalah perilaku baik yang disukai Allah Swt. dan sesama manusia."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Apabila huruf Ba (ب) diberi harakat Kasrah di bawahnya, maka dibaca ...",
+                    answer: "Bi",
+                    explanation: "Harakat Kasrah memberikan bunyi 'I', sehingga Ba + Kasrah menjadi 'Bi'."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Jumlah Rukun Iman yang wajib kita yakini dalam hati ada ... perkara.",
+                    answer: "6",
+                    explanation: "Rukun Iman berjumlah 6: Iman kepada Allah, Malaikat, Kitab, Rasul, Hari Kiamat, dan Qada Qadar."
+                },
+                // Benar / Salah
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Membaca Surah Al-Fatihah hukumnya wajib pada setiap rakaat sholat.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Surah Al-Fatihah adalah rukun sholat yang wajib dibaca di setiap rakaat."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Kita hanya perlu berbuat baik dan menyayangi manusia saja, tidak perlu menyayangi hewan dan tumbuhan.",
+                    options: ["Benar", "Salah"],
+                    answer: "Salah",
+                    explanation: "Islam mengajarkan kita menyayangi semua makhluk ciptaan Allah, termasuk hewan dan tanaman."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Nabi Muhammad saw. memiliki sifat teladan yang baik yang dinamakan Uswatun Hasanah.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Uswatun Hasanah artinya teladan yang baik bagi seluruh umat manusia."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Mengucapkan salam saat bertamu atau bertemu guru hukumnya adalah perbuatan tercela.",
+                    options: ["Benar", "Salah"],
+                    answer: "Salah",
+                    explanation: "Mengucapkan salam adalah perbuatan terpuji yang mendatangkan pahala dan kedamaian."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Membuang makanan dan menyisa-nyisakannya saat makan adalah contoh sikap bersyukur.",
+                    options: ["Benar", "Salah"],
+                    answer: "Salah",
+                    explanation: "Mubazir dan membuang makanan adalah perbuatan yang tidak disukai Allah."
+                }
+            ],
+
+            // PACKAGE B (20 Questions)
+            [
+                {
+                    type: "MCQ",
+                    question: "Tanda baca dalam Al-Qur'an berbentuk seperti huruf wau kecil di atas huruf dinamakan harakat ...",
+                    options: ["Fathah", "Kasrah", "Dammah"],
+                    answer: "Dammah",
+                    explanation: "Dammah berada di atas huruf dan menghasilkan bunyi 'U'."
+                },
+                {
+                    type: "MCQ",
+                    question: "Apabila huruf Jim (ج) diberi tanda baca Dammah di atasnya, maka dibaca ...",
+                    options: ["Ja", "Ji", "Ju"],
+                    answer: "Ju",
+                    explanation: "Jim + Dammah dibaca 'Ju'."
+                },
+                {
+                    type: "MCQ",
+                    question: "Al-Fatihah memiliki arti ...",
+                    options: ["Pembukaan", "Penutupan", "Pertolongan"],
+                    answer: "Pembukaan",
+                    explanation: "Al-Fatihah berasal dari kata Fataha yang artinya membuka/pembukaan."
+                },
+                {
+                    type: "MCQ",
+                    question: "Huruf hijaiah yang berada tepat di antara huruf Ba (ب) dan huruf Sa (ث) adalah huruf ...",
+                    options: ["Alif (ا)", "Ta (ت)", "Jim (ج)"],
+                    answer: "Ta (ت)",
+                    explanation: "Urutan huruf hijaiah awal: Alif, Ba, Ta, Sa."
+                },
+                {
+                    type: "MCQ",
+                    question: "Lafal bacaan Basmalah secara lengkap adalah ...",
+                    options: ["Alhamdulillahi Rabbil 'Alamin", "Bismillahirrahmanirrahim", "Subhanallah"],
+                    answer: "Bismillahirrahmanirrahim",
+                    explanation: "Lafal Basmalah: Dengan menyebut nama Allah Yang Maha Pengasih lagi Maha Penyayang."
+                },
+                {
+                    type: "MCQ",
+                    question: "Beriman kepada Rasul-rasul Allah Swt. merupakan Rukun Iman yang ke-...",
+                    options: ["2", "3", "4"],
+                    answer: "4",
+                    explanation: "Urutan Rukun Iman: 1. Allah, 2. Malaikat, 3. Kitab, 4. Rasul."
+                },
+                {
+                    type: "MCQ",
+                    question: "Ketika teman kita jatuh dari sepeda, sikap santun dan penyayang yang wajib kita lakukan adalah ...",
+                    options: ["Mewenanginya dan menertawakannya", "Membantunya berdiri dan mengobatinya", "Pura-pura tidak melihat"],
+                    answer: "Membantunya berdiri dan mengobatinya",
+                    explanation: "Membantu teman yang kesusahan adalah wujud akhlak terpuji dan kasih sayang."
+                },
+                {
+                    type: "MCQ",
+                    question: "Arti dari kata ucapan 'Alhamdulillah' adalah ...",
+                    options: ["Maha Suci Allah", "Segala puji bagi Allah", "Allah Maha Besar"],
+                    answer: "Segala puji bagi Allah",
+                    explanation: "Alhamdulillah artinya segala puji bagi Allah Swt. atas segala kenikmatan."
+                },
+                {
+                    type: "MCQ",
+                    question: "Ketika guru sedang menjelaskan pelajaran di depan kelas, sikap kita yang baik adalah ...",
+                    options: ["Mendengarkan dengan tenang", "Ngobrol sendiri dengan teman", "Tidur di atas meja"],
+                    answer: "Mendengarkan dengan tenang",
+                    explanation: "Mendengarkan guru adalah wujud hormat dan santun kepada guru."
+                },
+                {
+                    type: "MCQ",
+                    question: "Allah Swt. memberikan kita mata untuk melihat, telinga untuk mendengar, dan kaki untuk berjalan. Cara kita bersyukur adalah ...",
+                    options: ["Menggunakannya untuk hal-hal yang baik", "Menggunakannya untuk mengganggu teman", "Malas belajar"],
+                    answer: "Menggunakannya untuk hal-hal yang baik",
+                    explanation: "Bersyukur atas anggota tubuh dilakukan dengan memakainya untuk kebaikan."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Harakat yang diletakkan di bawah huruf dan menghasilkan vokal 'I' adalah harakat ...",
+                    answer: "Kasrah",
+                    explanation: "Kasrah selalu diletakkan di bawah huruf hijaiah."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Kota tempat diturunkannya Surah Al-Fatihah adalah kota ...",
+                    answer: "Makkah",
+                    explanation: "Surah Al-Fatihah tergolong Surah Makkiyah karena turun di Makkah."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Rukun Iman yang ke-2 adalah beriman kepada ...",
+                    answer: "Malaikat",
+                    explanation: "Urutan ke-2 Rukun Iman adalah percaya kepada Malaikat-malaikat Allah Swt."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Kata 'Permisi' diucapkan saat kita ingin ... di depan orang tua.",
+                    answer: "Lewat",
+                    explanation: "Mengucapkan permisi saat lewat di depan orang tua adalah sopan santun."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Menjawab ucapan salam dari teman yang menyapa kita hukumnya adalah ...",
+                    answer: "Wajib",
+                    explanation: "Memulai salam adalah sunnah, sedangkan menjawab salam hukumnya wajib."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Huruf hijaiah jumlahnya ada 29 huruf.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Secara umum abjad standar hijaiah berjumlah 29 huruf."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Boleh membaca Basmalah ketika kita mau berbuat kejahatan atau mencuri.",
+                    options: ["Benar", "Salah"],
+                    answer: "Salah",
+                    explanation: "Basmalah hanya dibaca untuk kegiatan yang baik dan diridhoi Allah."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Nabi Muhammad saw. mengajarkan kita untuk tidak boleh sombong dan harus rendah hati.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Rendah hati (tawadhu) adalah sifat mulia Nabi Muhammad saw."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Mengaji Al-Qur'an walaupun hanya 1 huruf akan diberi pahala berkali lipat oleh Allah Swt.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Setiap satu huruf Al-Qur'an dibalas dengan 10 kebaikan."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Allah Swt. tidak melihat perbuatan kita jika kita berada di dalam kamar yang gelap.",
+                    options: ["Benar", "Salah"],
+                    answer: "Salah",
+                    explanation: "Allah Swt. Maha Melihat (Al-Basir) seluruh perbuatan kita di mana saja."
+                }
+            ],
+
+            // PACKAGE C (20 Questions)
+            [
+                {
+                    type: "MCQ",
+                    question: "Apabila huruf Ra (ر) diberi tanda baca Fathah di atasnya, maka dibaca ...",
+                    options: ["Ra", "Ri", "Ru"],
+                    answer: "Ra",
+                    explanation: "Ra + Fathah dibaca 'Ra'."
+                },
+                {
+                    type: "MCQ",
+                    question: "Membaca Al-Qur'an sebaiknya diawali dengan membaca Ta'awudz dan ...",
+                    options: ["Sholawat", "Basmalah", "Takbir"],
+                    answer: "Basmalah",
+                    explanation: "Disunahkan membaca Ta'awudz dan Basmalah saat mulai mengaji Al-Qur'an."
+                },
+                {
+                    type: "MCQ",
+                    question: "Penguasa, Pemelihara, dan Tuhan seluruh alam semesta adalah ...",
+                    options: ["Malaikat", "Nabi", "Allah Swt."],
+                    answer: "Allah Swt.",
+                    explanation: "Rabbil 'Alamin artinya Tuhan dan Pemelihara seluruh alam."
+                },
+                {
+                    type: "MCQ",
+                    question: "Nabi Muhammad saw. adalah utusan Allah Swt. Beliau diberi mukjizat terbesar berupa kitab suci ...",
+                    options: ["Al-Qur'an", "Injil", "Zabur"],
+                    answer: "Al-Qur'an",
+                    explanation: "Mukjizat terbesar Nabi Muhammad saw. adalah Al-Qur'an Al-Karim."
+                },
+                {
+                    type: "MCQ",
+                    question: "Sikap ramah dan santun saat bertemu dengan teman atau tetangga di jalan ditunjukkan dengan cara ...",
+                    options: ["Saling tersenyum dan menyapa", "Cemberut dan buang muka", "Lari bersembunyi"],
+                    answer: "Saling tersenyum dan menyapa",
+                    explanation: "Tersenyum dan menyapa adalah bagian dari sedekah dan kebaikan."
+                },
+                {
+                    type: "MCQ",
+                    question: "Sikap anak soleh saat diajari atau dipanggil oleh orang tua di rumah adalah ...",
+                    options: ["Langsung menyahut dan mendatangi orang tua", "Pura-pura tidak mendengar", "Acuh tak acuh"],
+                    answer: "Langsung menyahut dan mendatangi orang tua",
+                    explanation: "Patuh dan taat kepada orang tua adalah kewajiban setiap anak."
+                },
+                {
+                    type: "MCQ",
+                    question: "Jika kita mendapatkan nilai ulangan yang bagus, kita mengucapkan ucapan rasa syukur yaitu ...",
+                    options: ["Alhamdulillah", "Astaghfirullah", "Innalillahi"],
+                    answer: "Alhamdulillah",
+                    explanation: "Alhamdulillah diucapkan saat menerima nikmat dan keberhasilan."
+                },
+                {
+                    type: "MCQ",
+                    question: "Huruf terakhir dalam abjad hijaiah adalah huruf ...",
+                    options: ["Wau (و)", "Hamzah (ء)", "Ya (ي)"],
+                    answer: "Ya (ي)",
+                    explanation: "Abjad hijaiah diakhiri dengan huruf Ya (ي)."
+                },
+                {
+                    type: "MCQ",
+                    question: "Rukun Iman yang ke-3 adalah beriman kepada ...",
+                    options: ["Malaikat", "Kitab-kitab Allah", "Hari Kiamat"],
+                    answer: "Kitab-kitab Allah",
+                    explanation: "Rukun Iman ke-3 adalah meyakini Kitab-kitab Allah Swt."
+                },
+                {
+                    type: "MCQ",
+                    question: "Penyayang binatang diwujudkan dengan tindakan ...",
+                    options: ["Memberi makan kucing kelaparan", "Memukul burung dengan kayu", "Mengurung hewan tanpa makan"],
+                    answer: "Memberi makan kucing kelaparan",
+                    explanation: "Memberi makan hewan kelaparan adalah perbuatan penyayang yang bernilai pahala."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Nabi Muhammad saw. lahir pada tanggal 12 Rabiul Awal di kota ...",
+                    answer: "Makkah",
+                    explanation: "Nabi Muhammad saw. dilahirkan di kota Makkah Al-Mukarramah."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Kalimat 'Bismillahirrahmanirrahim' dinamakan bacaan ...",
+                    answer: "Basmalah",
+                    explanation: "Pengucapan kalimat tersebut dinamakan Basmalah."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Menolong teman yang kesulitan saat belajar adalah contoh perilaku ...",
+                    answer: "Terpuji",
+                    explanation: "Saling membantu dalam kebaikan adalah perbuatan terpuji."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Kalimat 'Alhamdulillahi Rabbil 'Alamin' dinamakan bacaan ...",
+                    answer: "Hamdalah",
+                    explanation: "Kalimat pujian kepada Allah dinamakan Hamdalah."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Harakat Fathah berada di ... huruf hijaiah.",
+                    answer: "Atas",
+                    explanation: "Fathah dan Dammah posisinya di atas, sedangkan Kasrah di bawah."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Iman artinya percaya dan yakin di dalam hati, diucapkan lisan, dan diamalkan perbuatan.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Definisi iman memuat keyakinan hati, ucapan, dan amal perbuatan."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Beriman kepada Hari Kiamat termasuk dalam Rukun Islam.",
+                    options: ["Benar", "Salah"],
+                    answer: "Salah",
+                    explanation: "Hari kiamat adalah Rukun Iman ke-5, bukan Rukun Islam."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Sebelum belajar di sekolah kita sebaiknya berdoa agar dianugerahi ilmu bermanfaat.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Berdoa sebelum belajar membukakan pintu pemahaman."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Menertawakan teman yang salah membaca Al-Qur'an adalah akhlak terpuji.",
+                    options: ["Benar", "Salah"],
+                    answer: "Salah",
+                    explanation: "Menertawakan kesalahan orang lain adalah sikap tidak baik (tercela)."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Surah Al-Fatihah dinamakan Al-Fatihah karena letaknya di akhir Al-Qur'an.",
+                    options: ["Benar", "Salah"],
+                    answer: "Salah",
+                    explanation: "Al-Fatihah artinya Pembukaan karena berada di awal kitab Al-Qur'an."
+                }
+            ]
+        ];
+
+        let currentPackageIdx = 0;
+        let currentQuestionIdx = 0;
+        let userAnswers = [];
+        let isAudioEnabled = true;
+
+        // Simple Audio Synthesizer via Web Audio API
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playSound(type) {
+            if (!isAudioEnabled) return;
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                if (type === 'click') {
+                    osc.frequency.setValueAtTime(400, audioCtx.currentTime);
+                    gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.05);
+                } else if (type === 'correct') {
+                    osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+                    osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.08); // E5
+                    gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.2);
+                } else if (type === 'wrong') {
+                    osc.frequency.setValueAtTime(220, audioCtx.currentTime); // A3
+                    osc.frequency.setValueAtTime(196, audioCtx.currentTime + 0.1); // G3
+                    gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.25);
+                }
+            } catch (e) {
+                // Audio fallback silence
+            }
+        }
+
+        function toggleAudio() {
+            isAudioEnabled = !isAudioEnabled;
+            const icon = document.getElementById('audioIcon');
+            const btn = document.getElementById('audioBtn');
+            if (isAudioEnabled) {
+                icon.setAttribute('data-lucide', 'volume-2');
+                btn.classList.replace('text-slate-400', 'text-slate-600');
+            } else {
+                icon.setAttribute('data-lucide', 'volume-x');
+                btn.classList.replace('text-slate-600', 'text-slate-400');
+            }
+            lucide.createIcons();
+        }
+
+        function goToHome() {
+            playSound('click');
+            document.getElementById('homeScreen').classList.remove('hidden');
+            document.getElementById('quizScreen').classList.add('hidden');
+            document.getElementById('resultScreen').classList.add('hidden');
+        }
+
+        function startQuiz(packageIdx) {
+            playSound('click');
+            currentPackageIdx = packageIdx;
+            currentQuestionIdx = 0;
+            userAnswers = new Array(20).fill(null);
+
+            document.getElementById('homeScreen').classList.add('hidden');
+            document.getElementById('resultScreen').classList.add('hidden');
+            document.getElementById('quizScreen').classList.remove('hidden');
+
+            const pkgNames = ["Paket A: Dasar PAI", "Paket B: Pengayaan", "Paket C: Tantangan"];
+            document.getElementById('pkgBadge').innerText = pkgNames[packageIdx];
+
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const questions = questionBank[currentPackageIdx];
+            const q = questions[currentQuestionIdx];
+
+            // Update Header & Progress
+            document.getElementById('currentQNum').innerText = currentQuestionIdx + 1;
+            document.getElementById('totalQNum').innerText = questions.length;
+            
+            const progress = ((currentQuestionIdx + 1) / questions.length) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+
+            // Question Type Badge
+            const typeBadge = document.getElementById('qTypeBadge');
+            if (q.type === 'MCQ') {
+                typeBadge.innerText = 'Pilihan Ganda';
+                typeBadge.className = 'inline-block px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800';
+            } else if (q.type === 'SHORT') {
+                typeBadge.innerText = 'Isian Singkat';
+                typeBadge.className = 'inline-block px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-sky-100 text-sky-800';
+            } else if (q.type === 'TF') {
+                typeBadge.innerText = 'Benar / Salah';
+                typeBadge.className = 'inline-block px-3 py-1 rounded-md text-xs font-bold uppercase tracking-wider bg-purple-100 text-purple-800';
+            }
+
+            // Question Text
+            document.getElementById('questionText').innerText = q.question;
+
+            // Render Options Area
+            const container = document.getElementById('optionsContainer');
+            container.innerHTML = '';
+
+            const currentAnswer = userAnswers[currentQuestionIdx];
+
+            if (q.type === 'MCQ' || q.type === 'TF') {
+                q.options.forEach((opt) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'w-full text-left p-4 rounded-xl border text-sm font-semibold transition-all flex items-center justify-between ';
+                    
+                    if (currentAnswer === opt) {
+                        btn.className += 'border-emerald-500 bg-emerald-50 text-emerald-900 shadow-sm';
+                    } else {
+                        btn.className += 'border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-700';
+                    }
+
+                    btn.onclick = () => selectAnswer(opt);
+                    btn.innerHTML = `
+                        <span>${opt}</span>
+                        <div class="w-5 h-5 rounded-full border border-slate-300 flex items-center justify-center ${currentAnswer === opt ? 'border-emerald-500 bg-emerald-500 text-white' : ''}">
+                            ${currentAnswer === opt ? '<i data-lucide="check" class="w-3 h-3"></i>' : ''}
+                        </div>
+                    `;
+                    container.appendChild(btn);
+                });
+            } else if (q.type === 'SHORT') {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'space-y-3';
+                wrapper.innerHTML = `
+                    <input type="text" id="shortAnswerInput" placeholder="Ketik jawabanmu di sini..." 
+                        value="${currentAnswer || ''}"
+                        class="w-full p-4 rounded-xl border border-slate-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 text-sm font-semibold outline-none transition"
+                        oninput="saveShortAnswer(this.value)">
+                    <p class="text-[11px] text-slate-400 italic">* Jawaban bersifat tidak sensitif huruf besar/kecil.</p>
+                `;
+                container.appendChild(wrapper);
+            }
+
+            // Explanation Display (If answered)
+            const expBox = document.getElementById('explanationBox');
+            if (currentAnswer !== null && currentAnswer !== '') {
+                expBox.classList.remove('hidden');
+                document.getElementById('explanationText').innerText = q.explanation;
+            } else {
+                expBox.classList.add('hidden');
+            }
+
+            // Navigation Buttons State
+            document.getElementById('prevBtn').disabled = currentQuestionIdx === 0;
+            const nextBtn = document.getElementById('nextBtn');
+            if (currentQuestionIdx === questions.length - 1) {
+                nextBtn.innerHTML = `Selesai & Lihat Hasil <i data-lucide="check-circle" class="w-4 h-4"></i>`;
+                nextBtn.className = 'px-6 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold shadow-md transition flex items-center gap-2';
+            } else {
+                nextBtn.innerHTML = `Selanjutnya <i data-lucide="chevron-right" class="w-4 h-4"></i>`;
+                nextBtn.className = 'px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-md shadow-emerald-200 transition flex items-center gap-2';
+            }
+
+            lucide.createIcons();
+        }
+
+        function selectAnswer(ans) {
+            userAnswers[currentQuestionIdx] = ans;
+            const q = questionBank[currentPackageIdx][currentQuestionIdx];
+
+            // Clean string match check for feedback sound
+            if (ans.toString().trim().toLowerCase() === q.answer.toString().trim().toLowerCase()) {
+                playSound('correct');
+            } else {
+                playSound('wrong');
+            }
+
+            renderQuestion();
+        }
+
+        function saveShortAnswer(val) {
+            userAnswers[currentQuestionIdx] = val;
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIdx > 0) {
+                playSound('click');
+                currentQuestionIdx--;
+                renderQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            const questions = questionBank[currentPackageIdx];
+            playSound('click');
+            
+            if (currentQuestionIdx < questions.length - 1) {
+                currentQuestionIdx++;
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            const questions = questionBank[currentPackageIdx];
+            let correct = 0;
+            let answered = 0;
+
+            questions.forEach((q, idx) => {
+                const userAns = userAnswers[idx];
+                if (userAns !== null && userAns !== '') {
+                    answered++;
+                    if (userAns.toString().trim().toLowerCase() === q.answer.toString().trim().toLowerCase()) {
+                        correct++;
+                    }
+                }
+            });
+
+            const score = Math.round((correct / questions.length) * 100);
+
+            document.getElementById('quizScreen').classList.add('hidden');
+            document.getElementById('resultScreen').classList.remove('hidden');
+
+            document.getElementById('scoreDisplay').innerText = score;
+            document.getElementById('correctCount').innerText = correct;
+            document.getElementById('wrongCount').innerText = questions.length - correct;
+            document.getElementById('answeredCount').innerText = answered;
+
+            const pkgNames = ["Paket A: Dasar PAI", "Paket B: Pengayaan", "Paket C: Tantangan"];
+            document.getElementById('resultSubtitle').innerText = `${pkgNames[currentPackageIdx]} telah selesai dikerjakan!`;
+
+            // Trigger Confetti if score >= 80
+            if (score >= 80 && typeof confetti === 'function') {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            }
+
+            // Render Detailed Review List
+            const reviewList = document.getElementById('reviewList');
+            reviewList.innerHTML = '';
+
+            questions.forEach((q, idx) => {
+                const uAns = userAnswers[idx];
+                const isCorrect = uAns && uAns.toString().trim().toLowerCase() === q.answer.toString().trim().toLowerCase();
+
+                const item = document.createElement('div');
+                item.className = 'pt-4 space-y-2';
+                item.innerHTML = `
+                    <div class="flex items-start justify-between gap-2">
+                        <span class="text-xs font-bold text-slate-500">Soal #${idx + 1} (${q.type === 'MCQ' ? 'PG' : q.type === 'SHORT' ? 'Isian' : 'B/S'})</span>
+                        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold ${isCorrect ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}">
+                            ${isCorrect ? 'Benar (+5)' : 'Salah / Kosong'}
+                        </span>
+                    </div>
+                    <p class="font-bold text-sm text-slate-900">${q.question}</p>
+                    <div class="grid sm:grid-cols-2 gap-2 text-xs pt-1">
+                        <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200">
+                            <span class="text-slate-400 block font-medium text-[10px] uppercase">Jawabanmu:</span>
+                            <span class="font-semibold ${isCorrect ? 'text-emerald-700' : 'text-rose-600'}">${uAns || '[Tidak Dijawab]'}</span>
+                        </div>
+                        <div class="p-2.5 rounded-lg bg-emerald-50 border border-emerald-200">
+                            <span class="text-emerald-600 block font-medium text-[10px] uppercase">Kunci Jawaban:</span>
+                            <span class="font-semibold text-emerald-900">${q.answer}</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-500 bg-slate-50 p-2.5 rounded-lg border border-slate-100"><strong class="text-slate-700">Pembahasan:</strong> ${q.explanation}</p>
+                `;
+                reviewList.appendChild(item);
+            });
+
+            lucide.createIcons();
+        }
+
+        function retryCurrentQuiz() {
+            startQuiz(currentPackageIdx);
+        }
+
+        // Initialize Lucide icons on page load
+        window.onload = function() {
+            lucide.createIcons();
+        };
+    </script>
+</body>
+</html>

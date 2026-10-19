@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan PTS PJOK Kelas 1 SD</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f3f4f6;
+        }
+    </style>
+</head>
+<body class="min-h-screen text-slate-800 flex flex-col justify-between selection:bg-purple-100 selection:text-purple-800">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-purple-100 shadow-sm">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="goToHome()">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-purple-200">
+                    <i data-lucide="activity" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h1 class="font-extrabold text-lg text-slate-900 leading-tight">PTS PJOK Kelas 1 SD</h1>
+                    <p class="text-xs text-purple-600 font-semibold">Kurikulum Merdeka • Bab 1 s/d Bab 3</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-2">
+                <button onclick="toggleAudio()" id="audioBtn" class="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 transition" title="Suara Efek">
+                    <i data-lucide="volume-2" id="audioIcon" class="w-5 h-5"></i>
+                </button>
+                <button onclick="goToHome()" class="px-3.5 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 transition flex items-center gap-1.5">
+                    <i data-lucide="home" class="w-4 h-4"></i> Utama
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-6 flex-1 w-full">
+        <!-- SCREEN 1: Home Dashboard -->
+        <section id="homeScreen" class="space-y-6">
+            <!-- Hero Banner -->
+            <div class="bg-gradient-to-r from-purple-700 via-purple-600 to-indigo-700 rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-white/10 rounded-full blur-2xl"></div>
+                <div class="relative z-10 max-w-xl">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-bold tracking-wide uppercase text-purple-100 mb-3">
+                        <i data-lucide="trophy" class="w-3.5 h-3.5"></i> Badan Sehat dan Bugar
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-black tracking-tight leading-snug">Latihan PTS PJOK Kelas 1 SD</h2>
+                    <p class="text-purple-100 mt-2 text-sm sm:text-base leading-relaxed font-medium">
+                        Tersedia 3 Paket Latihan Soal Interaktif (Total 60 Soal) gabungan Bab 1 (Gerak di Tempat), Bab 2 (Gerak Berpindah), dan Bab 3 (Gerak Benda).
+                    </p>
+                </div>
+            </div>
+
+            <!-- Quiz Package Cards -->
+            <div class="space-y-4">
+                <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                    <i data-lucide="layers" class="w-5 h-5 text-purple-600"></i> Pilih Paket Latihan (20 Soal per Paket)
+                </h3>
+
+                <div class="grid sm:grid-cols-3 gap-4" id="packageList">
+                    <!-- Package 1 Card -->
+                    <div onclick="startQuiz(0)" class="group bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md hover:border-purple-500 transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 font-extrabold flex items-center justify-center text-lg group-hover:scale-110 transition-transform">A</span>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">20 Soal</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 group-hover:text-purple-600 transition">Paket A: Dasar</h4>
+                                <p class="text-xs text-slate-500 mt-1">Campuran Bab 1-3: Konsep awal gerak nonlokomotor, lokomotor, dan manipulatif.</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-purple-600">
+                            <span>Mulai Mengerjakan</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Package 2 Card -->
+                    <div onclick="startQuiz(1)" class="group bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md hover:border-indigo-500 transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-700 font-extrabold flex items-center justify-center text-lg group-hover:scale-110 transition-transform">B</span>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">20 Soal</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 group-hover:text-indigo-600 transition">Paket B: Pengayaan</h4>
+                                <p class="text-xs text-slate-500 mt-1">Campuran Bab 1-3: Variasi gerakan, aturan keselamatan, dan fungsi gerakan.</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-indigo-600">
+                            <span>Mulai Mengerjakan</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Package 3 Card -->
+                    <div onclick="startQuiz(2)" class="group bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md hover:border-pink-500 transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="w-10 h-10 rounded-xl bg-pink-100 text-pink-700 font-extrabold flex items-center justify-center text-lg group-hover:scale-110 transition-transform">C</span>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">20 Soal</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 group-hover:text-pink-600 transition">Paket C: Tantangan</h4>
+                                <p class="text-xs text-slate-500 mt-1">Campuran Bab 1-3: Penalaran berupa Pilihan Ganda, Isian, & Benar/Salah.</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-pink-600">
+                            <span>Mulai Mengerjakan</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rangkuman Pokok Materi -->
+            <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm space-y-4">
+                <h3 class="font-bold text-slate-900 flex items-center gap-2">
+                    <i data-lucide="book-marked" class="w-5 h-5 text-purple-600"></i> Ringkasan Bab PJOK Kelas 1 (Semester 1)
+                </h3>
+                <div class="grid sm:grid-cols-3 gap-4 text-xs">
+                    <div class="p-4 rounded-2xl bg-purple-50 border border-purple-100 text-purple-900">
+                        <p class="font-bold text-sm text-purple-900 mb-1.5 flex items-center gap-1.5">
+                            <i data-lucide="user-check" class="w-4 h-4"></i> Bab 1: Gerak di Tempat
+                        </p>
+                        <ul class="list-disc list-inside space-y-1 text-purple-800">
+                            <li>Memutar kepala, lengan, pinggang</li>
+                            <li>Menekuk lutut & membungkuk</li>
+                            <li>Melatih keseimbangan di tempat</li>
+                        </ul>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-indigo-50 border border-indigo-100 text-indigo-900">
+                        <p class="font-bold text-sm text-indigo-900 mb-1.5 flex items-center gap-1.5">
+                            <i data-lucide="footprints" class="w-4 h-4"></i> Bab 2: Gerak Berpindah
+                        </p>
+                        <ul class="list-disc list-inside space-y-1 text-indigo-800">
+                            <li>Berjalan tegak lurus & mundur</li>
+                            <li>Berlari cepat & zig-zag</li>
+                            <li>Melompat & meloncat rintangan</li>
+                        </ul>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-pink-50 border border-pink-100 text-pink-900">
+                        <p class="font-bold text-sm text-pink-900 mb-1.5 flex items-center gap-1.5">
+                            <i data-lucide="dribbble" class="w-4 h-4"></i> Bab 3: Gerak Benda
+                        </p>
+                        <ul class="list-disc list-inside space-y-1 text-pink-800">
+                            <li>Melempar & menangkap bola</li>
+                            <li>Menendang & menghentikan bola</li>
+                            <li>Menggiring & memukul bola</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 2: Quiz Question View -->
+        <section id="quizScreen" class="hidden space-y-5">
+            <!-- Progress Bar Card -->
+            <div class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <span id="pkgBadge" class="px-3 py-1 rounded-xl bg-purple-100 text-purple-800 font-bold text-xs">Paket A</span>
+                    <span class="text-xs font-semibold text-slate-500">Soal <strong id="currentQNum" class="text-slate-800">1</strong> dari <strong id="totalQNum">20</strong></span>
+                </div>
+                <div class="w-full sm:w-64 bg-slate-100 h-3 rounded-full overflow-hidden">
+                    <div id="progressBar" class="bg-gradient-to-r from-purple-600 to-indigo-600 h-full w-0 transition-all duration-300"></div>
+                </div>
+            </div>
+
+            <!-- Main Question Card -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-md space-y-6">
+                <!-- Question Type Tag & Content -->
+                <div class="space-y-3">
+                    <span id="qTypeBadge" class="inline-block px-3 py-1 rounded-lg text-xs font-extrabold uppercase tracking-wider bg-slate-100 text-slate-600">Pilihan Ganda</span>
+                    <h3 id="questionText" class="text-lg sm:text-xl font-bold text-slate-900 leading-snug">
+                        <!-- Question content -->
+                    </h3>
+                </div>
+
+                <!-- Answer Options -->
+                <div id="optionsContainer" class="space-y-3 pt-2">
+                    <!-- Dynamic Options -->
+                </div>
+
+                <!-- Explanation Box -->
+                <div id="explanationBox" class="hidden p-4 rounded-2xl bg-sky-50 border border-sky-200 text-sky-950 space-y-2 animate-fade-in">
+                    <div class="flex items-center gap-2 font-bold text-sm text-sky-800">
+                        <i data-lucide="sparkles" class="w-4 h-4"></i> Pembahasan Instan:
+                    </div>
+                    <p id="explanationText" class="text-xs sm:text-sm leading-relaxed text-sky-950">
+                        <!-- Explanation -->
+                    </p>
+                </div>
+            </div>
+
+            <!-- Quiz Controls -->
+            <div class="flex items-center justify-between pt-2">
+                <button id="prevBtn" onclick="prevQuestion()" class="px-4 py-2.5 rounded-xl border border-slate-200 text-slate-600 text-xs font-bold hover:bg-slate-100 transition flex items-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed">
+                    <i data-lucide="chevron-left" class="w-4 h-4"></i> Sebelumnya
+                </button>
+                <button id="nextBtn" onclick="nextQuestion()" class="px-6 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold shadow-md shadow-purple-200 transition flex items-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed">
+                    Selanjutnya <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- SCREEN 3: Quiz Result View -->
+        <section id="resultScreen" class="hidden space-y-6">
+            <!-- Score Card -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-lg text-center space-y-4 relative overflow-hidden">
+                <div class="inline-flex p-4 rounded-full bg-purple-50 text-purple-600 mb-1">
+                    <i data-lucide="award" class="w-12 h-12"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-black text-slate-900">Hasil Latihan PTS PJOK</h2>
+                    <p id="resultSubtitle" class="text-slate-500 text-sm mt-1">Paket A selesai dikerjakan!</p>
+                </div>
+
+                <!-- Final Score -->
+                <div class="py-4">
+                    <div class="text-5xl sm:text-6xl font-black text-purple-600 tracking-tight" id="scoreDisplay">100</div>
+                    <p class="text-xs font-bold text-slate-400 mt-1 uppercase tracking-widest">Nilai Akhir</p>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-3 gap-3 max-w-md mx-auto text-center border-t border-slate-100 pt-4">
+                    <div class="p-3 bg-slate-50 rounded-2xl">
+                        <span class="block text-xl font-bold text-emerald-600" id="correctCount">0</span>
+                        <span class="text-[11px] font-semibold text-slate-500">Benar</span>
+                    </div>
+                    <div class="p-3 bg-slate-50 rounded-2xl">
+                        <span class="block text-xl font-bold text-rose-500" id="wrongCount">0</span>
+                        <span class="text-[11px] font-semibold text-slate-500">Salah</span>
+                    </div>
+                    <div class="p-3 bg-slate-50 rounded-2xl">
+                        <span class="block text-xl font-bold text-slate-700" id="answeredCount">0</span>
+                        <span class="text-[11px] font-semibold text-slate-500">Dijawab</span>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4">
+                    <button onclick="retryCurrentQuiz()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-slate-900 text-white font-bold text-xs hover:bg-slate-800 transition flex items-center justify-center gap-2">
+                        <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Coba Paket Ini Lagi
+                    </button>
+                    <button onclick="goToHome()" class="w-full sm:w-auto px-6 py-3 rounded-xl border border-slate-300 font-bold text-xs text-slate-700 hover:bg-slate-50 transition flex items-center justify-center gap-2">
+                        <i data-lucide="grid" class="w-4 h-4"></i> Pilih Paket Lain
+                    </button>
+                </div>
+            </div>
+
+            <!-- Detailed Review -->
+            <div class="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm space-y-4">
+                <h3 class="font-bold text-slate-900 flex items-center gap-2">
+                    <i data-lucide="check-circle-2" class="w-5 h-5 text-purple-600"></i> Review Jawaban & Pembahasan Lengkap
+                </h3>
+                <div id="reviewList" class="space-y-4 divide-y divide-slate-100">
+                    <!-- Dynamic Review Items -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200/80 py-4 text-center text-xs text-slate-500">
+        <p>© Latihan PTS PJOK Kelas 1 SD • Kurikulum Merdeka (Bab 1 - 3)</p>
+    </footer>
+
+    <script>
+        const questionBank = [
+            // PACKAGE A (20 Questions - Dasar: Mix Bab 1, 2, 3)
+            [
+                {
+                    type: "MCQ",
+                    question: "Gerakan melompat dan meloncat membuat otot kaki menjadi ...",
+                    options: ["Kuat", "Lemas", "Sakit"],
+                    answer: "Kuat",
+                    explanation: "Latihan melompat dan meloncat secara teratur melatih kekuatan otot kaki."
+                },
+                {
+                    type: "MCQ",
+                    question: "Berjalan dan berlari adalah contoh gerakan ...",
+                    options: ["Berpindah tempat", "Di tempat saja", "Duduk"],
+                    answer: "Berpindah tempat",
+                    explanation: "Berjalan dan berlari berpindah tempat dari satu titik ke titik lain (lokomotor)."
+                },
+                {
+                    type: "MCQ",
+                    question: "Saat menangkap bola besar yang melayang, kita menggunakan ...",
+                    options: ["Satu jari", "Kedua tangan", "Kaki"],
+                    answer: "Kedua tangan",
+                    explanation: "Menangkap bola besar lebih aman dan tidak mudah terlepas jika menggunakan kedua tangan."
+                },
+                {
+                    type: "MCQ",
+                    question: "Gerakan memutar kepala secara perlahan berguna melatih kelenturan otot ...",
+                    options: ["Kaki", "Leher", "Tangan"],
+                    answer: "Leher",
+                    explanation: "Memutar kepala melenturkan otot leher agar tidak kaku."
+                },
+                {
+                    type: "MCQ",
+                    question: "Saat kita menendang bola ke gawang lawan, anggota tubuh yang digunakan adalah ...",
+                    options: ["Tangan", "Kaki", "Kepala"],
+                    answer: "Kaki",
+                    explanation: "Menendang bola menggunakan kaki."
+                },
+                {
+                    type: "MCQ",
+                    question: "Gerakan menekuk lutut dilakukan di tempat tanpa berpindah. Gerakan ini disebut gerak ...",
+                    options: ["Di tempat", "Berpindah tempat", "Lari cepat"],
+                    answer: "Di tempat",
+                    explanation: "Menekuk lutut tanpa berpindah tempat termasuk gerak nonlokomotor."
+                },
+                {
+                    type: "MCQ",
+                    question: "Sebelum memulai olahraga, sebaiknya kita melakukan ...",
+                    options: ["Pemanasan", "Makan kenyang", "Tidur"],
+                    answer: "Pemanasan",
+                    explanation: "Pemanasan menyiapkan otot tubuh dan mencegah cedera saat berolahraga."
+                },
+                {
+                    type: "MCQ",
+                    question: "Melompati rintangan kardus atau simpai berguna untuk melatih ...",
+                    options: ["Keseimbangan dan kelincahan", "Rasa mengantuk", "Kekuatan mata"],
+                    answer: "Keseimbangan dan kelincahan",
+                    explanation: "Melompati rintangan melatih kelincahan kaki dan keseimbangan tubuh."
+                },
+                {
+                    type: "MCQ",
+                    question: "Melempar bola ke dalam keranjang dilakukan dengan menggunakan ...",
+                    options: ["Kaki", "Tangan", "Kepala"],
+                    answer: "Tangan",
+                    explanation: "Gerakan melempar atau melempar bola dilakukan menggunakan tangan."
+                },
+                {
+                    type: "MCQ",
+                    question: "Posisi badan saat berjalan tegak yang benar adalah ...",
+                    options: ["Bongkok", "Tegak", "Miring"],
+                    answer: "Tegak",
+                    explanation: "Berjalan dengan badan tegak menjaga pertumbuhan tulang belakang tetap sehat."
+                },
+                {
+                    type: "MCQ",
+                    question: "Gerakan memutar lengan ke depan dan ke belakang melatih otot ...",
+                    options: ["Bahu dan tangan", "Paha", "Kaki"],
+                    answer: "Bahu dan tangan",
+                    explanation: "Memutar lengan melenturkan sendi dan otot bahu serta tangan."
+                },
+                {
+                    type: "MCQ",
+                    question: "Saat berlari lurus ke depan, arah pandangan mata sebaiknya ke ...",
+                    options: ["Depan", "Bawah", "Atas"],
+                    answer: "Depan",
+                    explanation: "Pandangan mata harus fokus ke depan agar dapat melihat lintasan lari."
+                },
+                {
+                    type: "MCQ",
+                    question: "Menggiring bola basket dilakukan dengan cara ...",
+                    options: ["Menendang", "Memantulkan ke lantai", "Melempar tinggi"],
+                    answer: "Memantulkan ke lantai",
+                    explanation: "Menggiring (dribble) bola basket dilakukan dengan memantulkan bola ke lantai."
+                },
+                {
+                    type: "MCQ",
+                    question: "Saat berdiri satu kaki seperti pesawat terbang, kita sedang melatih ...",
+                    options: ["Keseimbangan", "Kecepatan", "Pendengaran"],
+                    answer: "Keseimbangan",
+                    explanation: "Berdiri dengan satu kaki melatih tubuh bertahan stabil dan seimbang."
+                },
+                {
+                    type: "MCQ",
+                    question: "Pakaian yang tepat digunakan saat jam pelajaran PJOK adalah ...",
+                    options: ["Seragam batik", "Baju olahraga", "Baju tidur"],
+                    answer: "Baju olahraga",
+                    explanation: "Baju olahraga longgar dan mudah menyerap keringat."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Menendang bola merupakan contoh gerak menggunakan benda.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Benar. Menendang bola termasuk gerak manipulatif (menggunakan alat/benda)."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Berlari langkahnya lebih cepat daripada berjalan.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Benar. Berlari adalah gerakan berpindah tempat dengan langkah kaki lebih cepat."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Berolahraga secara teratur membuat tubuh menjadi lemah dan sakit.",
+                    options: ["Benar", "Salah"],
+                    answer: "Salah",
+                    explanation: "Salah. Berolahraga secara teratur membuat tubuh menjadi sehat, kuat, dan bugar."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Berjalan, berlari, dan melompat adalah contoh gerak berpindah ...",
+                    answer: "Tempat",
+                    explanation: "Gerak lokomotor adalah gerak berpindah tempat dari lokasi awal ke lokasi lain."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Saat melempar bola kasti, kita memegang bola menggunakan ...",
+                    answer: "Tangan",
+                    explanation: "Melempar bola kasti dilakukan dengan memegang bola menggunakan tangan."
+                }
+            ],
+
+            // PACKAGE B (20 Questions - Pengayaan: Mix Bab 1, 2, 3)
+            [
+                {
+                    type: "MCQ",
+                    question: "Meliukkan badan ke kiri dan ke kanan berguna untuk melatih kelenturan otot ...",
+                    options: ["Pinggang", "Kaki", "Jari"],
+                    answer: "Pinggang",
+                    explanation: "Meliukkan badan ke samping kanan dan kiri melatih kelenturan pinggang."
+                },
+                {
+                    type: "MCQ",
+                    question: "Gerakan berjalan mundur harus dilakukan dengan hati-hati agar tidak ...",
+                    options: ["Jatuh atau menabrak", "Cepat sampai", "Capek"],
+                    answer: "Jatuh atau menabrak",
+                    explanation: "Berjalan mundur butuh kewaspadaan agar tidak tersandung atau menabrak."
+                },
+                {
+                    type: "MCQ",
+                    question: "Alat yang digunakan untuk memukul bola dalam permainan kasti adalah ...",
+                    options: ["Kayu pemukul", "Raket tenis", "Batu"],
+                    answer: "Kayu pemukul",
+                    explanation: "Permainan kasti menggunakan stik/kayu pemukul khusus dari kayu."
+                },
+                {
+                    type: "MCQ",
+                    question: "Meloncat dengan menolak dua kaki di tanah, sebaiknya mendarat menggunakan ...",
+                    options: ["Dua kaki", "Satu tangan", "Kepala"],
+                    answer: "Dua kaki",
+                    explanation: "Mendarat dengan dua kaki secara mengeper menjaga keseimbangan dan lutut aman."
+                },
+                {
+                    type: "MCQ",
+                    question: "Saat menangkap bola mendatar, pandangan mata harus tertuju pada ...",
+                    options: ["Arah datangnya bola", "Teman di samping", "Penonton"],
+                    answer: "Arah datangnya bola",
+                    explanation: "Mata harus fokus pada bola agar dapat menangkap bola dengan tepat."
+                },
+                {
+                    type: "MCQ",
+                    question: "Latihan mengayunkan dua tangan ke depan dan belakang dilakukan di ...",
+                    options: ["Tempat", "Luar lapangan", "Atas kolam"],
+                    answer: "Tempat",
+                    explanation: "Mengayun tangan dilakukan tanpa berpindah tempat (gerak nonlokomotor)."
+                },
+                {
+                    type: "MCQ",
+                    question: "Berlari zig-zag adalah berlari dengan rute lintasan ...",
+                    options: ["Berbelok-belok", "Lurus", "Melingkar"],
+                    answer: "Berbelok-belok",
+                    explanation: "Zig-zag artinya berlari secara berbelok-belok melewati tiang/rintangan."
+                },
+                {
+                    type: "MCQ",
+                    question: "Menahan bola sepak yang bergulir menyusur tanah dapat menggunakan ...",
+                    options: ["Telapak kaki", "Tangan", "Siku"],
+                    answer: "Telapak kaki",
+                    explanation: "Telapak kaki digunakan menghentikan bola menyusur tanah."
+                },
+                {
+                    type: "MCQ",
+                    question: "Saat membungkukkan badan ke bawah, ujung jari tangan berusaha menyentuh ...",
+                    options: ["Ujung jari kaki", "Awan", "Pohon"],
+                    answer: "Ujung jari kaki",
+                    explanation: "Gerakan membungkuk melatih kelenturan punggung sampai menyentuh kaki."
+                },
+                {
+                    type: "MCQ",
+                    question: "Permainan engklek adalah permainan berjalan atau melompat dengan ...",
+                    options: ["Satu kaki", "Dua kaki", "Lutut"],
+                    answer: "Satu kaki",
+                    explanation: "Permainan tradisional engklek dilakukan melompat dengan satu kaki."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Setelah selesai berolahraga kita perlu melakukan pendinginan.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Benar. Pendinginan menenangkan denyut jantung dan meregangkan otot."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Menangkap bola kasti boleh menggunakan satu tangan.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Benar. Bola kecil kasti bisa ditangkap dengan 1 atau 2 tangan."
+                },
+                {
+                    type: "MCQ",
+                    question: "Sepatu yang cocok dan aman digunakan berolahraga di lapangan adalah ...",
+                    options: ["Sepatu olahraga", "Sandal jepit", "Sepatu kulit"],
+                    answer: "Sepatu olahraga",
+                    explanation: "Sepatu olahraga dirancang aman, empuk, dan tidak licin."
+                },
+                {
+                    type: "MCQ",
+                    question: "Sikap awal saat melakukan gerakan meloncat adalah ...",
+                    options: ["Membungkuk dan menekuk lutut", "Tidur terlentang", "Duduk bersila"],
+                    answer: "Membungkuk dan menekuk lutut",
+                    explanation: "Menekuk lutut berfungsi sebagai pegas/tolakan untuk meloncat tinggi."
+                },
+                {
+                    type: "MCQ",
+                    question: "Agar tidak mudah cedera saat olahraga bersama, kita harus mematuhi ...",
+                    options: ["Aturan keselamatan", "Teman", "Penonton"],
+                    answer: "Aturan keselamatan",
+                    explanation: "Aturan keselamatan dibuat agar semua anak dapat berolahraga secara aman."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Saat menggiring bola sepak, bola ditendang secara ...",
+                    answer: "Perlahan",
+                    explanation: "Menggiring bola ditendang pelan agar bola tidak jauh dari jangkauan."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Anggota tubuh yang dilarang menyentuh bola sepak (selain kiper) adalah ...",
+                    answer: "Tangan",
+                    explanation: "Pemain sepak bola tidak boleh memegang bola dengan tangan (handsball)."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Berlari membawa bola sambil melemparnya adalah kombinasi gerak.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Benar. Menggabungkan lari (lokomotor) dan melempar (manipulatif)."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Berdiri kangkang lalu memutar pinggang termasuk gerak berpindah tempat.",
+                    options: ["Benar", "Salah"],
+                    answer: "Salah",
+                    explanation: "Salah. Memutar pinggang dilakukan di tempat tanpa berpindah posisi."
+                },
+                {
+                    type: "MCQ",
+                    question: "Minum air putih yang cukup setelah berolahraga berguna untuk mengganti ...",
+                    options: ["Cairan tubuh", "Makanan", "Baju"],
+                    answer: "Cairan tubuh",
+                    explanation: "Air putih mengembalikan cairan tubuh yang hilang melalui keringat."
+                }
+            ],
+
+            // PACKAGE C (20 Questions - Tantangan: Mix Bab 1, 2, 3)
+            [
+                {
+                    type: "MCQ",
+                    question: "Bentuk lapangan resmi olahraga sepak bola adalah ...",
+                    options: ["Persegi panjang", "Lingkaran", "Segitiga"],
+                    answer: "Persegi panjang",
+                    explanation: "Lapangan sepak bola berbentuk persegi panjang dengan garis gawang."
+                },
+                {
+                    type: "MCQ",
+                    question: "Permainan lempar tangkap bola berpasangan dilakukan oleh minimal ...",
+                    options: ["2 orang", "1 orang", "100 orang"],
+                    answer: "2 orang",
+                    explanation: "Lempar tangkap berpasangan membutuhkan 2 orang anak yang saling berhadapan."
+                },
+                {
+                    type: "MCQ",
+                    question: "Saat melompati simpai atau kardus di lantai, pendaratan kaki yang aman adalah ...",
+                    options: ["Lutut mengeper", "Kaki kaku", "Tumit dulu"],
+                    answer: "Lutut mengeper",
+                    explanation: "Lutut sedikit ditekuk (mengeper) meredam guncangan pendaratan."
+                },
+                {
+                    type: "MCQ",
+                    question: "Sikap sportif dalam pertandingan olahraga artinya ...",
+                    options: ["Jujur dan mau mengakui kekalahan", "Marah kalau kalah", "Curang"],
+                    answer: "Jujur dan mau mengakui kekalahan",
+                    explanation: "Sportif adalah bersikap jujur, mematuhi aturan, dan menghargai lawan."
+                },
+                {
+                    type: "MCQ",
+                    question: "Mengayunkan hula hoop di pinggang melatih kelenturan dan ...",
+                    options: ["Koordinasi tubuh", "Daya ingat", "Kecepatan lari"],
+                    answer: "Koordinasi tubuh",
+                    explanation: "Memutar hula hoop melatih keseimbangan dan koordinasi gerakan pinggang."
+                },
+                {
+                    type: "MCQ",
+                    question: "Manfaat utama berolahraga permainan bersama teman-teman adalah ...",
+                    options: ["Menambah teman dan sehat", "Membuat bertengkar", "Membosankan"],
+                    answer: "Menambah teman dan sehat",
+                    explanation: "Olahraga kelompok melatih kerja sama, kebersamaan, serta menyehatkan."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Bermain bola di jalan raya sangat aman untuk dilakukan.",
+                    options: ["Benar", "Salah"],
+                    answer: "Salah",
+                    explanation: "Salah. Bermain di jalan raya sangat berbahaya karena banyak lalu lintas kendaraan."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Melempar bola mendatar diayunkan sejajar dari samping badan.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Benar. Lemparan mendatar diayun dari samping sejajar dada."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Olahraga lari cepat jarak pendek sering disebut lari ...",
+                    answer: "Sprint",
+                    explanation: "Lari cepat jarak pendek disebut lari sprint."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Bola kasti berukuran kecil dan terbuat dari bahan ...",
+                    answer: "Karet",
+                    explanation: "Bola kasti kecil terbuat dari bahan karet lentur."
+                },
+                {
+                    type: "MCQ",
+                    question: "Gerakan meniru melompat katak dilakukan dengan menolak menggunakan ...",
+                    options: ["Dua kaki bersamaan", "Satu tangan", "Dada"],
+                    answer: "Dua kaki bersamaan",
+                    explanation: "Melompat seperti katak menggunakan tolakan kedua kaki serentak."
+                },
+                {
+                    type: "MCQ",
+                    question: "Jumlah pemain penjaga gawang (kiper) di dalam lapangan sepak bola adalah ...",
+                    options: ["1 orang", "2 orang", "11 orang"],
+                    answer: "1 orang",
+                    explanation: "Tiap tim sepak bola hanya memiliki 1 penjaga gawang utama."
+                },
+                {
+                    type: "MCQ",
+                    question: "Saat berlari berbelok-belok memindahkan benda, kemampuan yang dilatih adalah ...",
+                    options: ["Kelincahan", "Tidur", "Membaca"],
+                    answer: "Kelincahan",
+                    explanation: "Lari berbelok memindahkan benda melatih kelincahan dan reaksi."
+                },
+                {
+                    type: "MCQ",
+                    question: "Menendang bola menggunakan punggung kaki bertujuan agar tembakan bola ...",
+                    options: ["Meluncur keras", "Pelan", "Mundur"],
+                    answer: "Meluncur keras",
+                    explanation: "Punggung kaki digunakan menendang bola secara keras dan terarah."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Berjalan di atas garis lurus melatih keseimbangan tubuh.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Benar. Berjalan di atas garis lurus atau papan titian melatih keseimbangan."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Setelah kepanasan berolahraga, kita boleh minum air es langsung.",
+                    options: ["Benar", "Salah"],
+                    answer: "Salah",
+                    explanation: "Salah. Minumlah air suhu ruang atau hangat agar tubuh menyesuaikan."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Olahraga secara teratur membuat badan menjadi ...",
+                    answer: "Sehat",
+                    explanation: "Berolahraga secara rutin menjadikan tubuh sehat dan bugar."
+                },
+                {
+                    type: "MCQ",
+                    question: "Mandi dan menggosok gigi secara teratur merupakan bagian dari menjaga ...",
+                    options: ["Kebersihan diri", "Kelincahan lari", "Daya tahan"],
+                    answer: "Kebersihan diri",
+                    explanation: "Mandi dan gosok gigi adalah kebiasaan menjaga kebersihan tubuh."
+                },
+                {
+                    type: "MCQ",
+                    question: "Tempat yang aman dan ideal untuk berolahraga dan bermain adalah ...",
+                    options: ["Lapangan terbuka", "Jalan raya", "Atap rumah"],
+                    answer: "Lapangan terbuka",
+                    explanation: "Lapangan atau halaman rumput aman dan luas untuk bergerak."
+                },
+                {
+                    type: "MCQ",
+                    question: "Selesai dipakai berolahraga, peralatan olahraga harus ...",
+                    options: ["Dirapikan kembali", "Dibiarkan di lapangan", "Dibuang"],
+                    answer: "Dirapikan kembali",
+                    explanation: "Merapikan alat olahraga adalah wujud rasa tanggung jawab."
+                }
+            ]
+        ];
+
+        let currentPackageIdx = 0;
+        let currentQuestionIdx = 0;
+        let userAnswers = [];
+        let isAudioEnabled = true;
+
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playSound(type) {
+            if (!isAudioEnabled) return;
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                if (type === 'click') {
+                    osc.frequency.setValueAtTime(450, audioCtx.currentTime);
+                    gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.05);
+                } else if (type === 'correct') {
+                    osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
+                    osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.08);
+                    gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.2);
+                } else if (type === 'wrong') {
+                    osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+                    osc.frequency.setValueAtTime(196, audioCtx.currentTime + 0.1);
+                    gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.25);
+                }
+            } catch (e) {
+                // Audio fallback silence
+            }
+        }
+
+        function toggleAudio() {
+            isAudioEnabled = !isAudioEnabled;
+            const icon = document.getElementById('audioIcon');
+            const btn = document.getElementById('audioBtn');
+            if (isAudioEnabled) {
+                icon.setAttribute('data-lucide', 'volume-2');
+                btn.classList.replace('text-slate-400', 'text-slate-600');
+            } else {
+                icon.setAttribute('data-lucide', 'volume-x');
+                btn.classList.replace('text-slate-600', 'text-slate-400');
+            }
+            lucide.createIcons();
+        }
+
+        function goToHome() {
+            playSound('click');
+            document.getElementById('homeScreen').classList.remove('hidden');
+            document.getElementById('quizScreen').classList.add('hidden');
+            document.getElementById('resultScreen').classList.add('hidden');
+        }
+
+        function startQuiz(packageIdx) {
+            playSound('click');
+            currentPackageIdx = packageIdx;
+            currentQuestionIdx = 0;
+            userAnswers = new Array(20).fill(null);
+
+            document.getElementById('homeScreen').classList.add('hidden');
+            document.getElementById('resultScreen').classList.add('hidden');
+            document.getElementById('quizScreen').classList.remove('hidden');
+
+            const pkgNames = ["Paket A: Dasar", "Paket B: Pengayaan", "Paket C: Tantangan"];
+            document.getElementById('pkgBadge').innerText = pkgNames[packageIdx];
+
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const questions = questionBank[currentPackageIdx];
+            const q = questions[currentQuestionIdx];
+
+            // Update Progress
+            document.getElementById('currentQNum').innerText = currentQuestionIdx + 1;
+            document.getElementById('totalQNum').innerText = questions.length;
+            
+            const progress = ((currentQuestionIdx + 1) / questions.length) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+
+            // Question Type Badge
+            const typeBadge = document.getElementById('qTypeBadge');
+            if (q.type === 'MCQ') {
+                typeBadge.innerText = 'Pilihan Ganda';
+                typeBadge.className = 'inline-block px-3 py-1 rounded-lg text-xs font-extrabold uppercase tracking-wider bg-purple-100 text-purple-800';
+            } else if (q.type === 'SHORT') {
+                typeBadge.innerText = 'Isian Singkat';
+                typeBadge.className = 'inline-block px-3 py-1 rounded-lg text-xs font-extrabold uppercase tracking-wider bg-amber-100 text-amber-800';
+            } else if (q.type === 'TF') {
+                typeBadge.innerText = 'Benar / Salah';
+                typeBadge.className = 'inline-block px-3 py-1 rounded-lg text-xs font-extrabold uppercase tracking-wider bg-indigo-100 text-indigo-800';
+            }
+
+            // Question Text
+            document.getElementById('questionText').innerText = q.question;
+
+            // Options Area
+            const container = document.getElementById('optionsContainer');
+            container.innerHTML = '';
+
+            const currentAnswer = userAnswers[currentQuestionIdx];
+
+            if (q.type === 'MCQ' || q.type === 'TF') {
+                q.options.forEach((opt) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'w-full text-left p-4 rounded-2xl border text-sm font-semibold transition-all flex items-center justify-between ';
+                    
+                    if (currentAnswer !== null) {
+                        if (opt === q.answer) {
+                            btn.className += 'border-emerald-500 bg-emerald-50 text-emerald-900 shadow-sm font-bold';
+                        } else if (currentAnswer === opt) {
+                            btn.className += 'border-rose-500 bg-rose-50 text-rose-900 font-bold';
+                        } else {
+                            btn.className += 'border-slate-200 opacity-60 text-slate-500';
+                        }
+                    } else {
+                        btn.className += 'border-slate-200 hover:border-purple-300 hover:bg-purple-50/50 text-slate-700';
+                    }
+
+                    btn.onclick = () => selectAnswer(opt);
+                    btn.disabled = currentAnswer !== null;
+
+                    btn.innerHTML = `
+                        <span>${opt}</span>
+                        <div class="w-5 h-5 rounded-full border border-slate-300 flex items-center justify-center ${currentAnswer !== null && opt === q.answer ? 'border-emerald-500 bg-emerald-500 text-white' : currentAnswer === opt ? 'border-rose-500 bg-rose-500 text-white' : ''}">
+                            ${currentAnswer !== null && opt === q.answer ? '<i data-lucide="check" class="w-3 h-3"></i>' : currentAnswer === opt ? '<i data-lucide="x" class="w-3 h-3"></i>' : ''}
+                        </div>
+                    `;
+                    container.appendChild(btn);
+                });
+            } else if (q.type === 'SHORT') {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'space-y-3';
+                wrapper.innerHTML = `
+                    <input type="text" id="shortAnswerInput" placeholder="Ketik jawaban singkatmu di sini..." 
+                        value="${currentAnswer || ''}"
+                        class="w-full p-4 rounded-2xl border border-slate-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 text-sm font-semibold outline-none transition"
+                        oninput="saveShortAnswer(this.value)">
+                    <p class="text-[11px] text-slate-400 italic">* Tekan "Selanjutnya" untuk menyimpan jawaban.</p>
+                `;
+                container.appendChild(wrapper);
+            }
+
+            // Explanation Display
+            const expBox = document.getElementById('explanationBox');
+            if (currentAnswer !== null && currentAnswer !== '') {
+                expBox.classList.remove('hidden');
+                document.getElementById('explanationText').innerText = q.explanation;
+            } else {
+                expBox.classList.add('hidden');
+            }
+
+            // Controls state
+            document.getElementById('prevBtn').disabled = currentQuestionIdx === 0;
+            const nextBtn = document.getElementById('nextBtn');
+            if (currentQuestionIdx === questions.length - 1) {
+                nextBtn.innerHTML = `Selesai & Lihat Hasil <i data-lucide="check-circle" class="w-4 h-4"></i>`;
+                nextBtn.className = 'px-6 py-2.5 rounded-xl bg-purple-700 hover:bg-purple-800 text-white text-xs font-bold shadow-md transition flex items-center gap-2';
+            } else {
+                nextBtn.innerHTML = `Selanjutnya <i data-lucide="chevron-right" class="w-4 h-4"></i>`;
+                nextBtn.className = 'px-6 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold shadow-md shadow-purple-200 transition flex items-center gap-2';
+            }
+
+            lucide.createIcons();
+        }
+
+        function selectAnswer(ans) {
+            userAnswers[currentQuestionIdx] = ans;
+            const q = questionBank[currentPackageIdx][currentQuestionIdx];
+
+            if (ans.toString().trim().toLowerCase() === q.answer.toString().trim().toLowerCase()) {
+                playSound('correct');
+            } else {
+                playSound('wrong');
+            }
+
+            renderQuestion();
+        }
+
+        function saveShortAnswer(val) {
+            userAnswers[currentQuestionIdx] = val;
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIdx > 0) {
+                playSound('click');
+                currentQuestionIdx--;
+                renderQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            const questions = questionBank[currentPackageIdx];
+            playSound('click');
+            
+            if (currentQuestionIdx < questions.length - 1) {
+                currentQuestionIdx++;
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            const questions = questionBank[currentPackageIdx];
+            let correct = 0;
+            let answered = 0;
+
+            questions.forEach((q, idx) => {
+                const userAns = userAnswers[idx];
+                if (userAns !== null && userAns !== undefined && userAns !== '') {
+                    answered++;
+                    if (userAns.toString().trim().toLowerCase() === q.answer.toString().trim().toLowerCase()) {
+                        correct++;
+                    }
+                }
+            });
+
+            const score = Math.round((correct / questions.length) * 100);
+
+            document.getElementById('quizScreen').classList.add('hidden');
+            document.getElementById('resultScreen').classList.remove('hidden');
+
+            document.getElementById('scoreDisplay').innerText = score;
+            document.getElementById('correctCount').innerText = correct;
+            document.getElementById('wrongCount').innerText = questions.length - correct;
+            document.getElementById('answeredCount').innerText = answered;
+
+            const pkgNames = ["Paket A: Dasar", "Paket B: Pengayaan", "Paket C: Tantangan"];
+            document.getElementById('resultSubtitle').innerText = `${pkgNames[currentPackageIdx]} selesai dikerjakan!`;
+
+            if (score >= 80 && typeof confetti === 'function') {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            }
+
+            const reviewList = document.getElementById('reviewList');
+            reviewList.innerHTML = '';
+
+            questions.forEach((q, idx) => {
+                const uAns = userAnswers[idx];
+                const isCorrect = uAns && uAns.toString().trim().toLowerCase() === q.answer.toString().trim().toLowerCase();
+
+                const item = document.createElement('div');
+                item.className = 'pt-4 space-y-2';
+                item.innerHTML = `
+                    <div class="flex items-start justify-between gap-2">
+                        <span class="text-xs font-bold text-slate-500">Soal #${idx + 1} (${q.type === 'MCQ' ? 'PG' : q.type === 'SHORT' ? 'Isian' : 'B/S'})</span>
+                        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold ${isCorrect ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}">
+                            ${isCorrect ? 'Benar (+5)' : 'Salah / Kosong'}
+                        </span>
+                    </div>
+                    <p class="font-bold text-sm text-slate-900">${q.question}</p>
+                    <div class="grid sm:grid-cols-2 gap-2 text-xs pt-1">
+                        <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                            <span class="text-slate-400 block font-medium text-[10px] uppercase">Jawabanmu:</span>
+                            <span class="font-bold ${isCorrect ? 'text-emerald-700' : 'text-rose-600'}">${uAns || '[Tidak Dijawab]'}</span>
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-purple-50 border border-purple-200">
+                            <span class="text-purple-600 block font-medium text-[10px] uppercase">Kunci Jawaban:</span>
+                            <span class="font-bold text-purple-900">${q.answer}</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-600 bg-sky-50 p-2.5 rounded-xl border border-sky-100"><strong class="text-sky-900">Pembahasan:</strong> ${q.explanation}</p>
+                `;
+                reviewList.appendChild(item);
+            });
+
+            lucide.createIcons();
+        }
+
+        function retryCurrentQuiz() {
+            startQuiz(currentPackageIdx);
+        }
+
+        window.onload = function() {
+            lucide.createIcons();
+        };
+    </script>
+</body>
+</html>

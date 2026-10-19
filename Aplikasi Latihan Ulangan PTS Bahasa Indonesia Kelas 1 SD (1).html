@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan PTS Bahasa Indonesia Kelas 1 SD</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f3f4f6;
+        }
+    </style>
+</head>
+<body class="min-h-screen text-slate-800 flex flex-col justify-between selection:bg-purple-100 selection:text-purple-800">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-purple-100 shadow-sm">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="goToHome()">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-purple-200">
+                    <i data-lucide="book-open" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h1 class="font-extrabold text-lg text-slate-900 leading-tight">PTS Bahasa Indonesia Kelas 1 SD</h1>
+                    <p class="text-xs text-purple-600 font-semibold">Kurikulum Merdeka • Bab 1 s/d Bab 3</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-2">
+                <button onclick="toggleAudio()" id="audioBtn" class="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 transition" title="Suara Efek">
+                    <i data-lucide="volume-2" id="audioIcon" class="w-5 h-5"></i>
+                </button>
+                <button onclick="goToHome()" class="px-3.5 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 transition flex items-center gap-1.5">
+                    <i data-lucide="home" class="w-4 h-4"></i> Utama
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-6 flex-1 w-full">
+        <!-- SCREEN 1: Home Dashboard -->
+        <section id="homeScreen" class="space-y-6">
+            <!-- Hero Banner -->
+            <div class="bg-gradient-to-r from-purple-700 via-purple-600 to-indigo-700 rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-white/10 rounded-full blur-2xl"></div>
+                <div class="relative z-10 max-w-xl">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-bold tracking-wide uppercase text-purple-100 mb-3">
+                        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Aku Bisa Membaca & Menulis
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-black tracking-tight leading-snug">Latihan PTS Bahasa Indonesia Kelas 1 SD</h2>
+                    <p class="text-purple-100 mt-2 text-sm sm:text-base leading-relaxed font-medium">
+                        Tersedia 3 Paket Latihan Soal Interaktif (Total 60 Soal) gabungan Bab 1 (Bunyi Apa?), Bab 2 (Ayo Bermain!), dan Bab 3 (Awas Kuman!).
+                    </p>
+                </div>
+            </div>
+
+            <!-- Quiz Package Cards -->
+            <div class="space-y-4">
+                <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                    <i data-lucide="layers" class="w-5 h-5 text-purple-600"></i> Pilih Paket Latihan (20 Soal per Paket)
+                </h3>
+
+                <div class="grid sm:grid-cols-3 gap-4" id="packageList">
+                    <!-- Package 1 Card -->
+                    <div onclick="startQuiz(0)" class="group bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md hover:border-purple-500 transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 font-extrabold flex items-center justify-center text-lg group-hover:scale-110 transition-transform">A</span>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">20 Soal</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 group-hover:text-purple-600 transition">Paket A: Dasar</h4>
+                                <p class="text-xs text-slate-500 mt-1">Campuran Bab 1-3: Mengenal bunyi benda/hewan, huruf 'b', 'h', 'c', 'k', dan kebersihan diri.</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-purple-600">
+                            <span>Mulai Mengerjakan</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Package 2 Card -->
+                    <div onclick="startQuiz(1)" class="group bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md hover:border-indigo-500 transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-700 font-extrabold flex items-center justify-center text-lg group-hover:scale-110 transition-transform">B</span>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">20 Soal</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 group-hover:text-indigo-600 transition">Paket B: Pengayaan</h4>
+                                <p class="text-xs text-slate-500 mt-1">Campuran Bab 1-3: Merangkai suku kata, aturan bermain yang aman, dan mencuci tangan.</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-indigo-600">
+                            <span>Mulai Mengerjakan</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Package 3 Card -->
+                    <div onclick="startQuiz(2)" class="group bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md hover:border-pink-500 transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="w-10 h-10 rounded-xl bg-pink-100 text-pink-700 font-extrabold flex items-center justify-center text-lg group-hover:scale-110 transition-transform">C</span>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">20 Soal</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 group-hover:text-pink-600 transition">Paket C: Tantangan</h4>
+                                <p class="text-xs text-slate-500 mt-1">Campuran Bab 1-3: Pemahaman bacaan cerita Boni/Caca, Isian Singkat, & Benar/Salah.</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-pink-600">
+                            <span>Mulai Mengerjakan</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rangkuman Pokok Materi -->
+            <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm space-y-4">
+                <h3 class="font-bold text-slate-900 flex items-center gap-2">
+                    <i data-lucide="book-marked" class="w-5 h-5 text-purple-600"></i> Ringkasan Bab Bahasa Indonesia Kelas 1 (Semester 1)
+                </h3>
+                <div class="grid sm:grid-cols-3 gap-4 text-xs">
+                    <div class="p-4 rounded-2xl bg-purple-50 border border-purple-100 text-purple-900">
+                        <p class="font-bold text-sm text-purple-900 mb-1.5 flex items-center gap-1.5">
+                            <i data-lucide="volume-2" class="w-4 h-4"></i> Bab 1: Bunyi Apa?
+                        </p>
+                        <ul class="list-disc list-inside space-y-1 text-purple-800">
+                            <li>Bunyi alam (hujan) & buatan (duk-duk)</li>
+                            <li>Cerita Bola Boni & membaca huruf 'b'</li>
+                            <li>Suku kata ba-, bi-, bu-, be-, bo-</li>
+                        </ul>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-indigo-50 border border-indigo-100 text-indigo-900">
+                        <p class="font-bold text-sm text-indigo-900 mb-1.5 flex items-center gap-1.5">
+                            <i data-lucide="gamepad-2" class="w-4 h-4"></i> Bab 2: Ayo Bermain!
+                        </p>
+                        <ul class="list-disc list-inside space-y-1 text-indigo-800">
+                            <li>Aturan bermain aman dan tidak aman</li>
+                            <li>Huruf 'h' (hujan, helikopter, hadiah)</li>
+                            <li>Huruf 'c' (Caca, cacing, cicak)</li>
+                        </ul>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-pink-50 border border-pink-100 text-pink-900">
+                        <p class="font-bold text-sm text-pink-900 mb-1.5 flex items-center gap-1.5">
+                            <i data-lucide="shield-alert" class="w-4 h-4"></i> Bab 3: Awas Kuman!
+                        </p>
+                        <ul class="list-disc list-inside space-y-1 text-pink-800">
+                            <li>Mengenal kuman & penyebab bersin</li>
+                            <li>Kebiasaan hidup bersih & cuci tangan</li>
+                            <li>Membaca huruf 'k' (kuman, kursi, kura)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 2: Quiz Question View -->
+        <section id="quizScreen" class="hidden space-y-5">
+            <!-- Progress Bar Card -->
+            <div class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <span id="pkgBadge" class="px-3 py-1 rounded-xl bg-purple-100 text-purple-800 font-bold text-xs">Paket A</span>
+                    <span class="text-xs font-semibold text-slate-500">Soal <strong id="currentQNum" class="text-slate-800">1</strong> dari <strong id="totalQNum">20</strong></span>
+                </div>
+                <div class="w-full sm:w-64 bg-slate-100 h-3 rounded-full overflow-hidden">
+                    <div id="progressBar" class="bg-gradient-to-r from-purple-600 to-indigo-600 h-full w-0 transition-all duration-300"></div>
+                </div>
+            </div>
+
+            <!-- Main Question Card -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-md space-y-6">
+                <!-- Question Type Tag & Content -->
+                <div class="space-y-3">
+                    <span id="qTypeBadge" class="inline-block px-3 py-1 rounded-lg text-xs font-extrabold uppercase tracking-wider bg-slate-100 text-slate-600">Pilihan Ganda</span>
+                    <h3 id="questionText" class="text-lg sm:text-xl font-bold text-slate-900 leading-snug">
+                        <!-- Question content -->
+                    </h3>
+                </div>
+
+                <!-- Answer Options -->
+                <div id="optionsContainer" class="space-y-3 pt-2">
+                    <!-- Dynamic Options -->
+                </div>
+
+                <!-- Explanation Box -->
+                <div id="explanationBox" class="hidden p-4 rounded-2xl bg-sky-50 border border-sky-200 text-sky-950 space-y-2 animate-fade-in">
+                    <div class="flex items-center gap-2 font-bold text-sm text-sky-800">
+                        <i data-lucide="sparkles" class="w-4 h-4"></i> Pembahasan Instan:
+                    </div>
+                    <p id="explanationText" class="text-xs sm:text-sm leading-relaxed text-sky-950">
+                        <!-- Explanation -->
+                    </p>
+                </div>
+            </div>
+
+            <!-- Quiz Controls -->
+            <div class="flex items-center justify-between pt-2">
+                <button id="prevBtn" onclick="prevQuestion()" class="px-4 py-2.5 rounded-xl border border-slate-200 text-slate-600 text-xs font-bold hover:bg-slate-100 transition flex items-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed">
+                    <i data-lucide="chevron-left" class="w-4 h-4"></i> Sebelumnya
+                </button>
+                <button id="nextBtn" onclick="nextQuestion()" class="px-6 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold shadow-md shadow-purple-200 transition flex items-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed">
+                    Selanjutnya <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- SCREEN 3: Quiz Result View -->
+        <section id="resultScreen" class="hidden space-y-6">
+            <!-- Score Card -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-lg text-center space-y-4 relative overflow-hidden">
+                <div class="inline-flex p-4 rounded-full bg-purple-50 text-purple-600 mb-1">
+                    <i data-lucide="award" class="w-12 h-12"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-black text-slate-900">Hasil Latihan PTS Bahasa Indonesia</h2>
+                    <p id="resultSubtitle" class="text-slate-500 text-sm mt-1">Paket A selesai dikerjakan!</p>
+                </div>
+
+                <!-- Final Score -->
+                <div class="py-4">
+                    <div class="text-5xl sm:text-6xl font-black text-purple-600 tracking-tight" id="scoreDisplay">100</div>
+                    <p class="text-xs font-bold text-slate-400 mt-1 uppercase tracking-widest">Nilai Akhir</p>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-3 gap-3 max-w-md mx-auto text-center border-t border-slate-100 pt-4">
+                    <div class="p-3 bg-slate-50 rounded-2xl">
+                        <span class="block text-xl font-bold text-emerald-600" id="correctCount">0</span>
+                        <span class="text-[11px] font-semibold text-slate-500">Benar</span>
+                    </div>
+                    <div class="p-3 bg-slate-50 rounded-2xl">
+                        <span class="block text-xl font-bold text-rose-500" id="wrongCount">0</span>
+                        <span class="text-[11px] font-semibold text-slate-500">Salah</span>
+                    </div>
+                    <div class="p-3 bg-slate-50 rounded-2xl">
+                        <span class="block text-xl font-bold text-slate-700" id="answeredCount">0</span>
+                        <span class="text-[11px] font-semibold text-slate-500">Dijawab</span>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4">
+                    <button onclick="retryCurrentQuiz()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-slate-900 text-white font-bold text-xs hover:bg-slate-800 transition flex items-center justify-center gap-2">
+                        <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Coba Paket Ini Lagi
+                    </button>
+                    <button onclick="goToHome()" class="w-full sm:w-auto px-6 py-3 rounded-xl border border-slate-300 font-bold text-xs text-slate-700 hover:bg-slate-50 transition flex items-center justify-center gap-2">
+                        <i data-lucide="grid" class="w-4 h-4"></i> Pilih Paket Lain
+                    </button>
+                </div>
+            </div>
+
+            <!-- Detailed Review -->
+            <div class="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm space-y-4">
+                <h3 class="font-bold text-slate-900 flex items-center gap-2">
+                    <i data-lucide="check-circle-2" class="w-5 h-5 text-purple-600"></i> Review Jawaban & Pembahasan Lengkap
+                </h3>
+                <div id="reviewList" class="space-y-4 divide-y divide-slate-100">
+                    <!-- Dynamic Review Items -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200/80 py-4 text-center text-xs text-slate-500">
+        <p>© Latihan PTS Bahasa Indonesia Kelas 1 SD • Kurikulum Merdeka (Bab 1 - 3)</p>
+    </footer>
+
+    <script>
+        const questionBank = [
+            // PACKAGE A (20 Questions - Dasar: Mix Bab 1, 2, 3)
+            [
+                {
+                    type: "MCQ",
+                    question: "Suara bola Boni yang jatuh dan memantul berbunyi ...",
+                    options: ["Duk! Duk!", "Byur!", "Krik! Krik!"],
+                    answer: "Duk! Duk!",
+                    explanation: "Dalam cerita Bab 1, bola Boni yang memantul di tanah berbunyi duk! duk!"
+                },
+                {
+                    type: "MCQ",
+                    question: "Warna bola kesayangan milik Boni adalah ...",
+                    options: ["Merah", "Biru", "Kuning"],
+                    answer: "Biru",
+                    explanation: "Bola milik Boni berwarna biru (suku kata bi-ru)."
+                },
+                {
+                    type: "MCQ",
+                    question: "Bunyi hewan sapi saat berada di padang rumput adalah ...",
+                    options: ["Mbeeek!", "Guk! Guk!", "Muuu!"],
+                    answer: "Muuu!",
+                    explanation: "Suara khas tiruan hewan sapi adalah Muuu!"
+                },
+                {
+                    type: "MCQ",
+                    question: "Suku kata awal dari kata 'Buku' adalah ...",
+                    options: ["bu-", "ba-", "bo-"],
+                    answer: "bu-",
+                    explanation: "Kata 'Buku' dipenggal menjadi bu-ku, jadi suku kata awalnya adalah bu-."
+                },
+                {
+                    type: "MCQ",
+                    question: "Gambar benda yang diawali dengan huruf 'h' adalah ...",
+                    options: ["Bola", "Hujan", "Batu"],
+                    answer: "Hujan",
+                    explanation: "Kata 'Hujan' diawali huruf h (h-u-j-a-n)."
+                },
+                {
+                    type: "MCQ",
+                    question: "Contoh kegiatan bermain yang aman untuk anak-anak adalah ...",
+                    options: ["Memanjat pohon tinggi", "Bermain di jalan raya", "Bermain ayunan secara tertib"],
+                    answer: "Bermain ayunan secara tertib",
+                    explanation: "Bermain ayunan dengan tertib dan berhati-hati adalah kegiatan bermain yang aman."
+                },
+                {
+                    type: "MCQ",
+                    question: "Benda kecil tidak terlihat yang dapat membuat tubuh kita menjadi sakit dinamakan ...",
+                    options: ["Kuman", "Kue", "Kupu-kupu"],
+                    answer: "Kuman",
+                    explanation: "Kuman adalah makhluk sangat kecil penyebar penyakit jika kita tidak menjaga kebersihan."
+                },
+                {
+                    type: "MCQ",
+                    question: "Agar tangan bersih dari kuman sebelum makan, kita harus mencuci tangan memakai ...",
+                    options: ["Tisu kering saja", "Air mengalir dan sabun", "Minyak goreng"],
+                    answer: "Air mengalir dan sabun",
+                    explanation: "Mencuci tangan dengan sabun dan air mengalir ampuh mematikan kuman."
+                },
+                {
+                    type: "MCQ",
+                    question: "Huruf pertama pada kata 'Caca' adalah huruf ...",
+                    options: ["h", "b", "c"],
+                    answer: "c",
+                    explanation: "Nama 'Caca' diawali huruf konsonan c (C-a-c-a)."
+                },
+                {
+                    type: "MCQ",
+                    question: "Suku kata awal pada kata 'Kuda' adalah ...",
+                    options: ["ku-", "ka-", "ki-"],
+                    answer: "ku-",
+                    explanation: "Kata 'Kuda' dipenggal menjadi ku-da, diawali suku kata ku-."
+                },
+                {
+                    type: "MCQ",
+                    question: "Suara petir yang menggelegar di langit saat hujan deras berbunyi ...",
+                    options: ["Puk!", "Duar!", "Tik-tik!"],
+                    answer: "Duar!",
+                    explanation: "Suara petir atau halilintar berbunyi keras seperti Duar!"
+                },
+                {
+                    type: "MCQ",
+                    question: "Kata berikut yang diawali dengan suku kata 'bi-' adalah ...",
+                    options: ["Batu", "Bolu", "Biru"],
+                    answer: "Biru",
+                    explanation: "Bi-ru diawali dengan suku kata bi-."
+                },
+                {
+                    type: "MCQ",
+                    question: "Anggota tubuh yang digunakan untuk mencium bau dan bernapas adalah ...",
+                    options: ["Hidung", "Helikopter", "Handuk"],
+                    answer: "Hidung",
+                    explanation: "Hidung adalah anggota tubuh yang diawali huruf h."
+                },
+                {
+                    type: "MCQ",
+                    question: "Sikap saat bersin yang benar agar kuman tidak menyebar adalah ...",
+                    options: ["Bersin ke arah teman", "Menutup hidung dan mulut dengan siku dalam", "Membuka mulut lebar-lebar"],
+                    answer: "Menutup hidung dan mulut dengan siku dalam",
+                    explanation: "Menutup mulut/hidung dengan siku dalam mencegah kuman terlontar ke udara."
+                },
+                {
+                    type: "MCQ",
+                    question: "Benda yang digunakan saat mandi untuk membersihkan badan adalah ...",
+                    options: ["Pensil", "Sepatu", "Sabun"],
+                    answer: "Sabun",
+                    explanation: "Sabun digunakan untuk membersihkan kotoran dan kuman di badan."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Bunyi air hujan yang jatuh di atas genteng berbunyi tik-tik-tik.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Benar. Bunyi tetesan air hujan di genteng adalah tik-tik-tik."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Bermain dorong-dorongan di perosotan adalah contoh bermain yang aman.",
+                    options: ["Salah", "Benar"],
+                    answer: "Salah",
+                    explanation: "Salah. Mendorong teman di perosotan sangat berbahaya karena bisa membuat teman jatuh."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Huruf 'b' dan huruf 'd' memiliki bentuk yang sama persis.",
+                    options: ["Benar", "Salah"],
+                    answer: "Salah",
+                    explanation: "Salah. Huruf 'b' perutnya di kanan depan, sedangkan huruf 'd' perutnya di kiri belakang."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Boni kehilangan bola berwarna ...",
+                    answer: "Biru",
+                    explanation: "Bola kesayangan Boni berwarna biru."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Binatang yang berbunyi 'Meong! Meong!' adalah ...",
+                    answer: "Kucing",
+                    explanation: "Kucing adalah hewan yang bersuara Meong!"
+                }
+            ],
+
+            // PACKAGE B (20 Questions - Pengayaan: Mix Bab 1, 2, 3)
+            [
+                {
+                    type: "MCQ",
+                    question: "Lafal ejaan huruf yang benar untuk kata 'bo - la' adalah ...",
+                    options: ["b - a - t - u", "b - o - l - a", "b - i - r - u"],
+                    answer: "b - o - l - a",
+                    explanation: "Kata bola jika diurai hurufnya menjadi b - o - l - a."
+                },
+                {
+                    type: "MCQ",
+                    question: "Di bawah ini kata yang diawali dari suku kata 'be-' adalah ...",
+                    options: ["Bola", "Buku", "Bebek"],
+                    answer: "Bebek",
+                    explanation: "Kata 'Bebek' dipenggal be-bek (diawali suku kata be-)."
+                },
+                {
+                    type: "MCQ",
+                    question: "Tempat bermain yang aman untuk anak-anak sekolah adalah ...",
+                    options: ["Taman bermain / Lapangan", "Tepi jalan raya", "Dekat sumur terbuka"],
+                    answer: "Taman bermain / Lapangan",
+                    explanation: "Taman bermain bebas dari bahaya kendaraan dan benda tajam."
+                },
+                {
+                    type: "MCQ",
+                    question: "Kata 'Helikopter' dan 'Hadiah' diawali dengan huruf ...",
+                    options: ["c", "h", "k"],
+                    answer: "h",
+                    explanation: "Helikopter dan Hadiah diawali huruf konsonan h."
+                },
+                {
+                    type: "MCQ",
+                    question: "Hewan melata tanpa kaki yang diawali huruf 'c' adalah ...",
+                    options: ["Cicak", "Capung", "Cacing"],
+                    answer: "Cacing",
+                    explanation: "Cacing adalah hewan melata di dalam tanah yang diawali huruf c."
+                },
+                {
+                    type: "MCQ",
+                    question: "Makanan yang dihinggapi lalat dapat tercemar kuman dan menyebabkan sakit ...",
+                    options: ["Mata", "Perut", "Kaki"],
+                    answer: "Perut",
+                    explanation: "Lalat membawa kuman. Makanan kotor yang dimakan bisa bikin sakit perut/diare."
+                },
+                {
+                    type: "MCQ",
+                    question: "Susunan suku kata 'ku - m - a - n' jika dirangkai menjadi kata ...",
+                    options: ["Kuning", "Kuda", "Kuman"],
+                    answer: "Kuman",
+                    explanation: "Rangkaian k-u-m-a-n membentuk kata kuman."
+                },
+                {
+                    type: "MCQ",
+                    question: "Suara klakson mobil saat melintas di jalan berbunyi ...",
+                    options: ["Tolelot! / Tin! Tin!", "Muuu!", "Pyur!"],
+                    answer: "Tolelot! / Tin! Tin!",
+                    explanation: "Klakson kendaraan mobil/motor berbunyi Tin! Tin!"
+                },
+                {
+                    type: "MCQ",
+                    question: "Suku kata awal yang sama pada kata 'Batu' dan 'Baju' adalah ...",
+                    options: ["bi-", "ba-", "bu-"],
+                    answer: "ba-",
+                    explanation: "Batu (ba-tu) dan Baju (ba-ju) sama-sama diawali suku kata ba-."
+                },
+                {
+                    type: "MCQ",
+                    question: "Saat batuk dan flu, sebaiknya kita menggunakan masker agar ...",
+                    options: ["Terlihat bergaya", "Wajah jadi hangat", "Tidak menularkan kuman ke teman"],
+                    answer: "Tidak menularkan kuman ke teman",
+                    explanation: "Masker menghalangi kuman agar tidak menyebar ke orang sekitar."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Kata 'Cicak' dan 'Cangkir' diawali dengan huruf 'c'.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Benar. Kedua kata tersebut diawali huruf c."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Menggaruk mata dengan tangan kotor bisa membuat mata terkena kuman.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Benar. Tangan kotor membawa kuman yang bisa menyebabkan iritasi mata."
+                },
+                {
+                    type: "MCQ",
+                    question: "Kendaraan terbang yang bergerak di udara dan diawali huruf 'h' adalah ...",
+                    options: ["Kapal", "Helikopter", "Mobil"],
+                    answer: "Helikopter",
+                    explanation: "Helikopter diawali huruf h."
+                },
+                {
+                    type: "MCQ",
+                    question: "Kata 'Kelinci' diawali suku kata ...",
+                    options: ["ka-", "ki-", "ke-"],
+                    answer: "ke-",
+                    explanation: "Ke-lin-ci diawali suku kata ke-."
+                },
+                {
+                    type: "MCQ",
+                    question: "Sebelum dan sesudah makan, kebiasaan hidup bersih yang wajib dilakukan adalah ...",
+                    options: ["Mencuci tangan", "Bermain bola", "Mandi bola"],
+                    answer: "Mencuci tangan",
+                    explanation: "Mencuci tangan mencegah kuman masuk ke dalam mulut bersama makanan."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Bunyi kambing di kandang adalah ...",
+                    answer: "Mbek",
+                    explanation: "Tiruan suara kambing adalah Mbek! / Mbeeek!"
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Kata 'Harimau' diawali dengan huruf ...",
+                    answer: "h",
+                    explanation: "Harimau diawali dengan huruf h."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Bola Boni menggelinding dan masuk ke dalam sumur.",
+                    options: ["Salah", "Benar"],
+                    answer: "Salah",
+                    explanation: "Salah. Dalam cerita, bola Boni memantul dan masuk ke dalam semak-semak/sungai."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Menggunting kuku yang panjang secara teratur menjaga tangan dari kuman.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Benar. Kuku panjang menjadi tempat tersimpannya kotoran dan kuman."
+                },
+                {
+                    type: "MCQ",
+                    question: "Benda yang kita gunakan untuk mengeringkan badan dan rambut setelah mandi adalah ...",
+                    options: ["Helikopter", "Handuk", "Hotel"],
+                    answer: "Handuk",
+                    explanation: "Handuk (diawali huruf h) digunakan mengeringkan badan."
+                }
+            ],
+
+            // PACKAGE C (20 Questions - Tantangan: Mix Bab 1, 2, 3)
+            [
+                {
+                    type: "MCQ",
+                    question: "Mengapa Boni merasa sedih dalam cerita Bab 1?",
+                    options: ["Karena tidak boleh bermain", "Karena kehujanan", "Karena kehilangan bola birunya"],
+                    answer: "Karena kehilangan bola birunya",
+                    explanation: "Boni sedih sebab bola biru kesayangannya memantul dan hilang."
+                },
+                {
+                    type: "MCQ",
+                    question: "Binatang yang membantu Boni mencari bolanya di dekat semak-semak adalah ...",
+                    options: ["Kucing", "Bebek", "Gajah"],
+                    answer: "Bebek",
+                    explanation: "Dalam cerita buku siswa, Bebek ikut melihat dan menunjuk tempat bola Boni."
+                },
+                {
+                    type: "MCQ",
+                    question: "Di bawah ini urutan yang benar dari langkah mencuci tangan adalah ...",
+                    options: ["Bilas air -> Pakai handuk -> Pakai sabun", "Basahi tangan -> Pakai sabun -> Gosok telapak & jari -> Bilas air bersih", "Langsung usap baju"],
+                    answer: "Basahi tangan -> Pakai sabun -> Gosok telapak & jari -> Bilas air bersih",
+                    explanation: "Mencuci tangan yang benar menggunakan air dan sabun lalu digosok hingga bersih."
+                },
+                {
+                    type: "MCQ",
+                    question: "Huruf 'k' jika digabung dengan vokal 'u' dibaca ...",
+                    options: ["ka", "ki", "ku"],
+                    answer: "ku",
+                    explanation: "Penggabungan konsonan k dan vokal u dibaca ku."
+                },
+                {
+                    type: "MCQ",
+                    question: "Anak yang suka jajan sembarangan di tempat kotor bisa terserang sakit ...",
+                    options: ["Perut", "Mata", "Telinga"],
+                    answer: "Perut",
+                    explanation: "Makanan kotor mengandung kuman yang memicu sakit perut."
+                },
+                {
+                    type: "MCQ",
+                    question: "Kata 'Cangkir', 'Cacing', dan 'Cokelat' semuanya diawali suku kata bermula huruf ...",
+                    options: ["h", "c", "k"],
+                    answer: "c",
+                    explanation: "Ketiga kata tersebut diawali konsonan c."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Kuman berukuran sangat besar sehingga bisa kita pegang langsung.",
+                    options: ["Salah", "Benar"],
+                    answer: "Salah",
+                    explanation: "Salah. Kuman berukuran sangat kecil (mikroskopis) dan tidak terlihat mata langsung."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Bermain di jalan raya berbahaya karena bisa tertabrak kendaraan.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Benar. Jalan raya adalah tempat lalu lintas kendaraan, bukan tempat bermain."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Huruf vokal terdiri dari a, i, u, e, dan ...",
+                    answer: "o",
+                    explanation: "Lima huruf vokal adalah a, i, u, e, o."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Benda yang kita pakai di kaki saat sekolah atau olahraga adalah ...",
+                    answer: "Sepatu",
+                    explanation: "Sepatu melindungi kaki saat beraktivitas."
+                },
+                {
+                    type: "MCQ",
+                    question: "Suara burung hantu di malam hari berbunyi ...",
+                    options: ["Guk-guk!", "Kuk-kuk!", "Kwek-kwek!"],
+                    answer: "Kuk-kuk!",
+                    explanation: "Suara khas burung hantu berbunyi Kuk-kuk!"
+                },
+                {
+                    type: "MCQ",
+                    question: "Pasangan kata di bawah ini yang diawali suku kata 'ka-' adalah ...",
+                    options: ["Kuda dan Kura", "Kaca dan Kayu", "Kera dan Kijang"],
+                    answer: "Kaca dan Kayu",
+                    explanation: "Kaca (ka-ca) dan Kayu (ka-yu) sama-sama diawali suku kata ka-."
+                },
+                {
+                    type: "MCQ",
+                    question: "Caca bisa melompat tali dengan lancar. Caca merasa senang karena ia ...",
+                    options: ["Menangis", "Tidur", "Bisa berlatih dengan gigih"],
+                    answer: "Bisa berlatih dengan gigih",
+                    explanation: "Berlatih gigih membuat anak bisa menguasai permainan dengan baik."
+                },
+                {
+                    type: "MCQ",
+                    question: "Kata 'Kera' diawali dengan huruf ...",
+                    options: ["c", "k", "h"],
+                    answer: "k",
+                    explanation: "Kata Kera diawali konsonan k."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Menutup hidung saat bersin mencegah kuman menular ke teman.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Benar. Menutup hidung dan mulut menahan semburan kuman."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Boni menemukan bolanya tergeletak di atas atap rumah.",
+                    options: ["Salah", "Benar"],
+                    answer: "Salah",
+                    explanation: "Salah. Bola Boni ditemukan di dekat semak-semak tempat bebek."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Kebiasaan mandi sebaiknya dilakukan sebanyak ... kali sehari.",
+                    answer: "2",
+                    explanation: "Mandi dilakukan 2 kali sehari (pagi dan sore) agar badan bersih segar."
+                },
+                {
+                    type: "MCQ",
+                    question: "Kata berikut yang memiliki huruf konsonan 'c' di awal kata adalah ...",
+                    options: ["Cicak", "Hidung", "Kuman"],
+                    answer: "Cicak",
+                    explanation: "Cicak diawali huruf c."
+                },
+                {
+                    type: "MCQ",
+                    question: "Alat yang digunakan untuk membersihkan kotoran di lantai rumah adalah ...",
+                    options: ["Buku", "Sapu", "Topi"],
+                    answer: "Sapu",
+                    explanation: "Sapu digunakan untuk menyapu dan membersihkan lantai."
+                },
+                {
+                    type: "MCQ",
+                    question: "Selesai membaca buku pelajaran, kita harus merapikan buku ke dalam ...",
+                    options: ["Tas sekolah / Rak buku", "Tempat sampah", "Lantai"],
+                    answer: "Tas sekolah / Rak buku",
+                    explanation: "Buku disimpan dengan rapi di tas atau rak buku agar tidak rusak/hilang."
+                }
+            ]
+        ];
+
+        let currentPackageIdx = 0;
+        let currentQuestionIdx = 0;
+        let activeQuestions = [];
+        let userAnswers = [];
+        let isAudioEnabled = true;
+
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function shuffleArray(arr) {
+            const array = [...arr];
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function playSound(type) {
+            if (!isAudioEnabled) return;
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                if (type === 'click') {
+                    osc.frequency.setValueAtTime(450, audioCtx.currentTime);
+                    gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.05);
+                } else if (type === 'correct') {
+                    osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
+                    osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.08);
+                    gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.2);
+                } else if (type === 'wrong') {
+                    osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+                    osc.frequency.setValueAtTime(196, audioCtx.currentTime + 0.1);
+                    gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.25);
+                }
+            } catch (e) {
+                // Audio fallback silence
+            }
+        }
+
+        function toggleAudio() {
+            isAudioEnabled = !isAudioEnabled;
+            const icon = document.getElementById('audioIcon');
+            const btn = document.getElementById('audioBtn');
+            if (isAudioEnabled) {
+                icon.setAttribute('data-lucide', 'volume-2');
+                btn.classList.replace('text-slate-400', 'text-slate-600');
+            } else {
+                icon.setAttribute('data-lucide', 'volume-x');
+                btn.classList.replace('text-slate-600', 'text-slate-400');
+            }
+            lucide.createIcons();
+        }
+
+        function goToHome() {
+            playSound('click');
+            document.getElementById('homeScreen').classList.remove('hidden');
+            document.getElementById('quizScreen').classList.add('hidden');
+            document.getElementById('resultScreen').classList.add('hidden');
+        }
+
+        function startQuiz(packageIdx) {
+            playSound('click');
+            currentPackageIdx = packageIdx;
+            currentQuestionIdx = 0;
+            
+            // Randomize answer options layout per quiz run so correct answer positions (A/B/C) vary
+            activeQuestions = questionBank[packageIdx].map(q => {
+                if (q.type === 'MCQ') {
+                    return { ...q, options: shuffleArray(q.options) };
+                }
+                return { ...q };
+            });
+
+            userAnswers = new Array(activeQuestions.length).fill(null);
+
+            document.getElementById('homeScreen').classList.add('hidden');
+            document.getElementById('resultScreen').classList.add('hidden');
+            document.getElementById('quizScreen').classList.remove('hidden');
+
+            const pkgNames = ["Paket A: Dasar", "Paket B: Pengayaan", "Paket C: Tantangan"];
+            document.getElementById('pkgBadge').innerText = pkgNames[packageIdx];
+
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const questions = activeQuestions;
+            const q = questions[currentQuestionIdx];
+
+            // Update Progress
+            document.getElementById('currentQNum').innerText = currentQuestionIdx + 1;
+            document.getElementById('totalQNum').innerText = questions.length;
+            
+            const progress = ((currentQuestionIdx + 1) / questions.length) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+
+            // Question Type Badge
+            const typeBadge = document.getElementById('qTypeBadge');
+            if (q.type === 'MCQ') {
+                typeBadge.innerText = 'Pilihan Ganda';
+                typeBadge.className = 'inline-block px-3 py-1 rounded-lg text-xs font-extrabold uppercase tracking-wider bg-purple-100 text-purple-800';
+            } else if (q.type === 'SHORT') {
+                typeBadge.innerText = 'Isian Singkat';
+                typeBadge.className = 'inline-block px-3 py-1 rounded-lg text-xs font-extrabold uppercase tracking-wider bg-amber-100 text-amber-800';
+            } else if (q.type === 'TF') {
+                typeBadge.innerText = 'Benar / Salah';
+                typeBadge.className = 'inline-block px-3 py-1 rounded-lg text-xs font-extrabold uppercase tracking-wider bg-indigo-100 text-indigo-800';
+            }
+
+            // Question Text
+            document.getElementById('questionText').innerText = q.question;
+
+            // Options Area
+            const container = document.getElementById('optionsContainer');
+            container.innerHTML = '';
+
+            const currentAnswer = userAnswers[currentQuestionIdx];
+
+            if (q.type === 'MCQ' || q.type === 'TF') {
+                q.options.forEach((opt) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'w-full text-left p-4 rounded-2xl border text-sm font-semibold transition-all flex items-center justify-between ';
+                    
+                    if (currentAnswer !== null) {
+                        if (opt === q.answer) {
+                            btn.className += 'border-emerald-500 bg-emerald-50 text-emerald-900 shadow-sm font-bold';
+                        } else if (currentAnswer === opt) {
+                            btn.className += 'border-rose-500 bg-rose-50 text-rose-900 font-bold';
+                        } else {
+                            btn.className += 'border-slate-200 opacity-60 text-slate-500';
+                        }
+                    } else {
+                        btn.className += 'border-slate-200 hover:border-purple-300 hover:bg-purple-50/50 text-slate-700';
+                    }
+
+                    btn.onclick = () => selectAnswer(opt);
+                    btn.disabled = currentAnswer !== null;
+
+                    btn.innerHTML = `
+                        <span>${opt}</span>
+                        <div class="w-5 h-5 rounded-full border border-slate-300 flex items-center justify-center ${currentAnswer !== null && opt === q.answer ? 'border-emerald-500 bg-emerald-500 text-white' : currentAnswer === opt ? 'border-rose-500 bg-rose-500 text-white' : ''}">
+                            ${currentAnswer !== null && opt === q.answer ? '<i data-lucide="check" class="w-3 h-3"></i>' : currentAnswer === opt ? '<i data-lucide="x" class="w-3 h-3"></i>' : ''}
+                        </div>
+                    `;
+                    container.appendChild(btn);
+                });
+            } else if (q.type === 'SHORT') {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'space-y-3';
+                wrapper.innerHTML = `
+                    <input type="text" id="shortAnswerInput" placeholder="Ketik jawaban singkatmu di sini..." 
+                        value="${currentAnswer || ''}"
+                        class="w-full p-4 rounded-2xl border border-slate-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 text-sm font-semibold outline-none transition"
+                        oninput="saveShortAnswer(this.value)">
+                    <p class="text-[11px] text-slate-400 italic">* Tekan "Selanjutnya" untuk menyimpan jawaban.</p>
+                `;
+                container.appendChild(wrapper);
+            }
+
+            // Explanation Display
+            const expBox = document.getElementById('explanationBox');
+            if (currentAnswer !== null && currentAnswer !== '') {
+                expBox.classList.remove('hidden');
+                document.getElementById('explanationText').innerText = q.explanation;
+            } else {
+                expBox.classList.add('hidden');
+            }
+
+            // Controls state
+            document.getElementById('prevBtn').disabled = currentQuestionIdx === 0;
+            const nextBtn = document.getElementById('nextBtn');
+            if (currentQuestionIdx === questions.length - 1) {
+                nextBtn.innerHTML = `Selesai & Lihat Hasil <i data-lucide="check-circle" class="w-4 h-4"></i>`;
+                nextBtn.className = 'px-6 py-2.5 rounded-xl bg-purple-700 hover:bg-purple-800 text-white text-xs font-bold shadow-md transition flex items-center gap-2';
+            } else {
+                nextBtn.innerHTML = `Selanjutnya <i data-lucide="chevron-right" class="w-4 h-4"></i>`;
+                nextBtn.className = 'px-6 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold shadow-md shadow-purple-200 transition flex items-center gap-2';
+            }
+
+            lucide.createIcons();
+        }
+
+        function selectAnswer(ans) {
+            userAnswers[currentQuestionIdx] = ans;
+            const q = activeQuestions[currentQuestionIdx];
+
+            if (ans.toString().trim().toLowerCase() === q.answer.toString().trim().toLowerCase()) {
+                playSound('correct');
+            } else {
+                playSound('wrong');
+            }
+
+            renderQuestion();
+        }
+
+        function saveShortAnswer(val) {
+            userAnswers[currentQuestionIdx] = val;
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIdx > 0) {
+                playSound('click');
+                currentQuestionIdx--;
+                renderQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            const questions = activeQuestions;
+            playSound('click');
+            
+            if (currentQuestionIdx < questions.length - 1) {
+                currentQuestionIdx++;
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            const questions = activeQuestions;
+            let correct = 0;
+            let answered = 0;
+
+            questions.forEach((q, idx) => {
+                const userAns = userAnswers[idx];
+                if (userAns !== null && userAns !== undefined && userAns !== '') {
+                    answered++;
+                    if (userAns.toString().trim().toLowerCase() === q.answer.toString().trim().toLowerCase()) {
+                        correct++;
+                    }
+                }
+            });
+
+            const score = Math.round((correct / questions.length) * 100);
+
+            document.getElementById('quizScreen').classList.add('hidden');
+            document.getElementById('resultScreen').classList.remove('hidden');
+
+            document.getElementById('scoreDisplay').innerText = score;
+            document.getElementById('correctCount').innerText = correct;
+            document.getElementById('wrongCount').innerText = questions.length - correct;
+            document.getElementById('answeredCount').innerText = answered;
+
+            const pkgNames = ["Paket A: Dasar", "Paket B: Pengayaan", "Paket C: Tantangan"];
+            document.getElementById('resultSubtitle').innerText = `${pkgNames[currentPackageIdx]} selesai dikerjakan!`;
+
+            if (score >= 80 && typeof confetti === 'function') {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            }
+
+            const reviewList = document.getElementById('reviewList');
+            reviewList.innerHTML = '';
+
+            questions.forEach((q, idx) => {
+                const uAns = userAnswers[idx];
+                const isCorrect = uAns && uAns.toString().trim().toLowerCase() === q.answer.toString().trim().toLowerCase();
+
+                const item = document.createElement('div');
+                item.className = 'pt-4 space-y-2';
+                item.innerHTML = `
+                    <div class="flex items-start justify-between gap-2">
+                        <span class="text-xs font-bold text-slate-500">Soal #${idx + 1} (${q.type === 'MCQ' ? 'PG' : q.type === 'SHORT' ? 'Isian' : 'B/S'})</span>
+                        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold ${isCorrect ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}">
+                            ${isCorrect ? 'Benar (+5)' : 'Salah / Kosong'}
+                        </span>
+                    </div>
+                    <p class="font-bold text-sm text-slate-900">${q.question}</p>
+                    <div class="grid sm:grid-cols-2 gap-2 text-xs pt-1">
+                        <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                            <span class="text-slate-400 block font-medium text-[10px] uppercase">Jawabanmu:</span>
+                            <span class="font-bold ${isCorrect ? 'text-emerald-700' : 'text-rose-600'}">${uAns || '[Tidak Dijawab]'}</span>
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-purple-50 border border-purple-200">
+                            <span class="text-purple-600 block font-medium text-[10px] uppercase">Kunci Jawaban:</span>
+                            <span class="font-bold text-purple-900">${q.answer}</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-600 bg-sky-50 p-2.5 rounded-xl border border-sky-100"><strong class="text-sky-900">Pembahasan:</strong> ${q.explanation}</p>
+                `;
+                reviewList.appendChild(item);
+            });
+
+            lucide.createIcons();
+        }
+
+        function retryCurrentQuiz() {
+            startQuiz(currentPackageIdx);
+        }
+
+        window.onload = function() {
+            lucide.createIcons();
+        };
+    </script>
+</body>
+</html>
