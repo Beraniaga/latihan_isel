@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan PTS Seni Rupa Kelas 1 SD</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fafc;
+        }
+    </style>
+</head>
+<body class="min-h-screen text-slate-800 flex flex-col justify-between selection:bg-amber-100 selection:text-amber-800">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-amber-100 shadow-sm">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="goToHome()">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-500 flex items-center justify-center text-white shadow-md shadow-amber-200">
+                    <i data-lucide="palette" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h1 class="font-extrabold text-lg text-slate-900 leading-tight">PTS Seni Rupa Kelas 1 SD</h1>
+                    <p class="text-xs text-amber-600 font-semibold">Kurikulum Merdeka • Bab 1 & Bab 2</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-2">
+                <button onclick="toggleAudio()" id="audioBtn" class="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 transition" title="Suara Efek">
+                    <i data-lucide="volume-2" id="audioIcon" class="w-5 h-5"></i>
+                </button>
+                <button onclick="goToHome()" class="px-3.5 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 transition flex items-center gap-1.5">
+                    <i data-lucide="home" class="w-4 h-4"></i> Utama
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-6 flex-1 w-full">
+        <!-- SCREEN 1: Home Dashboard -->
+        <section id="homeScreen" class="space-y-6">
+            <!-- Hero Banner -->
+            <div class="bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-white/10 rounded-full blur-2xl"></div>
+                <div class="relative z-10 max-w-xl">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-bold tracking-wide uppercase text-amber-100 mb-3">
+                        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Dunia Seni & Kreasi
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-black tracking-tight leading-snug">Latihan PTS Seni Rupa Kelas 1 SD</h2>
+                    <p class="text-amber-100 mt-2 text-sm sm:text-base leading-relaxed font-medium">
+                        Tersedia 3 Paket Latihan Soal Interaktif (Total 60 Soal) Bab 1 (Seni Rupa di Sekitarku) dan Bab 2 (Mengenal Garis).
+                    </p>
+                </div>
+            </div>
+
+            <!-- Quiz Package Cards -->
+            <div class="space-y-4">
+                <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                    <i data-lucide="layers" class="w-5 h-5 text-amber-600"></i> Pilih Paket Latihan (20 Soal per Paket)
+                </h3>
+
+                <div class="grid sm:grid-cols-3 gap-4" id="packageList">
+                    <!-- Package 1 Card -->
+                    <div onclick="startQuiz(0)" class="group bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md hover:border-amber-500 transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 font-extrabold flex items-center justify-center text-lg group-hover:scale-110 transition-transform">A</span>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">20 Soal</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 group-hover:text-amber-600 transition">Paket A: Dasar</h4>
+                                <p class="text-xs text-slate-500 mt-1">Mengenal aneka karya 2D/3D, apresiasi seni, dan jenis garis dasar.</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-amber-600">
+                            <span>Mulai Mengerjakan</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Package 2 Card -->
+                    <div onclick="startQuiz(1)" class="group bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md hover:border-orange-500 transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="w-10 h-10 rounded-xl bg-orange-100 text-orange-700 font-extrabold flex items-center justify-center text-lg group-hover:scale-110 transition-transform">B</span>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">20 Soal</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 group-hover:text-orange-600 transition">Paket B: Pengayaan</h4>
+                                <p class="text-xs text-slate-500 mt-1">Mengapresiasi karya, penciptaan seni, dan arah garis (vertikal, horizontal, miring).</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-orange-600">
+                            <span>Mulai Mengerjakan</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Package 3 Card -->
+                    <div onclick="startQuiz(2)" class="group bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md hover:border-rose-500 transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="w-10 h-10 rounded-xl bg-rose-100 text-rose-700 font-extrabold flex items-center justify-center text-lg group-hover:scale-110 transition-transform">C</span>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">20 Soal</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 group-hover:text-rose-600 transition">Paket C: Tantangan</h4>
+                                <p class="text-xs text-slate-500 mt-1">Penalaran variatif: Pilihan Ganda, Isian Singkat, dan Benar/Salah.</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-rose-600">
+                            <span>Mulai Mengerjakan</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rangkuman Pokok Materi -->
+            <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm space-y-4">
+                <h3 class="font-bold text-slate-900 flex items-center gap-2">
+                    <i data-lucide="book-marked" class="w-5 h-5 text-amber-600"></i> Ringkasan Bab Seni Rupa Kelas 1 (Semester 1)
+                </h3>
+                <div class="grid sm:grid-cols-2 gap-4 text-xs">
+                    <div class="p-4 rounded-2xl bg-amber-50 border border-amber-100 text-amber-900">
+                        <p class="font-bold text-sm text-amber-900 mb-1.5 flex items-center gap-1.5">
+                            <i data-lucide="brush" class="w-4 h-4"></i> Bab 1: Seni Rupa di Sekitarku
+                        </p>
+                        <ul class="list-disc list-inside space-y-1 text-amber-800">
+                            <li><strong>A. Mengenal Karya:</strong> Karya 2D (gambar/lukisan) & 3D (patung/kerajinan).</li>
+                            <li><strong>B. Mengapresiasi Karya:</strong> Menghargai dan menceritakan karya seni secara santun.</li>
+                            <li><strong>C. Mencipta Karya:</strong> Praktik membuat karya sesuai imajinasi dan pengalaman.</li>
+                        </ul>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-orange-50 border border-orange-100 text-orange-900">
+                        <p class="font-bold text-sm text-orange-900 mb-1.5 flex items-center gap-1.5">
+                            <i data-lucide="activity" class="w-4 h-4"></i> Bab 2: Mengenal Garis
+                        </p>
+                        <ul class="list-disc list-inside space-y-1 text-orange-800">
+                            <li><strong>A. Aneka Garis Bentuknya:</strong> Lurus, lengkung, zig-zag, gelombang, putus-putus.</li>
+                            <li><strong>B. Aneka Garis Arahnya:</strong> Tegak (vertikal), datar (horizontal), miring (diagonal).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 2: Quiz Question View -->
+        <section id="quizScreen" class="hidden space-y-5">
+            <!-- Progress Bar Card -->
+            <div class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <span id="pkgBadge" class="px-3 py-1 rounded-xl bg-amber-100 text-amber-800 font-bold text-xs">Paket A</span>
+                    <span class="text-xs font-semibold text-slate-500">Soal <strong id="currentQNum" class="text-slate-800">1</strong> dari <strong id="totalQNum">20</strong></span>
+                </div>
+                <div class="w-full sm:w-64 bg-slate-100 h-3 rounded-full overflow-hidden">
+                    <div id="progressBar" class="bg-gradient-to-r from-amber-500 to-orange-500 h-full w-0 transition-all duration-300"></div>
+                </div>
+            </div>
+
+            <!-- Main Question Card -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-md space-y-6">
+                <!-- Question Type Tag & Content -->
+                <div class="space-y-3">
+                    <span id="qTypeBadge" class="inline-block px-3 py-1 rounded-lg text-xs font-extrabold uppercase tracking-wider bg-slate-100 text-slate-600">Pilihan Ganda</span>
+                    <h3 id="questionText" class="text-lg sm:text-xl font-bold text-slate-900 leading-snug">
+                        <!-- Question content -->
+                    </h3>
+                </div>
+
+                <!-- Answer Options -->
+                <div id="optionsContainer" class="space-y-3 pt-2">
+                    <!-- Dynamic Options -->
+                </div>
+
+                <!-- Explanation Box -->
+                <div id="explanationBox" class="hidden p-4 rounded-2xl bg-sky-50 border border-sky-200 text-sky-950 space-y-2 animate-fade-in">
+                    <div class="flex items-center gap-2 font-bold text-sm text-sky-800">
+                        <i data-lucide="sparkles" class="w-4 h-4"></i> Pembahasan Instan:
+                    </div>
+                    <p id="explanationText" class="text-xs sm:text-sm leading-relaxed text-sky-950">
+                        <!-- Explanation -->
+                    </p>
+                </div>
+            </div>
+
+            <!-- Quiz Controls -->
+            <div class="flex items-center justify-between pt-2">
+                <button id="prevBtn" onclick="prevQuestion()" class="px-4 py-2.5 rounded-xl border border-slate-200 text-slate-600 text-xs font-bold hover:bg-slate-100 transition flex items-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed">
+                    <i data-lucide="chevron-left" class="w-4 h-4"></i> Sebelumnya
+                </button>
+                <button id="nextBtn" onclick="nextQuestion()" class="px-6 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold shadow-md shadow-amber-200 transition flex items-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed">
+                    Selanjutnya <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- SCREEN 3: Quiz Result View -->
+        <section id="resultScreen" class="hidden space-y-6">
+            <!-- Score Card -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-lg text-center space-y-4 relative overflow-hidden">
+                <div class="inline-flex p-4 rounded-full bg-amber-50 text-amber-600 mb-1">
+                    <i data-lucide="award" class="w-12 h-12"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-black text-slate-900">Hasil Latihan PTS Seni Rupa</h2>
+                    <p id="resultSubtitle" class="text-slate-500 text-sm mt-1">Paket A selesai dikerjakan!</p>
+                </div>
+
+                <!-- Final Score -->
+                <div class="py-4">
+                    <div class="text-5xl sm:text-6xl font-black text-amber-600 tracking-tight" id="scoreDisplay">100</div>
+                    <p class="text-xs font-bold text-slate-400 mt-1 uppercase tracking-widest">Nilai Akhir</p>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-3 gap-3 max-w-md mx-auto text-center border-t border-slate-100 pt-4">
+                    <div class="p-3 bg-slate-50 rounded-2xl">
+                        <span class="block text-xl font-bold text-emerald-600" id="correctCount">0</span>
+                        <span class="text-[11px] font-semibold text-slate-500">Benar</span>
+                    </div>
+                    <div class="p-3 bg-slate-50 rounded-2xl">
+                        <span class="block text-xl font-bold text-rose-500" id="wrongCount">0</span>
+                        <span class="text-[11px] font-semibold text-slate-500">Salah</span>
+                    </div>
+                    <div class="p-3 bg-slate-50 rounded-2xl">
+                        <span class="block text-xl font-bold text-slate-700" id="answeredCount">0</span>
+                        <span class="text-[11px] font-semibold text-slate-500">Dijawab</span>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4">
+                    <button onclick="retryCurrentQuiz()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-slate-900 text-white font-bold text-xs hover:bg-slate-800 transition flex items-center justify-center gap-2">
+                        <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Coba Paket Ini Lagi
+                    </button>
+                    <button onclick="goToHome()" class="w-full sm:w-auto px-6 py-3 rounded-xl border border-slate-300 font-bold text-xs text-slate-700 hover:bg-slate-50 transition flex items-center justify-center gap-2">
+                        <i data-lucide="grid" class="w-4 h-4"></i> Pilih Paket Lain
+                    </button>
+                </div>
+            </div>
+
+            <!-- Detailed Review -->
+            <div class="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm space-y-4">
+                <h3 class="font-bold text-slate-900 flex items-center gap-2">
+                    <i data-lucide="check-circle-2" class="w-5 h-5 text-amber-600"></i> Review Jawaban & Pembahasan Lengkap
+                </h3>
+                <div id="reviewList" class="space-y-4 divide-y divide-slate-100">
+                    <!-- Dynamic Review Items -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200/80 py-4 text-center text-xs text-slate-500">
+        <p>© Latihan PTS Seni Rupa Kelas 1 SD • Kurikulum Merdeka (Bab 1 - 2)</p>
+    </footer>
+
+    <script>
+        const rawQuestionBank = [
+            // PACKAGE A (20 Questions - Dasar)
+            [
+                {
+                    type: "MCQ",
+                    question: "Karya seni rupa yang memiliki panjang dan lebar serta hanya dapat dilihat dari satu arah depan dinamakan karya ...",
+                    options: ["2 Dimensi", "3 Dimensi", "4 Dimensi"],
+                    answer: "2 Dimensi",
+                    explanation: "Karya 2 dimensi berupa bidang datar yang memiliki panjang dan lebar saja, seperti lukisan dan gambar."
+                },
+                {
+                    type: "MCQ",
+                    question: "Contoh karya seni rupa 2 dimensi yang sering kita temui di dinding rumah adalah ...",
+                    options: ["Lukisan", "Patung", "Vas bunga"],
+                    answer: "Lukisan",
+                    explanation: "Lukisan dibuat di atas bidang datar sehingga termasuk karya seni rupa 2 dimensi."
+                },
+                {
+                    type: "MCQ",
+                    question: "Karya seni rupa yang memiliki panjang, lebar, dan tinggi serta dapat dilihat dari berbagai arah dinamakan karya ...",
+                    options: ["3 Dimensi", "2 Dimensi", "1 Dimensi"],
+                    answer: "3 Dimensi",
+                    explanation: "Karya 3 dimensi memiliki ruang dan volume sehingga dapat dilihat dari depan, samping, maupun belakang."
+                },
+                {
+                    type: "MCQ",
+                    question: "Patung atau kerajinan gerabah tanah liat merupakan contoh dari karya seni rupa ...",
+                    options: ["3 Dimensi", "2 Dimensi", "Datar"],
+                    answer: "3 Dimensi",
+                    explanation: "Patung dapat dipegang dan dilihat dari seluruh sisi, sehingga tergolong karya 3 dimensi."
+                },
+                {
+                    type: "MCQ",
+                    question: "Garis lurus yang membujur dari kiri ke kanan secara mendatar disebut garis ...",
+                    options: ["Horizontal", "Vertikal", "Diagonal"],
+                    answer: "Horizontal",
+                    explanation: "Garis horizontal disebut juga garis datar (membujur lurus dari kiri ke kanan)."
+                },
+                {
+                    type: "MCQ",
+                    question: "Garis tegak yang mengarah dari atas ke bawah dinamakan garis ...",
+                    options: ["Vertikal", "Horizontal", "Gelombang"],
+                    answer: "Vertikal",
+                    explanation: "Garis vertikal adalah garis tegak lurus mengarah dari atas ke bawah atau sebaliknya."
+                },
+                {
+                    type: "MCQ",
+                    question: "Garis miring yang condong ke kanan atau ke kiri dinamakan garis ...",
+                    options: ["Diagonal", "Vertikal", "Horizontal"],
+                    answer: "Diagonal",
+                    explanation: "Garis diagonal adalah garis miring atau tidak tegak lurus."
+                },
+                {
+                    type: "MCQ",
+                    question: "Bentuk garis yang melengkung meliuk-liuk seperti ombak di laut dinamakan garis ...",
+                    options: ["Gelombang", "Zig-zag", "Lurus"],
+                    answer: "Gelombang",
+                    explanation: "Garis gelombang berbentuk melengkung bersambung menyerupai gerak ombak."
+                },
+                {
+                    type: "MCQ",
+                    question: "Garis patah-patah dengan sudut bersilang tajam seperti gigi gergaji dinamakan garis ...",
+                    options: ["Zig-zag", "Lengkung", "Putus-putus"],
+                    answer: "Zig-zag",
+                    explanation: "Garis zig-zag adalah garis patah-patah yang memiliki sudut-sudut tajam."
+                },
+                {
+                    type: "MCQ",
+                    question: "Garis yang berbentuk lengkungan melengkung seperti busur panah disebut garis ...",
+                    options: ["Lengkung", "Lurus", "Miring"],
+                    answer: "Lengkung",
+                    explanation: "Garis lengkung melintasi jalur membusur tidak lurus."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Menghargai dan memuji karya seni buatan teman merupakan kegiatan mengapresiasi karya ...",
+                    answer: "Seni",
+                    explanation: "Mengapresiasi karya seni berarti melihat, menilai, dan menghargai keindahan karya."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Menggambar bebas merupakan salah satu kegiatan dalam menciptakan karya seni ...",
+                    answer: "Rupa",
+                    explanation: "Menggambar adalah bentuk praktik langsung dalam menciptakan karya seni rupa."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Garis yang terdiri dari potongan garis pendek-pendek terpisah dinamakan garis ...",
+                    answer: "Putus-putus",
+                    explanation: "Garis putus-putus dibuat pendek-pendek dan tidak bersambung secara utuh."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Garis datar yang sejajar dengan permukaan air laut disebut garis ...",
+                    answer: "Horizontal",
+                    explanation: "Garis horizontal merujuk pada arah datar membujur."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Pensil, krayon, dan kertas menggambar merupakan media untuk membuat karya ...",
+                    answer: "Gambar",
+                    explanation: "Alat dan bahan menggambar digunakan untuk menciptakan karya gambar 2D."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Gambar poster dan foto termasuk dalam karya seni rupa 2 dimensi.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Benar. Poster dan foto adalah bidang datar yang memiliki panjang dan lebar."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Patung terbuat dari bahan padat yang dapat dilihat dari satu arah saja.",
+                    options: ["Benar", "Salah"],
+                    answer: "Salah",
+                    explanation: "Salah. Patung adalah karya 3D yang memiliki ruang dan dapat dilihat dari berbagai arah."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Garis vertikal adalah garis tegak lurus dari atas ke bawah.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Benar. Garis vertikal disebut juga sebagai garis tegak."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Garis zig-zag berbentuk melengkung halus seperti bulu merak.",
+                    options: ["Benar", "Salah"],
+                    answer: "Salah",
+                    explanation: "Salah. Garis zig-zag berbentuk tajam patah-patah seperti gergaji."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Menghina atau mengejek gambar buatan teman adalah sikap apresiasi yang baik.",
+                    options: ["Benar", "Salah"],
+                    answer: "Salah",
+                    explanation: "Salah. Apresiasi harus disampaikan secara sopan, santun, dan menghargai."
+                }
+            ],
+
+            // PACKAGE B (20 Questions - Pengayaan)
+            [
+                {
+                    type: "MCQ",
+                    question: "Sikap yang baik saat melihat hasil gambar buatan teman di dalam kelas adalah ...",
+                    options: ["Memuji dan menghargainya", "Mengejek dan merobeknya", "Mencoret-coretnya"],
+                    answer: "Memuji dan menghargainya",
+                    explanation: "Mengapresiasi dilakukan dengan memuji, menghargai, dan memberi tanggapan santun."
+                },
+                {
+                    type: "MCQ",
+                    question: "Tujuan utama kita mengapresiasi karya seni rupa adalah untuk ...",
+                    options: ["Menghargai keindahan karya", "Mencari kejelekan teman", "Mendapatkan hadiah"],
+                    answer: "Menghargai keindahan karya",
+                    explanation: "Apresiasi melatih rasa peka terhadap keindahan dan usaha pencipta karya."
+                },
+                {
+                    type: "MCQ",
+                    question: "Saat kita ingin menggambar batangan pohon yang berdiri tegak tinggi, garis yang tepat digambar adalah ...",
+                    options: ["Garis vertikal", "Garis gelombang", "Garis lengkung"],
+                    answer: "Garis vertikal",
+                    explanation: "Pohon yang tegak lurus digambarkan menggunakan garis vertikal."
+                },
+                {
+                    type: "MCQ",
+                    question: "Untuk menggambar gelombang air laut yang bergerak, garis yang cocok digunakan adalah ...",
+                    options: ["Garis gelombang", "Garis lurus datar", "Garis zig-zag"],
+                    answer: "Garis gelombang",
+                    explanation: "Garis gelombang memberikan kesan gerak lentur menyerupai air laut."
+                },
+                {
+                    type: "MCQ",
+                    question: "Petir di langit yang menyambar tajam dapat digambarkan menggunakan garis ...",
+                    options: ["Zig-zag", "Lengkung", "Datar"],
+                    answer: "Zig-zag",
+                    explanation: "Kilatan petir memiliki bentuk patah-patah tajam sehingga cocok pakai garis zig-zag."
+                },
+                {
+                    type: "MCQ",
+                    question: "Tiang bendera yang berdiri kokoh di halaman sekolah merupakan contoh bentuk garis ...",
+                    options: ["Vertikal", "Horizontal", "Diagonal"],
+                    answer: "Vertikal",
+                    explanation: "Tiang bendera berdiri tegak mengarah ke atas (vertikal)."
+                },
+                {
+                    type: "MCQ",
+                    question: "Permukaan air danau yang tenang tanpa angin dapat digambarkan dengan garis ...",
+                    options: ["Horizontal", "Zig-zag", "Vertikal"],
+                    answer: "Horizontal",
+                    explanation: "Air tenang membujur datar sejajar garis horizontal."
+                },
+                {
+                    type: "MCQ",
+                    question: "Menara atau gedung bertingkat yang menjulang tinggi menampilkan susunan garis ...",
+                    options: ["Vertikal", "Diagonal", "Lengkung"],
+                    answer: "Vertikal",
+                    explanation: "Gedung bertingkat tinggi didominasi oleh garis vertikal tegak."
+                },
+                {
+                    type: "MCQ",
+                    question: "Saat kita mengungkapkan perasaan senang melalui warna dan bentuk gambar, kita sedang ...",
+                    options: ["Mencipta karya seni", "Membaca buku", "Berolahraga"],
+                    answer: "Mencipta karya seni",
+                    explanation: "Menciptakan karya seni adalah proses mengekspresikan ide, ideologi, atau perasaan."
+                },
+                {
+                    type: "MCQ",
+                    question: "Seniman yang tekun membuat kerajinan gerabah atau patung dinamakan ...",
+                    options: ["Pematung / Perajin", "Penyanyi", "Penari"],
+                    answer: "Pematung / Perajin",
+                    explanation: "Pematung adalah pembuat karya seni patung 3 dimensi."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Garis miring yang rebah condong dinamakan garis ...",
+                    answer: "Diagonal",
+                    explanation: "Garis miring dinamakan garis diagonal."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Atap rumah yang miring dapat digambarkan menggunakan garis ...",
+                    answer: "Diagonal",
+                    explanation: "Kemiringan atap rumah mengikuti bentuk garis diagonal."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Benda hiasan dinding seperti lukisan pemandangan termasuk karya ... dimensi.",
+                    answer: "2",
+                    explanation: "Lukisan pemandangan adalah karya seni datar 2 dimensi."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Kerajinan gentong dari tanah liat yang dapat diisi air tergolong karya ... dimensi.",
+                    answer: "3",
+                    explanation: "Gentong tanah liat memiliki ruang dan volume (3D)."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Menggambarkan pelangi di langit dapat menggunakan garis ...",
+                    answer: "Lengkung",
+                    explanation: "Pelangi memiliki lengkungan garis berwarna-warni."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Garis diagonal adalah nama lain dari garis lurus tegak lurus.",
+                    options: ["Benar", "Salah"],
+                    answer: "Salah",
+                    explanation: "Salah. Garis diagonal adalah garis miring, sedangkan tegak lurus adalah vertikal."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Kita dapat menciptakan karya seni rupa menggunakan pensil warna dan kertas.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Benar. Kertas dan pensil warna adalah alat bahan menggambar karya seni 2D."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Mengapresiasi karya teman harus dilakukan dengan jujur dan santun.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Benar. Apresiasi disampaikan dengan bahasa yang santun dan membangun."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Garis gelombang berbentuk patah-patah bersudut tajam.",
+                    options: ["Benar", "Salah"],
+                    answer: "Salah",
+                    explanation: "Salah. Garis gelombang melengkung halus, sedangkan sudut tajam adalah zig-zag."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Lapangan sepak bola yang luas melintang digambarkan memakai garis horizontal.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Benar. Garis batas horizontal menggambarkan bidang datar melintang."
+                }
+            ],
+
+            // PACKAGE C (20 Questions - Tantangan)
+            [
+                {
+                    type: "MCQ",
+                    question: "Ciri utama yang membedakan karya seni rupa 2 dimensi dan 3 dimensi adalah ...",
+                    options: ["Keberadaan ruang/volume", "Harganya yang mahal", "Warna krayonnya"],
+                    answer: "Keberadaan ruang/volume",
+                    explanation: "Karya 3 dimensi memiliki ruang dan volume, sedangkan 2 dimensi berupa bidang datar."
+                },
+                {
+                    type: "MCQ",
+                    question: "Saat kamu menceritakan kepada guru mengapa kamu menyukai gambar bunga buatan temanmu, kamu sedang ...",
+                    options: ["Mengapresiasi karya", "Merusak karya", "Menyembunyikan karya"],
+                    answer: "Mengapresiasi karya",
+                    explanation: "Menceritakan keindahan dan alasan menyukai karya termasuk bentuk mengapresiasi."
+                },
+                {
+                    type: "MCQ",
+                    question: "Garis yang memberi kesan tegas dan kuat seperti tiang bangunan berdiri dinamakan garis ...",
+                    options: ["Vertikal", "Gelombang", "Putus-putus"],
+                    answer: "Vertikal",
+                    explanation: "Garis vertikal tegak lurus melambangkan kesan kokoh, tegas, dan stabil."
+                },
+                {
+                    type: "MCQ",
+                    question: "Garis yang memberi kesan tenang dan santai seperti permukaan air datar adalah garis ...",
+                    options: ["Horizontal", "Zig-zag", "Diagonal"],
+                    answer: "Horizontal",
+                    explanation: "Garis horizontal datar menimbulkan kesan ketenangan dan kedamaian."
+                },
+                {
+                    type: "MCQ",
+                    question: "Untuk menggambar rumput yang tumbuh runcing bergerigi, jenis garis yang paling cocok adalah ...",
+                    options: ["Zig-zag", "Horizontal", "Lengkung"],
+                    answer: "Zig-zag",
+                    explanation: "Ujung daun rumput yang runcing tajam digambarkan memakai garis zig-zag."
+                },
+                {
+                    type: "MCQ",
+                    question: "Roda sepeda yang berputar melingkar dapat digambarkan menggunakan susunan garis ...",
+                    options: ["Lengkung", "Lurus mendatar", "Zig-zag"],
+                    answer: "Lengkung",
+                    explanation: "Bentuk dasar roda melingkar dibuat menggunakan garis lengkung."
+                },
+                {
+                    type: "MCQ",
+                    question: "Apabila kamu menggambar pengalaman liburan di pantai, kamu sedang berada pada tahap ...",
+                    options: ["Mencipta karya seni", "Mengejek karya", "Membeli karya"],
+                    answer: "Mencipta karya seni",
+                    explanation: "Menggambar pengalaman pribadi merupakan bagian dari menciptakan karya seni rupa."
+                },
+                {
+                    type: "MCQ",
+                    question: "Contoh benda 3 dimensi di sekitar kita yang dapat digunakan menyimpan peralatan sekolah adalah ...",
+                    options: ["Kotak pensil", "Gambar pensil", "Foto buku"],
+                    answer: "Kotak pensil",
+                    explanation: "Kotak pensil wadah berbentuk 3 dimensi karena memiliki ruangSimpan."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Garis yang mengarah miring condong ke kanan dinamakan garis ...",
+                    answer: "Diagonal",
+                    explanation: "Garis miring condong disebut garis diagonal."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Karya patung tanah liat dapat dilihat dari arah depan, samping, dan ...",
+                    answer: "Belakang",
+                    explanation: "Karya 3 dimensi dapat dinikmati dari segala arah pandang."
+                },
+                {
+                    type: "MCQ",
+                    question: "Sikap kita ketika melihat pameran lukisan anak-anak di sekolah adalah ...",
+                    options: ["Menjaga kebersihan dan menghargai gambar", "Menyentuh lukisan basah", "Membuang sampah di depan karya"],
+                    answer: "Menjaga kebersihan dan menghargai gambar",
+                    explanation: "Menjaga kebersihan dan ketertiban adalah aturan mengapresiasi pameran."
+                },
+                {
+                    type: "MCQ",
+                    question: "Garis lintasan jalan raya yang putus-putus di tengah jalan dinamakan garis ...",
+                    options: ["Putus-putus", "Gelombang", "Zig-zag"],
+                    answer: "Putus-putus",
+                    explanation: "Marka jalan yang tidak tersambung utuh merupakan bentuk garis putus-putus."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Karya seni rupa di sekitar kita hanya berupa lukisan di museum saja.",
+                    options: ["Benar", "Salah"],
+                    answer: "Salah",
+                    explanation: "Salah. Karya seni rupa ada di sekitar kita seperti hiasan, batik, patung, dan gerabah."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Garis lurus tegak memberi kesan dinamis bergerak seperti gelombang.",
+                    options: ["Benar", "Salah"],
+                    answer: "Salah",
+                    explanation: "Salah. Garis tegak memberi kesan kokoh dan diam, sedangkan bergerak adalah gelombang."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Bentuk garis pada huruf 'Z' adalah contoh garis ...",
+                    answer: "Zig-zag",
+                    explanation: "Huruf Z memiliki lintasan sudut tajam patah-patah (zig-zag)."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Bentuk garis pada huruf 'I' kapital adalah contoh garis ...",
+                    answer: "Vertikal",
+                    explanation: "Huruf I kapital dibentuk dari garis tegak vertikal."
+                },
+                {
+                    type: "MCQ",
+                    question: "Gambar dekoratif pada piring atau gelas termasuk penerapan karya seni rupa ...",
+                    options: ["2 Dimensi pada benda 3D", "4 Dimensi", "Suara"],
+                    answer: "2 Dimensi pada benda 3D",
+                    explanation: "Gambar dekoratifnya berupa 2D yang dituangkan pada permukaan benda 3D."
+                },
+                {
+                    type: "MCQ",
+                    question: "Cara paling sederhana mengapresiasi gambar buatan diri sendiri adalah ...",
+                    options: ["Merasa bangga dan terus berlatih", "Malu dan merobek kertas", "Sombong kepada teman"],
+                    answer: "Merasa bangga dan terus berlatih",
+                    explanation: "Bangga atas hasil karya sendiri dan semangat berlatih merupakan sikap positif."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Garis terbuat dari goresan titik-titik yang disambungkan.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Benar. Garis adalah kumpulan titik yang terhubung secara berurutan."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Kita boleh mencoret-coret patung di taman kota sesuka hati.",
+                    options: ["Benar", "Salah"],
+                    answer: "Salah",
+                    explanation: "Salah. Mencoret patung umum merusak karya seni rupa dan lingkungan."
+                }
+            ]
+        ];
+
+        let questionBank = [];
+        let currentPackageIdx = 0;
+        let currentQuestionIdx = 0;
+        let userAnswers = [];
+        let isAudioEnabled = true;
+
+        // Shuffle options dynamically while keeping correct answer matched
+        function shuffleQuestionOptions(pkg) {
+            return pkg.map(q => {
+                if (q.type === 'MCQ') {
+                    let shuffledOptions = [...q.options];
+                    for (let i = shuffledOptions.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [shuffledOptions[i], shuffledOptions[j]] = [shuffledOptions[j], shuffledOptions[i]];
+                    }
+                    return { ...q, options: shuffledOptions };
+                }
+                return { ...q };
+            });
+        }
+
+        function initQuestionBank() {
+            questionBank = rawQuestionBank.map(pkg => shuffleQuestionOptions(pkg));
+        }
+
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playSound(type) {
+            if (!isAudioEnabled) return;
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                if (type === 'click') {
+                    osc.frequency.setValueAtTime(450, audioCtx.currentTime);
+                    gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.05);
+                } else if (type === 'correct') {
+                    osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
+                    osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.08);
+                    gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.2);
+                } else if (type === 'wrong') {
+                    osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+                    osc.frequency.setValueAtTime(196, audioCtx.currentTime + 0.1);
+                    gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.25);
+                }
+            } catch (e) {
+                // Audio fallback
+            }
+        }
+
+        function toggleAudio() {
+            isAudioEnabled = !isAudioEnabled;
+            const icon = document.getElementById('audioIcon');
+            const btn = document.getElementById('audioBtn');
+            if (isAudioEnabled) {
+                icon.setAttribute('data-lucide', 'volume-2');
+                btn.classList.replace('text-slate-400', 'text-slate-600');
+            } else {
+                icon.setAttribute('data-lucide', 'volume-x');
+                btn.classList.replace('text-slate-600', 'text-slate-400');
+            }
+            lucide.createIcons();
+        }
+
+        function goToHome() {
+            playSound('click');
+            document.getElementById('homeScreen').classList.remove('hidden');
+            document.getElementById('quizScreen').classList.add('hidden');
+            document.getElementById('resultScreen').classList.add('hidden');
+        }
+
+        function startQuiz(packageIdx) {
+            playSound('click');
+            currentPackageIdx = packageIdx;
+            currentQuestionIdx = 0;
+            userAnswers = new Array(20).fill(null);
+
+            // Re-shuffle options on each attempt
+            questionBank[currentPackageIdx] = shuffleQuestionOptions(rawQuestionBank[currentPackageIdx]);
+
+            document.getElementById('homeScreen').classList.add('hidden');
+            document.getElementById('resultScreen').classList.add('hidden');
+            document.getElementById('quizScreen').classList.remove('hidden');
+
+            const pkgNames = ["Paket A: Dasar", "Paket B: Pengayaan", "Paket C: Tantangan"];
+            document.getElementById('pkgBadge').innerText = pkgNames[packageIdx];
+
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const questions = questionBank[currentPackageIdx];
+            const q = questions[currentQuestionIdx];
+
+            // Update Progress
+            document.getElementById('currentQNum').innerText = currentQuestionIdx + 1;
+            document.getElementById('totalQNum').innerText = questions.length;
+            
+            const progress = ((currentQuestionIdx + 1) / questions.length) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+
+            // Question Type Badge
+            const typeBadge = document.getElementById('qTypeBadge');
+            if (q.type === 'MCQ') {
+                typeBadge.innerText = 'Pilihan Ganda';
+                typeBadge.className = 'inline-block px-3 py-1 rounded-lg text-xs font-extrabold uppercase tracking-wider bg-amber-100 text-amber-800';
+            } else if (q.type === 'SHORT') {
+                typeBadge.innerText = 'Isian Singkat';
+                typeBadge.className = 'inline-block px-3 py-1 rounded-lg text-xs font-extrabold uppercase tracking-wider bg-orange-100 text-orange-800';
+            } else if (q.type === 'TF') {
+                typeBadge.innerText = 'Benar / Salah';
+                typeBadge.className = 'inline-block px-3 py-1 rounded-lg text-xs font-extrabold uppercase tracking-wider bg-rose-100 text-rose-800';
+            }
+
+            // Question Text
+            document.getElementById('questionText').innerText = q.question;
+
+            // Options Area
+            const container = document.getElementById('optionsContainer');
+            container.innerHTML = '';
+
+            const currentAnswer = userAnswers[currentQuestionIdx];
+
+            if (q.type === 'MCQ' || q.type === 'TF') {
+                q.options.forEach((opt) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'w-full text-left p-4 rounded-2xl border text-sm font-semibold transition-all flex items-center justify-between ';
+                    
+                    if (currentAnswer !== null) {
+                        if (opt === q.answer) {
+                            btn.className += 'border-emerald-500 bg-emerald-50 text-emerald-900 shadow-sm font-bold';
+                        } else if (currentAnswer === opt) {
+                            btn.className += 'border-rose-500 bg-rose-50 text-rose-900 font-bold';
+                        } else {
+                            btn.className += 'border-slate-200 opacity-60 text-slate-500';
+                        }
+                    } else {
+                        btn.className += 'border-slate-200 hover:border-amber-300 hover:bg-amber-50/50 text-slate-700';
+                    }
+
+                    btn.onclick = () => selectAnswer(opt);
+                    btn.disabled = currentAnswer !== null;
+
+                    btn.innerHTML = `
+                        <span>${opt}</span>
+                        <div class="w-5 h-5 rounded-full border border-slate-300 flex items-center justify-center ${currentAnswer !== null && opt === q.answer ? 'border-emerald-500 bg-emerald-500 text-white' : currentAnswer === opt ? 'border-rose-500 bg-rose-500 text-white' : ''}">
+                            ${currentAnswer !== null && opt === q.answer ? '<i data-lucide="check" class="w-3 h-3"></i>' : currentAnswer === opt ? '<i data-lucide="x" class="w-3 h-3"></i>' : ''}
+                        </div>
+                    `;
+                    container.appendChild(btn);
+                });
+            } else if (q.type === 'SHORT') {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'space-y-3';
+                wrapper.innerHTML = `
+                    <input type="text" id="shortAnswerInput" placeholder="Ketik jawaban singkatmu di sini..." 
+                        value="${currentAnswer || ''}"
+                        class="w-full p-4 rounded-2xl border border-slate-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 text-sm font-semibold outline-none transition"
+                        oninput="saveShortAnswer(this.value)">
+                    <p class="text-[11px] text-slate-400 italic">* Tekan "Selanjutnya" untuk menyimpan jawaban.</p>
+                `;
+                container.appendChild(wrapper);
+            }
+
+            // Explanation Display
+            const expBox = document.getElementById('explanationBox');
+            if (currentAnswer !== null && currentAnswer !== '') {
+                expBox.classList.remove('hidden');
+                document.getElementById('explanationText').innerText = q.explanation;
+            } else {
+                expBox.classList.add('hidden');
+            }
+
+            // Controls state
+            document.getElementById('prevBtn').disabled = currentQuestionIdx === 0;
+            const nextBtn = document.getElementById('nextBtn');
+            if (currentQuestionIdx === questions.length - 1) {
+                nextBtn.innerHTML = `Selesai & Lihat Hasil <i data-lucide="check-circle" class="w-4 h-4"></i>`;
+                nextBtn.className = 'px-6 py-2.5 rounded-xl bg-amber-700 hover:bg-amber-800 text-white text-xs font-bold shadow-md transition flex items-center gap-2';
+            } else {
+                nextBtn.innerHTML = `Selanjutnya <i data-lucide="chevron-right" class="w-4 h-4"></i>`;
+                nextBtn.className = 'px-6 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold shadow-md shadow-amber-200 transition flex items-center gap-2';
+            }
+
+            lucide.createIcons();
+        }
+
+        function selectAnswer(ans) {
+            userAnswers[currentQuestionIdx] = ans;
+            const q = questionBank[currentPackageIdx][currentQuestionIdx];
+
+            if (ans.toString().trim().toLowerCase() === q.answer.toString().trim().toLowerCase()) {
+                playSound('correct');
+            } else {
+                playSound('wrong');
+            }
+
+            renderQuestion();
+        }
+
+        function saveShortAnswer(val) {
+            userAnswers[currentQuestionIdx] = val;
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIdx > 0) {
+                playSound('click');
+                currentQuestionIdx--;
+                renderQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            const questions = questionBank[currentPackageIdx];
+            playSound('click');
+            
+            if (currentQuestionIdx < questions.length - 1) {
+                currentQuestionIdx++;
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            const questions = questionBank[currentPackageIdx];
+            let correct = 0;
+            let answered = 0;
+
+            questions.forEach((q, idx) => {
+                const userAns = userAnswers[idx];
+                if (userAns !== null && userAns !== undefined && userAns !== '') {
+                    answered++;
+                    if (userAns.toString().trim().toLowerCase() === q.answer.toString().trim().toLowerCase()) {
+                        correct++;
+                    }
+                }
+            });
+
+            const score = Math.round((correct / questions.length) * 100);
+
+            document.getElementById('quizScreen').classList.add('hidden');
+            document.getElementById('resultScreen').classList.remove('hidden');
+
+            document.getElementById('scoreDisplay').innerText = score;
+            document.getElementById('correctCount').innerText = correct;
+            document.getElementById('wrongCount').innerText = questions.length - correct;
+            document.getElementById('answeredCount').innerText = answered;
+
+            const pkgNames = ["Paket A: Dasar", "Paket B: Pengayaan", "Paket C: Tantangan"];
+            document.getElementById('resultSubtitle').innerText = `${pkgNames[currentPackageIdx]} selesai dikerjakan!`;
+
+            if (score >= 80 && typeof confetti === 'function') {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            }
+
+            const reviewList = document.getElementById('reviewList');
+            reviewList.innerHTML = '';
+
+            questions.forEach((q, idx) => {
+                const uAns = userAnswers[idx];
+                const isCorrect = uAns && uAns.toString().trim().toLowerCase() === q.answer.toString().trim().toLowerCase();
+
+                const item = document.createElement('div');
+                item.className = 'pt-4 space-y-2';
+                item.innerHTML = `
+                    <div class="flex items-start justify-between gap-2">
+                        <span class="text-xs font-bold text-slate-500">Soal #${idx + 1} (${q.type === 'MCQ' ? 'PG' : q.type === 'SHORT' ? 'Isian' : 'B/S'})</span>
+                        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold ${isCorrect ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}">
+                            ${isCorrect ? 'Benar (+5)' : 'Salah / Kosong'}
+                        </span>
+                    </div>
+                    <p class="font-bold text-sm text-slate-900">${q.question}</p>
+                    <div class="grid sm:grid-cols-2 gap-2 text-xs pt-1">
+                        <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                            <span class="text-slate-400 block font-medium text-[10px] uppercase">Jawabanmu:</span>
+                            <span class="font-bold ${isCorrect ? 'text-emerald-700' : 'text-rose-600'}">${uAns || '[Tidak Dijawab]'}</span>
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-amber-50 border border-amber-200">
+                            <span class="text-amber-600 block font-medium text-[10px] uppercase">Kunci Jawaban:</span>
+                            <span class="font-bold text-amber-900">${q.answer}</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-600 bg-sky-50 p-2.5 rounded-xl border border-sky-100"><strong class="text-sky-900">Pembahasan:</strong> ${q.explanation}</p>
+                `;
+                reviewList.appendChild(item);
+            });
+
+            lucide.createIcons();
+        }
+
+        function retryCurrentQuiz() {
+            startQuiz(currentPackageIdx);
+        }
+
+        window.onload = function() {
+            initQuestionBank();
+            lucide.createIcons();
+        };
+    </script>
+</body>
+</html>
