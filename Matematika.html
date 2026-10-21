@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan PTS Matematika Kelas 1 SD</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fafc;
+        }
+    </style>
+</head>
+<body class="min-h-screen text-slate-800 flex flex-col justify-between selection:bg-blue-100 selection:text-blue-800">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-blue-100 shadow-sm">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="goToHome()">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-blue-200">
+                    <i data-lucide="calculator" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h1 class="font-extrabold text-lg text-slate-900 leading-tight">PTS Matematika Kelas 1 SD</h1>
+                    <p class="text-xs text-blue-600 font-semibold">Kurikulum Merdeka • Bab 1 & Bab 2</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-2">
+                <button onclick="toggleAudio()" id="audioBtn" class="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 transition" title="Suara Efek">
+                    <i data-lucide="volume-2" id="audioIcon" class="w-5 h-5"></i>
+                </button>
+                <button onclick="goToHome()" class="px-3.5 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50 transition flex items-center gap-1.5">
+                    <i data-lucide="home" class="w-4 h-4"></i> Utama
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-6 flex-1 w-full">
+        <!-- SCREEN 1: Home Dashboard -->
+        <section id="homeScreen" class="space-y-6">
+            <!-- Hero Banner -->
+            <div class="bg-gradient-to-r from-blue-700 via-indigo-600 to-cyan-600 rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-white/10 rounded-full blur-2xl"></div>
+                <div class="relative z-10 max-w-xl">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-bold tracking-wide uppercase text-blue-100 mb-3">
+                        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Jago Berhitung
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-black tracking-tight leading-snug">Latihan PTS Matematika Kelas 1 SD</h2>
+                    <p class="text-blue-100 mt-2 text-sm sm:text-base leading-relaxed font-medium">
+                        Tersedia 3 Paket Latihan Soal Interaktif (Total 60 Soal) Bab 1 (Menguraikan & Menyusun Bilangan) dan Bab 2 (Penjumlahan & Pengurangan sampai 10).
+                    </p>
+                </div>
+            </div>
+
+            <!-- Quiz Package Cards -->
+            <div class="space-y-4">
+                <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+                    <i data-lucide="layers" class="w-5 h-5 text-blue-600"></i> Pilih Paket Latihan (20 Soal per Paket)
+                </h3>
+
+                <div class="grid sm:grid-cols-3 gap-4" id="packageList">
+                    <!-- Package 1 Card -->
+                    <div onclick="startQuiz(0)" class="group bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md hover:border-blue-500 transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 font-extrabold flex items-center justify-center text-lg group-hover:scale-110 transition-transform">A</span>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">20 Soal</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 group-hover:text-blue-600 transition">Paket A: Dasar</h4>
+                                <p class="text-xs text-slate-500 mt-1">Membilang, menguraikan angka 1-10, visual es krim, dan penjumlahan dasar.</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-blue-600">
+                            <span>Mulai Mengerjakan</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Package 2 Card -->
+                    <div onclick="startQuiz(1)" class="group bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md hover:border-indigo-500 transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-700 font-extrabold flex items-center justify-center text-lg group-hover:scale-110 transition-transform">B</span>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">20 Soal</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 group-hover:text-indigo-600 transition">Paket B: Pengayaan</h4>
+                                <p class="text-xs text-slate-500 mt-1">Pengurangan, pasangan bilangan visual, dan posisi loncatan anak.</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-indigo-600">
+                            <span>Mulai Mengerjakan</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+
+                    <!-- Package 3 Card -->
+                    <div onclick="startQuiz(2)" class="group bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md hover:border-cyan-500 transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="w-10 h-10 rounded-xl bg-cyan-100 text-cyan-700 font-extrabold flex items-center justify-center text-lg group-hover:scale-110 transition-transform">C</span>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">20 Soal</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900 group-hover:text-cyan-600 transition">Paket C: Tantangan</h4>
+                                <p class="text-xs text-slate-500 mt-1">Soal cerita literasi: Pilihan Ganda, Isian Singkat, & Benar/Salah.</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-cyan-600">
+                            <span>Mulai Mengerjakan</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rangkuman Pokok Materi -->
+            <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm space-y-4">
+                <h3 class="font-bold text-slate-900 flex items-center gap-2">
+                    <i data-lucide="book-marked" class="w-5 h-5 text-blue-600"></i> Ringkasan Bab Matematika Kelas 1 (Semester 1)
+                </h3>
+                <div class="grid sm:grid-cols-2 gap-4 text-xs">
+                    <div class="p-4 rounded-2xl bg-blue-50 border border-blue-100 text-blue-900">
+                        <p class="font-bold text-sm text-blue-900 mb-1.5 flex items-center gap-1.5">
+                            <i data-lucide="binary" class="w-4 h-4"></i> Bab 1: Menguraikan & Menyusun Bilangan 1-10
+                        </p>
+                        <ul class="list-disc list-inside space-y-1 text-blue-800">
+                            <li><strong>Membilang & Mengurutkan:</strong> Membilang benda sampai 10 dan membandingkan (lebih banyak/sedikit).</li>
+                            <li><strong>Menguraikan:</strong> Memecah satu bilangan menjadi dua bagian (misal: 6 terdiri dari 4 dan 2).</li>
+                            <li><strong>Menyusun:</strong> Menggabungkan dua bagian menjadi satu bilangan utuh (misal: 4 dan 2 jadi 6).</li>
+                        </ul>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-indigo-50 border border-indigo-100 text-indigo-900">
+                        <p class="font-bold text-sm text-indigo-900 mb-1.5 flex items-center gap-1.5">
+                            <i data-lucide="plus-circle" class="w-4 h-4"></i> Bab 2: Penjumlahan & Pengurangan sampai 10
+                        </p>
+                        <ul class="list-disc list-inside space-y-1 text-indigo-800">
+                            <li><strong>Penjumlahan (+):</strong> Penggabungan kelompok benda, langkah meloncat ke depan.</li>
+                            <li><strong>Pengurangan (-):</strong> Sisa benda yang diambil atau dimakan.</li>
+                            <li><strong>Garis Bilangan:</strong> Menghitung loncatan maju dari angka awal tertentu.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN 2: Quiz Question View -->
+        <section id="quizScreen" class="hidden space-y-5">
+            <!-- Progress Bar Card -->
+            <div class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <span id="pkgBadge" class="px-3 py-1 rounded-xl bg-blue-100 text-blue-800 font-bold text-xs">Paket A</span>
+                    <span class="text-xs font-semibold text-slate-500">Soal <strong id="currentQNum" class="text-slate-800">1</strong> dari <strong id="totalQNum">20</strong></span>
+                </div>
+                <div class="w-full sm:w-64 bg-slate-100 h-3 rounded-full overflow-hidden">
+                    <div id="progressBar" class="bg-gradient-to-r from-blue-600 to-indigo-600 h-full w-0 transition-all duration-300"></div>
+                </div>
+            </div>
+
+            <!-- Main Question Card -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-md space-y-6">
+                <!-- Question Type Tag & Content -->
+                <div class="space-y-3">
+                    <span id="qTypeBadge" class="inline-block px-3 py-1 rounded-lg text-xs font-extrabold uppercase tracking-wider bg-slate-100 text-slate-600">Pilihan Ganda</span>
+                    <h3 id="questionText" class="text-lg sm:text-xl font-bold text-slate-900 leading-snug">
+                        <!-- Question content -->
+                    </h3>
+                </div>
+
+                <!-- Custom Visual Illustration (Dynamic) -->
+                <div id="visualBox" class="hidden p-4 rounded-2xl bg-amber-50/60 border border-amber-200/80 flex flex-col items-center justify-center gap-3">
+                    <!-- Visual content rendered via JS -->
+                </div>
+
+                <!-- Answer Options -->
+                <div id="optionsContainer" class="space-y-3 pt-2">
+                    <!-- Dynamic Options -->
+                </div>
+
+                <!-- Explanation Box -->
+                <div id="explanationBox" class="hidden p-4 rounded-2xl bg-sky-50 border border-sky-200 text-sky-950 space-y-2 animate-fade-in">
+                    <div class="flex items-center gap-2 font-bold text-sm text-sky-800">
+                        <i data-lucide="sparkles" class="w-4 h-4"></i> Pembahasan Instan:
+                    </div>
+                    <p id="explanationText" class="text-xs sm:text-sm leading-relaxed text-sky-950">
+                        <!-- Explanation -->
+                    </p>
+                </div>
+            </div>
+
+            <!-- Quiz Controls -->
+            <div class="flex items-center justify-between pt-2">
+                <button id="prevBtn" onclick="prevQuestion()" class="px-4 py-2.5 rounded-xl border border-slate-200 text-slate-600 text-xs font-bold hover:bg-slate-100 transition flex items-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed">
+                    <i data-lucide="chevron-left" class="w-4 h-4"></i> Sebelumnya
+                </button>
+                <button id="nextBtn" onclick="nextQuestion()" class="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-200 transition flex items-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed">
+                    Selanjutnya <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- SCREEN 3: Quiz Result View -->
+        <section id="resultScreen" class="hidden space-y-6">
+            <!-- Score Card -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-lg text-center space-y-4 relative overflow-hidden">
+                <div class="inline-flex p-4 rounded-full bg-blue-50 text-blue-600 mb-1">
+                    <i data-lucide="award" class="w-12 h-12"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-black text-slate-900">Hasil Latihan PTS Matematika</h2>
+                    <p id="resultSubtitle" class="text-slate-500 text-sm mt-1">Paket A selesai dikerjakan!</p>
+                </div>
+
+                <!-- Final Score -->
+                <div class="py-4">
+                    <div class="text-5xl sm:text-6xl font-black text-blue-600 tracking-tight" id="scoreDisplay">100</div>
+                    <p class="text-xs font-bold text-slate-400 mt-1 uppercase tracking-widest">Nilai Akhir</p>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-3 gap-3 max-w-md mx-auto text-center border-t border-slate-100 pt-4">
+                    <div class="p-3 bg-slate-50 rounded-2xl">
+                        <span class="block text-xl font-bold text-emerald-600" id="correctCount">0</span>
+                        <span class="text-[11px] font-semibold text-slate-500">Benar</span>
+                    </div>
+                    <div class="p-3 bg-slate-50 rounded-2xl">
+                        <span class="block text-xl font-bold text-rose-500" id="wrongCount">0</span>
+                        <span class="text-[11px] font-semibold text-slate-500">Salah</span>
+                    </div>
+                    <div class="p-3 bg-slate-50 rounded-2xl">
+                        <span class="block text-xl font-bold text-slate-700" id="answeredCount">0</span>
+                        <span class="text-[11px] font-semibold text-slate-500">Dijawab</span>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4">
+                    <button onclick="retryCurrentQuiz()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-slate-900 text-white font-bold text-xs hover:bg-slate-800 transition flex items-center justify-center gap-2">
+                        <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Coba Paket Ini Lagi
+                    </button>
+                    <button onclick="goToHome()" class="w-full sm:w-auto px-6 py-3 rounded-xl border border-slate-300 font-bold text-xs text-slate-700 hover:bg-slate-50 transition flex items-center justify-center gap-2">
+                        <i data-lucide="grid" class="w-4 h-4"></i> Pilih Paket Lain
+                    </button>
+                </div>
+            </div>
+
+            <!-- Detailed Review -->
+            <div class="bg-white rounded-3xl p-6 border border-slate-200/80 shadow-sm space-y-4">
+                <h3 class="font-bold text-slate-900 flex items-center gap-2">
+                    <i data-lucide="check-circle-2" class="w-5 h-5 text-blue-600"></i> Review Jawaban & Pembahasan Lengkap
+                </h3>
+                <div id="reviewList" class="space-y-4 divide-y divide-slate-100">
+                    <!-- Dynamic Review Items -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200/80 py-4 text-center text-xs text-slate-500">
+        <p>© Latihan PTS Matematika Kelas 1 SD • Kurikulum Merdeka (Bab 1 - 2)</p>
+    </footer>
+
+    <script>
+        const rawQuestionBank = [
+            // PACKAGE A (20 Questions - Dasar)
+            [
+                {
+                    type: "MCQ",
+                    question: "Perhatikan kelompok es krim pada gambar! Ada 4 es krim di kiri dan 2 es krim di kanan. Bilangan pengganti titik-titik (total penguraian) yang tepat adalah ...",
+                    visualType: "ice_cream",
+                    options: ["6", "7", "5"],
+                    answer: "6",
+                    explanation: "Kelompok 4 es krim dan 2 es krim jika digabungkan menjadi 4 + 2 = 6[cite: 4]."
+                },
+                {
+                    type: "MCQ",
+                    question: "Mira berdiri di angka 4. Mira akan meloncat ke depan sebanyak lima langkah. Mira akan berada di angka ...",
+                    visualType: "jump_track",
+                    startPos: 4,
+                    steps: 5,
+                    options: ["9", "8", "7"],
+                    answer: "9",
+                    explanation: "Mira mulai dari angka 4, lalu meloncat 5 langkah ke depan (4 + 5 = 9)[cite: 5]."
+                },
+                {
+                    type: "MCQ",
+                    question: "Hasil dari 3 + 2 adalah ...",
+                    options: ["5", "4", "6"],
+                    answer: "5",
+                    explanation: "3 ditambah 2 hasilnya adalah 5."
+                },
+                {
+                    type: "MCQ",
+                    question: "Jika angka 6 diuraikan menjadi dua bagian, yaitu 4 dan ...",
+                    options: ["2", "3", "1"],
+                    answer: "2",
+                    explanation: "Bilangan 6 dapat diuraikan menjadi 4 dan 2 (karena 4 + 2 = 6)[cite: 4]."
+                },
+                {
+                    type: "MCQ",
+                    question: "Pasangan angka 3 dan 4 jika digabungkan menjadi bilangan ...",
+                    options: ["7", "6", "8"],
+                    answer: "7",
+                    explanation: "Menggabungkan 3 dan 4 artinya 3 + 4 = 7."
+                },
+                {
+                    type: "MCQ",
+                    question: "Hasil pengurangan dari 8 - 3 adalah ...",
+                    options: ["5", "4", "6"],
+                    answer: "5",
+                    explanation: "Delapan dikurangi tiga sisa 5."
+                },
+                {
+                    type: "MCQ",
+                    question: "Bilangan yang terletak di antara angka 4 dan 6 adalah ...",
+                    options: ["5", "3", "7"],
+                    answer: "5",
+                    explanation: "Urutan bilangan yang benar adalah 4, 5, 6."
+                },
+                {
+                    type: "MCQ",
+                    question: "Ibu membeli 4 buah apel, lalu memberi 2 buah apel lagi. Jumlah seluruh apel Ibu sekarang ada ...",
+                    options: ["6 buah", "5 buah", "7 buah"],
+                    answer: "6 buah",
+                    explanation: "4 + 2 = 6 buah apel."
+                },
+                {
+                    type: "MCQ",
+                    question: "Lambang bilangan dari 'delapan' adalah ...",
+                    options: ["8", "7", "9"],
+                    answer: "8",
+                    explanation: "Tulisan kata 'delapan' disimbolkan dengan angka 8."
+                },
+                {
+                    type: "MCQ",
+                    question: "Angka 5 lebih ... dari angka 3.",
+                    options: ["Banyak", "Sedikit", "Sama dengan"],
+                    answer: "Banyak",
+                    explanation: "Angka 5 nilainya lebih besar/banyak dibandingkan 3."
+                },
+                {
+                    type: "MCQ",
+                    question: "Siti memiliki 7 balon. Meletus 2 balon. Balon Siti yang masih utuh ada ...",
+                    options: ["5", "4", "6"],
+                    answer: "5",
+                    explanation: "7 dikurangi 2 (7 - 2) = 5."
+                },
+                {
+                    type: "MCQ",
+                    question: "Berapa hasil dari 5 + 5?",
+                    options: ["10", "9", "8"],
+                    answer: "10",
+                    explanation: "5 + 5 = 10."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Pasangan bilangan untuk membentuk angka 5 adalah 1 dan ...",
+                    answer: "4",
+                    explanation: "1 dan 4 jika digabungkan menjadi 5."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Hasil dari 9 - 4 adalah ...",
+                    answer: "5",
+                    explanation: "9 - 4 = 5."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Bilangan setelah angka 7 adalah ...",
+                    answer: "8",
+                    explanation: "Setelah angka 7 adalah angka 8."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) 2 ditambah 6 hasilnya adalah ...",
+                    answer: "8",
+                    explanation: "2 + 6 = 8."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Budi punya 10 kelereng, diberikan ke temannya 3 kelereng. Sisa kelereng Budi adalah ...",
+                    answer: "7",
+                    explanation: "10 - 3 = 7."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Hasil dari 4 + 4 adalah 8.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Benar. 4 + 4 = 8."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Angka 9 lebih sedikit dibandingkan angka 6.",
+                    options: ["Benar", "Salah"],
+                    answer: "Salah",
+                    explanation: "Salah. Angka 9 lebih banyak daripada angka 6."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Bilangan 7 dapat diuraikan menjadi 3 dan 4.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Benar. 3 + 4 = 7."
+                }
+            ],
+
+            // PACKAGE B (20 Questions - Pengayaan)
+            [
+                {
+                    type: "MCQ",
+                    question: "Dono berdiri di batu angka 3. Ia melompat maju 4 langkah. Dono sekarang berada di batu angka ...",
+                    visualType: "jump_track",
+                    startPos: 3,
+                    steps: 4,
+                    options: ["7", "6", "8"],
+                    answer: "7",
+                    explanation: "Dono mulai di angka 3 + melompat 4 langkah = 7[cite: 5]."
+                },
+                {
+                    type: "MCQ",
+                    question: "Manakah pasangan angka di bawah ini yang jumlahnya 9?",
+                    options: ["5 dan 4", "6 dan 2", "3 dan 5"],
+                    answer: "5 dan 4",
+                    explanation: "5 + 4 = 9."
+                },
+                {
+                    type: "MCQ",
+                    question: "Edo punya 6 permen. Adik memberi Edo 3 permen lagi. Penjumlahan yang sesuai adalah ...",
+                    options: ["6 + 3", "6 - 3", "3 + 3"],
+                    answer: "6 + 3",
+                    explanation: "6 permen ditambah 3 permen penulisan matematikanya adalah 6 + 3[cite: 5]."
+                },
+                {
+                    type: "MCQ",
+                    question: "Beni memiliki 10 kue. Dimakan oleh temannya 4 kue. Sisa kue Beni adalah ...",
+                    options: ["6", "5", "7"],
+                    answer: "6",
+                    explanation: "10 - 4 = 6 kue."
+                },
+                {
+                    type: "MCQ",
+                    question: "Di piring ada 2 donat cokelat dan 5 donat keju. Jumlah donat seluruhnya ada ...",
+                    options: ["7", "6", "8"],
+                    answer: "7",
+                    explanation: "2 + 5 = 7 donat."
+                },
+                {
+                    type: "MCQ",
+                    question: "Angka 10 diuraikan menjadi dua bagian yaitu 5 dan ...",
+                    options: ["5", "4", "6"],
+                    answer: "5",
+                    explanation: "10 = 5 + 5."
+                },
+                {
+                    type: "MCQ",
+                    question: "Berapa hasil penjumlahan 1 + 8?",
+                    options: ["9", "8", "10"],
+                    answer: "9",
+                    explanation: "1 + 8 = 9."
+                },
+                {
+                    type: "MCQ",
+                    question: "Berapa sisa dari 7 - 0?",
+                    options: ["7", "0", "6"],
+                    answer: "7",
+                    explanation: "Suatu bilangan dikurangi 0 nilainya tetap (7 - 0 = 7)."
+                },
+                {
+                    type: "MCQ",
+                    question: "Manakah urutan bilangan dari yang terbesar ke terkecil?",
+                    options: ["8, 7, 6, 5", "5, 6, 7, 8", "6, 8, 7, 5"],
+                    answer: "8, 7, 6, 5",
+                    explanation: "8, 7, 6, 5 adalah urutan dari terbesar ke terkecil."
+                },
+                {
+                    type: "MCQ",
+                    question: "Di ranting pohon ada 5 burung. Terbang 2 burung. Burung yang tersisa di ranting ada ...",
+                    options: ["3 ekor", "2 ekor", "4 ekor"],
+                    answer: "3 ekor",
+                    explanation: "5 - 2 = 3 ekor burung."
+                },
+                {
+                    type: "MCQ",
+                    question: "Hasil dari 2 + 7 adalah ...",
+                    options: ["9", "8", "10"],
+                    answer: "9",
+                    explanation: "2 + 7 = 9."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Bilangan sebelum angka 10 adalah ...",
+                    answer: "9",
+                    explanation: "Sebelum angka 10 adalah angka 9."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Ani melompat dari angka 2 sebanyak 6 langkah maju. Ani tiba di angka ...",
+                    answer: "8",
+                    explanation: "2 + 6 = 8[cite: 5]."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) 8 dikurangi 5 hasilnya adalah ...",
+                    answer: "3",
+                    explanation: "8 - 5 = 3."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Penggabungan angka 6 dan 2 menghasilkan bilangan ...",
+                    answer: "8",
+                    explanation: "6 + 2 = 8."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Dayu memetik 3 bunga mawar dan 3 bunga melati. Jumlah bunga Dayu adalah ...",
+                    answer: "6",
+                    explanation: "3 + 3 = 6 bunga."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) 10 dikurangi 5 hasilnya adalah 5.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Benar. 10 - 5 = 5."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Pasangan bilangan 2 dan 3 membentuk angka 6.",
+                    options: ["Benar", "Salah"],
+                    answer: "Salah",
+                    explanation: "Salah. 2 dan 3 jika digabungkan membentuk angka 5[cite: 4]."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) 0 ditambah 8 hasilnya adalah 8.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Benar. Bilangan apapun ditambah 0 nilainya tetap."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Melompat maju 3 langkah dari angka 5 membawa kita ke angka 8.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Benar. 5 + 3 = 8[cite: 5]."
+                }
+            ],
+
+            // PACKAGE C (20 Questions - Tantangan)
+            [
+                {
+                    type: "MCQ",
+                    question: "Ada 3 kucing di halaman. Datang lagi 4 kucing. Kemudian pergi 2 kucing. Berapa kucing yang tersisa?",
+                    options: ["5 ekor", "4 ekor", "6 ekor"],
+                    answer: "5 ekor",
+                    explanation: "3 + 4 = 7, lalu 7 - 2 = 5 ekor."
+                },
+                {
+                    type: "MCQ",
+                    question: "Ayah membeli 8 telur. Pecah 3 telur saat di jalan. Ibu memasak 2 telur. Sisa telur yang masih utuh adalah ...",
+                    options: ["3 buah", "2 buah", "4 buah"],
+                    answer: "3 buah",
+                    explanation: "8 - 3 = 5, lalu 5 - 2 = 3 buah."
+                },
+                {
+                    type: "MCQ",
+                    question: "Lani punya 5 pensil. Kiki punya 3 pensil. Berapa selisih banyaknya pensil Lani dan Kiki?",
+                    options: ["2 pensil", "3 pensil", "1 pensil"],
+                    answer: "2 pensil",
+                    explanation: "Selisih hitung pengurangan: 5 - 3 = 2 pensil."
+                },
+                {
+                    type: "MCQ",
+                    question: "Di dalam akuarium ada 10 ikan. 4 ikan berwarna merah dan sisanya berwarna kuning. Berapa ikan berwarna kuning?",
+                    options: ["6 ekor", "5 ekor", "7 ekor"],
+                    answer: "6 ekor",
+                    explanation: "10 - 4 = 6 ekor ikan kuning."
+                },
+                {
+                    type: "MCQ",
+                    question: "Rian berdiri di angka 1. Ia melompat maju 3 langkah, lalu melompat lagi 4 langkah. Rian berada di angka ...",
+                    visualType: "jump_track",
+                    startPos: 1,
+                    steps: 7,
+                    options: ["8", "7", "9"],
+                    answer: "8",
+                    explanation: "1 + 3 + 4 = 8[cite: 5]."
+                },
+                {
+                    type: "MCQ",
+                    question: "Manakah di bawah ini yang hasilnya sama dengan 4 + 3?",
+                    options: ["2 + 5", "3 + 3", "1 + 5"],
+                    answer: "2 + 5",
+                    explanation: "4 + 3 = 7, dan 2 + 5 = 7."
+                },
+                {
+                    type: "MCQ",
+                    question: "Manakah bentuk pengurangan yang menghasilkan angka 4?",
+                    options: ["9 - 5", "8 - 3", "7 - 2"],
+                    answer: "9 - 5",
+                    explanation: "9 - 5 = 4."
+                },
+                {
+                    type: "MCQ",
+                    question: "Udin menggambar 4 bintang. Siti menggambar 4 bintang. Jumlah seluruh bintang mereka adalah ...",
+                    options: ["8", "7", "9"],
+                    answer: "8",
+                    explanation: "4 + 4 = 8."
+                },
+                {
+                    type: "MCQ",
+                    question: "Kakak punya 9 buku cerita. Dipinjam teman 5 buku. Buku cerita Kakak yang tersisa ada ...",
+                    options: ["4 buku", "5 buku", "3 buku"],
+                    answer: "4 buku",
+                    explanation: "9 - 5 = 4 buku."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) 10 dikurangi berapa agar hasilnya menjadi 3?",
+                    answer: "7",
+                    explanation: "10 - 7 = 3."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Berapa angka yang harus ditambahkan ke 4 agar menjadi 9?",
+                    answer: "5",
+                    explanation: "4 + 5 = 9."
+                },
+                {
+                    type: "MCQ",
+                    question: "Ada 6 anak bermain bola. Datang lagi 3 anak. Berapa jumlah anak yang bermain bola sekarang?",
+                    options: ["9 anak", "8 anak", "10 anak"],
+                    answer: "9 anak",
+                    explanation: "6 + 3 = 9 anak."
+                },
+                {
+                    type: "MCQ",
+                    question: "Ibu memotong semangka menjadi 8 bagian. Dimakan keluarga 6 bagian. Sisa semangka Ibu adalah ...",
+                    options: ["2 bagian", "3 bagian", "1 bagian"],
+                    answer: "2 bagian",
+                    explanation: "8 - 6 = 2 bagian."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) 3 + 5 nilainya sama dengan 10 - 2.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Benar. 3 + 5 = 8 dan 10 - 2 = 8."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Jika kamu punya 7 jepitan dan hilang 7 jepitan, sisanya adalah 1.",
+                    options: ["Benar", "Salah"],
+                    answer: "Salah",
+                    explanation: "Salah. 7 - 7 = 0."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Hasil dari 10 - 8 + 4 adalah ...",
+                    answer: "6",
+                    explanation: "10 - 8 = 2, lalu 2 + 4 = 6."
+                },
+                {
+                    type: "SHORT",
+                    question: "(Isian Singkat) Angka 8 diuraikan menjadi dua angka yang sama besar, yaitu ...",
+                    answer: "4",
+                    explanation: "8 dapat diuraikan menjadi 4 dan 4[cite: 4]."
+                },
+                {
+                    type: "MCQ",
+                    question: "Toko mainan memiliki 9 mobil-mobilan. Terjual 7 mobil-mobilan. Sisa mobil-mobilan di toko adalah ...",
+                    options: ["2 buah", "3 buah", "1 buah"],
+                    answer: "2 buah",
+                    explanation: "9 - 7 = 2 buah."
+                },
+                {
+                    type: "MCQ",
+                    question: "Beni melihat 2 kupu-kupu di taman. Lalu datang lagi 6 kupu-kupu. Berapa jumlah kupu-kupu seluruhnya?",
+                    options: ["8 ekor", "7 ekor", "9 ekor"],
+                    answer: "8 ekor",
+                    explanation: "2 + 6 = 8 ekor."
+                },
+                {
+                    type: "TF",
+                    question: "(Benar/Salah) Pasangan bilangan 1 dan 9 jika disusun membentuk angka 10.",
+                    options: ["Benar", "Salah"],
+                    answer: "Benar",
+                    explanation: "Benar. 1 + 9 = 10[cite: 4]."
+                }
+            ]
+        ];
+
+        let questionBank = [];
+        let currentPackageIdx = 0;
+        let currentQuestionIdx = 0;
+        let userAnswers = [];
+        let isAudioEnabled = true;
+
+        // Shuffle options dynamically while keeping correct answer matched
+        function shuffleQuestionOptions(pkg) {
+            return pkg.map(q => {
+                if (q.type === 'MCQ') {
+                    let shuffledOptions = [...q.options];
+                    for (let i = shuffledOptions.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [shuffledOptions[i], shuffledOptions[j]] = [shuffledOptions[j], shuffledOptions[i]];
+                    }
+                    return { ...q, options: shuffledOptions };
+                }
+                return { ...q };
+            });
+        }
+
+        function initQuestionBank() {
+            questionBank = rawQuestionBank.map(pkg => shuffleQuestionOptions(pkg));
+        }
+
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playSound(type) {
+            if (!isAudioEnabled) return;
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                if (type === 'click') {
+                    osc.frequency.setValueAtTime(450, audioCtx.currentTime);
+                    gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.05);
+                } else if (type === 'correct') {
+                    osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
+                    osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.08);
+                    gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.2);
+                } else if (type === 'wrong') {
+                    osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+                    osc.frequency.setValueAtTime(196, audioCtx.currentTime + 0.1);
+                    gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.25);
+                }
+            } catch (e) {
+                // Audio fallback
+            }
+        }
+
+        function toggleAudio() {
+            isAudioEnabled = !isAudioEnabled;
+            const icon = document.getElementById('audioIcon');
+            const btn = document.getElementById('audioBtn');
+            if (isAudioEnabled) {
+                icon.setAttribute('data-lucide', 'volume-2');
+                btn.classList.replace('text-slate-400', 'text-slate-600');
+            } else {
+                icon.setAttribute('data-lucide', 'volume-x');
+                btn.classList.replace('text-slate-600', 'text-slate-400');
+            }
+            lucide.createIcons();
+        }
+
+        function goToHome() {
+            playSound('click');
+            document.getElementById('homeScreen').classList.remove('hidden');
+            document.getElementById('quizScreen').classList.add('hidden');
+            document.getElementById('resultScreen').classList.add('hidden');
+        }
+
+        function startQuiz(packageIdx) {
+            playSound('click');
+            currentPackageIdx = packageIdx;
+            currentQuestionIdx = 0;
+            userAnswers = new Array(20).fill(null);
+
+            // Re-shuffle options on each attempt
+            questionBank[currentPackageIdx] = shuffleQuestionOptions(rawQuestionBank[currentPackageIdx]);
+
+            document.getElementById('homeScreen').classList.add('hidden');
+            document.getElementById('resultScreen').classList.add('hidden');
+            document.getElementById('quizScreen').classList.remove('hidden');
+
+            const pkgNames = ["Paket A: Dasar", "Paket B: Pengayaan", "Paket C: Tantangan"];
+            document.getElementById('pkgBadge').innerText = pkgNames[packageIdx];
+
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const questions = questionBank[currentPackageIdx];
+            const q = questions[currentQuestionIdx];
+
+            // Update Progress
+            document.getElementById('currentQNum').innerText = currentQuestionIdx + 1;
+            document.getElementById('totalQNum').innerText = questions.length;
+            
+            const progress = ((currentQuestionIdx + 1) / questions.length) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+
+            // Question Type Badge
+            const typeBadge = document.getElementById('qTypeBadge');
+            if (q.type === 'MCQ') {
+                typeBadge.innerText = 'Pilihan Ganda';
+                typeBadge.className = 'inline-block px-3 py-1 rounded-lg text-xs font-extrabold uppercase tracking-wider bg-blue-100 text-blue-800';
+            } else if (q.type === 'SHORT') {
+                typeBadge.innerText = 'Isian Singkat';
+                typeBadge.className = 'inline-block px-3 py-1 rounded-lg text-xs font-extrabold uppercase tracking-wider bg-amber-100 text-amber-800';
+            } else if (q.type === 'TF') {
+                typeBadge.innerText = 'Benar / Salah';
+                typeBadge.className = 'inline-block px-3 py-1 rounded-lg text-xs font-extrabold uppercase tracking-wider bg-indigo-100 text-indigo-800';
+            }
+
+            // Question Text
+            document.getElementById('questionText').innerText = q.question;
+
+            // Render Visual Illustration if exists
+            const visualBox = document.getElementById('visualBox');
+            if (q.visualType === 'ice_cream') {
+                visualBox.classList.remove('hidden');
+                visualBox.innerHTML = `
+                    <div class="flex flex-wrap items-center justify-center gap-6 p-2 w-full">
+                        <div class="flex items-center gap-4 bg-white p-4 rounded-2xl border border-amber-200 shadow-sm">
+                            <div class="flex gap-1.5 bg-amber-100/70 p-2.5 rounded-xl">
+                                🍦🍦🍦🍦
+                            </div>
+                            <div class="flex gap-1.5 bg-amber-100/70 p-2.5 rounded-xl">
+                                🍦🍦
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 bg-white p-3.5 rounded-2xl border border-amber-200 shadow-sm">
+                            <div class="flex flex-col gap-2 font-bold text-xs">
+                                <span class="px-3 py-1.5 bg-slate-100 border border-slate-300 rounded-lg text-center">4</span>
+                                <span class="px-3 py-1.5 bg-slate-100 border border-slate-300 rounded-lg text-center">2</span>
+                            </div>
+                            <div class="text-xl font-bold text-slate-400">➔</div>
+                            <div class="w-10 h-10 rounded-xl bg-amber-400 text-slate-900 font-extrabold text-lg flex items-center justify-center border-2 border-amber-500 shadow-sm animate-pulse">
+                                ?
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (q.visualType === 'jump_track') {
+                visualBox.classList.remove('hidden');
+                const start = q.startPos || 1;
+                const steps = q.steps || 1;
+                
+                let trackHTML = '';
+                for (let i = 1; i <= 10; i++) {
+                    const isStart = i === start;
+                    const isTarget = i === start + steps;
+                    let bg = 'bg-white text-slate-700 border-slate-200';
+                    if (isStart) bg = 'bg-indigo-600 text-white border-indigo-700 ring-2 ring-indigo-300 font-extrabold';
+                    if (isTarget) bg = 'bg-emerald-500 text-white border-emerald-600 font-extrabold';
+
+                    trackHTML += `
+                        <div class="relative flex flex-col items-center">
+                            ${isStart ? '<span class="text-[10px] font-extrabold text-indigo-600 absolute -top-5">Mulai</span>' : ''}
+                            <div class="w-7 h-7 sm:w-9 sm:h-9 rounded-full border flex items-center justify-center text-xs sm:text-sm ${bg}">
+                                ${i}
+                            </div>
+                        </div>
+                    `;
+                }
+
+                visualBox.innerHTML = `
+                    <div class="w-full space-y-3">
+                        <p class="text-xs font-bold text-slate-600 text-center">Loncatan Lintas Angka (1-10):</p>
+                        <div class="flex items-center justify-between gap-1 overflow-x-auto py-3 px-1">
+                            ${trackHTML}
+                        </div>
+                        <p class="text-[11px] text-indigo-700 font-semibold text-center bg-indigo-50 p-2 rounded-xl border border-indigo-100">
+                            🏃‍♂️ Berdiri di angka <strong>${start}</strong> ➔ Meloncat maju <strong>${steps} langkah</strong>
+                        </p>
+                    </div>
+                `;
+            } else {
+                visualBox.classList.add('hidden');
+                visualBox.innerHTML = '';
+            }
+
+            // Options Area
+            const container = document.getElementById('optionsContainer');
+            container.innerHTML = '';
+
+            const currentAnswer = userAnswers[currentQuestionIdx];
+
+            if (q.type === 'MCQ' || q.type === 'TF') {
+                q.options.forEach((opt) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'w-full text-left p-4 rounded-2xl border text-sm font-semibold transition-all flex items-center justify-between ';
+                    
+                    if (currentAnswer !== null) {
+                        if (opt === q.answer) {
+                            btn.className += 'border-emerald-500 bg-emerald-50 text-emerald-900 shadow-sm font-bold';
+                        } else if (currentAnswer === opt) {
+                            btn.className += 'border-rose-500 bg-rose-50 text-rose-900 font-bold';
+                        } else {
+                            btn.className += 'border-slate-200 opacity-60 text-slate-500';
+                        }
+                    } else {
+                        btn.className += 'border-slate-200 hover:border-blue-300 hover:bg-blue-50/50 text-slate-700';
+                    }
+
+                    btn.onclick = () => selectAnswer(opt);
+                    btn.disabled = currentAnswer !== null;
+
+                    btn.innerHTML = `
+                        <span>${opt}</span>
+                        <div class="w-5 h-5 rounded-full border border-slate-300 flex items-center justify-center ${currentAnswer !== null && opt === q.answer ? 'border-emerald-500 bg-emerald-500 text-white' : currentAnswer === opt ? 'border-rose-500 bg-rose-500 text-white' : ''}">
+                            ${currentAnswer !== null && opt === q.answer ? '<i data-lucide="check" class="w-3 h-3"></i>' : currentAnswer === opt ? '<i data-lucide="x" class="w-3 h-3"></i>' : ''}
+                        </div>
+                    `;
+                    container.appendChild(btn);
+                });
+            } else if (q.type === 'SHORT') {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'space-y-3';
+                wrapper.innerHTML = `
+                    <input type="text" id="shortAnswerInput" placeholder="Ketik jawaban singkatmu di sini..." 
+                        value="${currentAnswer || ''}"
+                        class="w-full p-4 rounded-2xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-sm font-semibold outline-none transition"
+                        oninput="saveShortAnswer(this.value)">
+                    <p class="text-[11px] text-slate-400 italic">* Tekan "Selanjutnya" untuk menyimpan jawaban.</p>
+                `;
+                container.appendChild(wrapper);
+            }
+
+            // Explanation Display
+            const expBox = document.getElementById('explanationBox');
+            if (currentAnswer !== null && currentAnswer !== '') {
+                expBox.classList.remove('hidden');
+                document.getElementById('explanationText').innerText = q.explanation;
+            } else {
+                expBox.classList.add('hidden');
+            }
+
+            // Controls state
+            document.getElementById('prevBtn').disabled = currentQuestionIdx === 0;
+            const nextBtn = document.getElementById('nextBtn');
+            if (currentQuestionIdx === questions.length - 1) {
+                nextBtn.innerHTML = `Selesai & Lihat Hasil <i data-lucide="check-circle" class="w-4 h-4"></i>`;
+                nextBtn.className = 'px-6 py-2.5 rounded-xl bg-blue-700 hover:bg-blue-800 text-white text-xs font-bold shadow-md transition flex items-center gap-2';
+            } else {
+                nextBtn.innerHTML = `Selanjutnya <i data-lucide="chevron-right" class="w-4 h-4"></i>`;
+                nextBtn.className = 'px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md shadow-blue-200 transition flex items-center gap-2';
+            }
+
+            lucide.createIcons();
+        }
+
+        function selectAnswer(ans) {
+            userAnswers[currentQuestionIdx] = ans;
+            const q = questionBank[currentPackageIdx][currentQuestionIdx];
+
+            if (ans.toString().trim().toLowerCase() === q.answer.toString().trim().toLowerCase()) {
+                playSound('correct');
+            } else {
+                playSound('wrong');
+            }
+
+            renderQuestion();
+        }
+
+        function saveShortAnswer(val) {
+            userAnswers[currentQuestionIdx] = val;
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIdx > 0) {
+                playSound('click');
+                currentQuestionIdx--;
+                renderQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            const questions = questionBank[currentPackageIdx];
+            playSound('click');
+            
+            if (currentQuestionIdx < questions.length - 1) {
+                currentQuestionIdx++;
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            const questions = questionBank[currentPackageIdx];
+            let correct = 0;
+            let answered = 0;
+
+            questions.forEach((q, idx) => {
+                const userAns = userAnswers[idx];
+                if (userAns !== null && userAns !== undefined && userAns !== '') {
+                    answered++;
+                    if (userAns.toString().trim().toLowerCase() === q.answer.toString().trim().toLowerCase()) {
+                        correct++;
+                    }
+                }
+            });
+
+            const score = Math.round((correct / questions.length) * 100);
+
+            document.getElementById('quizScreen').classList.add('hidden');
+            document.getElementById('resultScreen').classList.remove('hidden');
+
+            document.getElementById('scoreDisplay').innerText = score;
+            document.getElementById('correctCount').innerText = correct;
+            document.getElementById('wrongCount').innerText = questions.length - correct;
+            document.getElementById('answeredCount').innerText = answered;
+
+            const pkgNames = ["Paket A: Dasar", "Paket B: Pengayaan", "Paket C: Tantangan"];
+            document.getElementById('resultSubtitle').innerText = `${pkgNames[currentPackageIdx]} selesai dikerjakan!`;
+
+            if (score >= 80 && typeof confetti === 'function') {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            }
+
+            const reviewList = document.getElementById('reviewList');
+            reviewList.innerHTML = '';
+
+            questions.forEach((q, idx) => {
+                const uAns = userAnswers[idx];
+                const isCorrect = uAns && uAns.toString().trim().toLowerCase() === q.answer.toString().trim().toLowerCase();
+
+                const item = document.createElement('div');
+                item.className = 'pt-4 space-y-2';
+                item.innerHTML = `
+                    <div class="flex items-start justify-between gap-2">
+                        <span class="text-xs font-bold text-slate-500">Soal #${idx + 1} (${q.type === 'MCQ' ? 'PG' : q.type === 'SHORT' ? 'Isian' : 'B/S'})</span>
+                        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold ${isCorrect ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}">
+                            ${isCorrect ? 'Benar (+5)' : 'Salah / Kosong'}
+                        </span>
+                    </div>
+                    <p class="font-bold text-sm text-slate-900">${q.question}</p>
+                    <div class="grid sm:grid-cols-2 gap-2 text-xs pt-1">
+                        <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                            <span class="text-slate-400 block font-medium text-[10px] uppercase">Jawabanmu:</span>
+                            <span class="font-bold ${isCorrect ? 'text-emerald-700' : 'text-rose-600'}">${uAns || '[Tidak Dijawab]'}</span>
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-blue-50 border border-blue-200">
+                            <span class="text-blue-600 block font-medium text-[10px] uppercase">Kunci Jawaban:</span>
+                            <span class="font-bold text-blue-900">${q.answer}</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-600 bg-sky-50 p-2.5 rounded-xl border border-sky-100"><strong class="text-sky-900">Pembahasan:</strong> ${q.explanation}</p>
+                `;
+                reviewList.appendChild(item);
+            });
+
+            lucide.createIcons();
+        }
+
+        function retryCurrentQuiz() {
+            startQuiz(currentPackageIdx);
+        }
+
+        window.onload = function() {
+            initQuestionBank();
+            lucide.createIcons();
+        };
+    </script>
+</body>
+</html>
