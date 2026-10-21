@@ -859,6 +859,7 @@
                 visualBox.classList.remove('hidden');
                 const start = q.startPos || 1;
                 const steps = q.steps || 1;
+                const isAnswered = userAnswers[currentQuestionIdx] !== null && userAnswers[currentQuestionIdx] !== undefined;
                 
                 let trackHTML = '';
                 for (let i = 1; i <= 10; i++) {
@@ -866,8 +867,10 @@
                     const isTarget = i === start + steps;
                     let bg = 'bg-white text-slate-700 border-slate-200';
                     if (isStart) bg = 'bg-indigo-600 text-white border-indigo-700 ring-2 ring-indigo-300 font-extrabold';
-                    if (isTarget) bg = 'bg-emerald-500 text-white border-emerald-600 font-extrabold';
-
+                    
+                    // Hanya beri warna hijau jika soal sudah dijawab!
+                    if (isTarget && isAnswered) bg = 'bg-emerald-500 text-white border-emerald-600 font-extrabold';
+            
                     trackHTML += `
                         <div class="relative flex flex-col items-center">
                             ${isStart ? '<span class="text-[10px] font-extrabold text-indigo-600 absolute -top-5">Mulai</span>' : ''}
